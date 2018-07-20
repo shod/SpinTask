@@ -1,0 +1,69 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "company_service_value".
+ *
+ * @property int $id
+ * @property int $company_service_id
+ * @property int $service_property_value_id
+ *
+ * @property ServicePropertyValue $servicePropertyValue
+ * @property CompanyService $companyService
+ */
+class CompanyServiceValue extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'company_service_value';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'company_service_id', 'service_property_value_id'], 'required'],
+            [['id', 'company_service_id', 'service_property_value_id'], 'integer'],
+            [['company_service_id', 'service_property_value_id'], 'unique', 'targetAttribute' => ['company_service_id', 'service_property_value_id']],
+            [['id'], 'unique'],
+            [['service_property_value_id'], 'exist', 'skipOnError' => true, 'targetClass' => ServicePropertyValue::className(), 'targetAttribute' => ['service_property_value_id' => 'id']],
+            [['company_service_id'], 'exist', 'skipOnError' => true, 'targetClass' => CompanyService::className(), 'targetAttribute' => ['company_service_id' => 'id']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'company_service_id' => 'Company Service ID',
+            'service_property_value_id' => 'Service Property Value ID',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicePropertyValue()
+    {
+        return $this->hasOne(ServicePropertyValue::className(), ['id' => 'service_property_value_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanyService()
+    {
+        return $this->hasOne(CompanyService::className(), ['id' => 'company_service_id']);
+    }
+}
