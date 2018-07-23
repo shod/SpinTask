@@ -88,8 +88,10 @@ class CompanyController extends Controller
         $services = \app\models\Service::find()->all();
         $companyService  = \app\models\CompanyService::find()->where(['company_id' => $id])->all();
         $sericeList = [];
+        $companyServiceIds = [];
         foreach ($companyService as $value) {
             $sericeList[$value->service_id] = 1;
+            $companyServiceIds[] = $value->id;
         }
             
         $valuesModels = \app\models\ServicePropertyValue::find()->with('serviceProperty')->all();
@@ -102,12 +104,18 @@ class CompanyController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        
+        $valueList = [];
+        $svModel = \app\models\CompanyServiceValue::find()->where(['company_service_id' => $companyServiceIds])->all();
+        foreach ($svModel as $sv) {
+            $valueList[$sv->service_property_value_id] = 1;
+        }
         return $this->render('update', [
             'model' => $model,
             'services' => $services,
             'sericeList' => $sericeList,
             'values' => $values,
+            'valueList' => $valueList,
         ]);
     }
     
@@ -127,12 +135,20 @@ class CompanyController extends Controller
     
     public function actionServicevalue($id)
     {
-        \app\models\CompanyServiceValue::deleteAll(['company_service_id' => $id]);
-        $service  = Yii::$app->request->post('service');
-        foreach ($service as $service_id => $value) {
-            $model = new \app\models\CompanyService();
-            $model->company_id = $id;
-            $model->service_id = $service_id;
+        $service = Yii::$app->request->post('Service');
+        $values = Yii::$app->request->post('value');
+        
+        $companyService = \app\models\CompanyService::find()
+            ->where([
+                'company_id' => $id,
+                'service_id' => $service['id'],
+            ])->one();
+        
+        \app\models\CompanyServiceValue::deleteAll(['company_service_id' => $companyService->id]);
+        foreach ($values as $value_id => $v) {
+            $model = new \app\models\CompanyServiceValue();
+            $model->company_service_id = $companyService->id;
+            $model->service_property_value_id = $value_id;
             $model->save();
         }
         

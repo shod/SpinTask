@@ -11,8 +11,8 @@ use Yii;
  * @property int $company_service_id
  * @property int $service_property_value_id
  *
- * @property ServicePropertyValue $servicePropertyValue
  * @property CompanyService $companyService
+ * @property ServicePropertyValue $servicePropertyValue
  */
 class CompanyServiceValue extends \yii\db\ActiveRecord
 {
@@ -30,12 +30,11 @@ class CompanyServiceValue extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'company_service_id', 'service_property_value_id'], 'required'],
-            [['id', 'company_service_id', 'service_property_value_id'], 'integer'],
+            [['company_service_id', 'service_property_value_id'], 'required'],
+            [['company_service_id', 'service_property_value_id'], 'integer'],
             [['company_service_id', 'service_property_value_id'], 'unique', 'targetAttribute' => ['company_service_id', 'service_property_value_id']],
-            [['id'], 'unique'],
-            [['service_property_value_id'], 'exist', 'skipOnError' => true, 'targetClass' => ServicePropertyValue::className(), 'targetAttribute' => ['service_property_value_id' => 'id']],
             [['company_service_id'], 'exist', 'skipOnError' => true, 'targetClass' => CompanyService::className(), 'targetAttribute' => ['company_service_id' => 'id']],
+            [['service_property_value_id'], 'exist', 'skipOnError' => true, 'targetClass' => ServicePropertyValue::className(), 'targetAttribute' => ['service_property_value_id' => 'id']],
         ];
     }
 
@@ -54,16 +53,16 @@ class CompanyServiceValue extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServicePropertyValue()
+    public function getCompanyService()
     {
-        return $this->hasOne(ServicePropertyValue::className(), ['id' => 'service_property_value_id']);
+        return $this->hasOne(CompanyService::className(), ['id' => 'company_service_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyService()
+    public function getServicePropertyValue()
     {
-        return $this->hasOne(CompanyService::className(), ['id' => 'company_service_id']);
+        return $this->hasOne(ServicePropertyValue::className(), ['id' => 'service_property_value_id']);
     }
 }

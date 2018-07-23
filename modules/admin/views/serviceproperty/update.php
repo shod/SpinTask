@@ -46,7 +46,7 @@ $valuesModel->service_property_id = $model->id;
                         return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['/admin/servicepropertyvalue/update', 'id' =>  $model->id]);
                     },
                     'delete' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['/admin/serviceproperty/update', 'id' =>  $model->id]);
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['/admin/servicepropertyvalue/delete', 'id' =>  $model->id]);
                     },
                 ],
             ],

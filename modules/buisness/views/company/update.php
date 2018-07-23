@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = 'Update';
                 'services' => $services,
                 'sericeList' => $sericeList,
                 'values' => $values,
+                'valueList' => $valueList,
             ]); ?>
         </div>
     </div>
