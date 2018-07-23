@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\AdminLoginLog;
 
 /**
  * This is the model class for table "admin_user".
@@ -87,11 +88,10 @@ class AdminUser extends \yii\db\ActiveRecord
     {
         if ($this->admin_group_id != 13 && (crypt($password, $this->password) == $this->password)){
             
-            $log = new AdsLoginLog();
+            $log = new AdminLoginLog();
             $log->user_id = $this->id;
-            $log->ip = $_SERVER['REMOTE_ADDR'];
+            $log->ip = \Yii::$app->request->remoteIP;
             $log->save();
-            
             return true;
         }
         return FALSE;

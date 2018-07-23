@@ -57,11 +57,22 @@ $i = FALSE;
                         </div>
                         <div class="row" >
                             <div class="col">
+                                <?= $form->field($sericeList[$service->id], 'description')->textInput(); ?>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col">
+                                <?= $form->field($sericeList[$service->id], 'email')->textInput(['maxlength' => true]) ?>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col">
                                 <div class="form-group">
                                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
                                 </div>
                             </div>
                         </div>
+                        
                     </section>
                 <?php ActiveForm::end(); ?>
             </div>

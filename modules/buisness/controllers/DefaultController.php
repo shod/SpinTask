@@ -6,7 +6,7 @@ use Yii;
 use app\models\BusinessOwner;
 use app\models\Company;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+use app\components\yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 

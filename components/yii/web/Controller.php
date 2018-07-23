@@ -15,7 +15,7 @@ namespace app\components\yii\web;
  */
 class Controller extends \yii\web\Controller {
 
-    /*public function behaviors() {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
@@ -33,7 +33,7 @@ class Controller extends \yii\web\Controller {
                 ],
             ],
         ];
-    }*/
+    }
 
 
     /**

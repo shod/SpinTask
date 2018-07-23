@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use app\models\AdminLoginLog;
+
+
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
@@ -112,11 +115,10 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         if ($this->group_id != 13 && (crypt($password, $this->password) == $this->password)){
             
-            $log = new AdsLoginLog();
+            $log = new AdminLoginLog();
             $log->user_id = $this->id;
-            $log->ip = $_SERVER['REMOTE_ADDR'];
+            $log->ip = \Yii::$app->request->remoteIP;
             $log->save();
-            
             return true;
         }
         return FALSE;

@@ -5,7 +5,7 @@ namespace app\modules\buisness\controllers;
 use Yii;
 use app\models\Company;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+use app\components\yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -90,7 +90,7 @@ class CompanyController extends Controller
         $sericeList = [];
         $companyServiceIds = [];
         foreach ($companyService as $value) {
-            $sericeList[$value->service_id] = 1;
+            $sericeList[$value->service_id] = $value;
             $companyServiceIds[] = $value->id;
         }
             
@@ -137,12 +137,15 @@ class CompanyController extends Controller
     {
         $service = Yii::$app->request->post('Service');
         $values = Yii::$app->request->post('value');
-        
+            
         $companyService = \app\models\CompanyService::find()
             ->where([
                 'company_id' => $id,
                 'service_id' => $service['id'],
             ])->one();
+        $companyService->load(Yii::$app->request->post());
+        $companyService->save();
+        
         
         \app\models\CompanyServiceValue::deleteAll(['company_service_id' => $companyService->id]);
         foreach ($values as $value_id => $v) {

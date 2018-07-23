@@ -14,6 +14,21 @@ class SiteController extends Controller
 {
     
 
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        //'actions' => ['index', 'logout'],
+                        'allow' => true,
+                       // 'roles' => ['?'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    
     /**
      * {@inheritdoc}
      */

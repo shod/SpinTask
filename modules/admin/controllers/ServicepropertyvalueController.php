@@ -5,7 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\ServicePropertyValue;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+use app\components\yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
