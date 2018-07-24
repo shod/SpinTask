@@ -31,10 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'industry',
                 'attribute' => 'industry.name',
             ],
-            'name',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name,['/admin/service/update', 'id' => $data->id]);
+                },
             ],
         ],
     ]);

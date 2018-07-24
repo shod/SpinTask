@@ -14,7 +14,13 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="service-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
