@@ -21,13 +21,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name,['/buisness/default/update', 'id' => $data->id]);
+                },
+            ],
             'created_at',
-            'setting_bit',
-
-            ['class' => 'yii\grid\ActionColumn'],
+          
         ],
     ]); ?>
 </div>

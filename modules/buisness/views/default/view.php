@@ -35,32 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     
-    <h1>Campaigns</h1>
-
-    <p>
-        <?= Html::a('Add campaign', ['/buisness/company/create', 'buisness_id' => $model->id], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProviderCampaign,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'name',
-            'created_at',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
-                'buttons' => [
-                    'update' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['/buisness/company/update', 'id' =>  $model->id]);
-                    },
-                    'delete' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['/buisness/company/update', 'id' =>  $model->id]);
-                    },
-                ],
-            ],
-        ],
-    ]); ?>
+    
 
 </div>
