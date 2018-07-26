@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = 'Update ' . $model->name;
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <?= $this->render('_form', [
-                'model' => $model,
+                'model' => $profileModel,
             ]) ?>
         </div>
         <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">

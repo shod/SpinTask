@@ -3,7 +3,6 @@
 namespace app\models_ex;
 
 use Yii;
-use app\models\CompanyService;
 
 /**
  * This is the model class for table "service".
@@ -28,7 +27,7 @@ class Service extends \yii\db\ActiveRecord
      */
     public function getCurrentCompanyServices($id)
     {
-        return $this->hasMany(CompanyService::className(), ['service_id' => 'id', 'company_id' => $id]);
+        return $this->hasMany(\app\models\CompanyService::className(), ['service_id' => 'id', 'company_id' => $id]);
     }
 
    

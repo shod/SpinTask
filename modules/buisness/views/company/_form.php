@@ -9,7 +9,9 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="company-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'action' => '/buisness/company/profile/' . $model->id,
+        'options' => ['enctype' => 'multipart/form-data']]); ?>
     <h3>General Company Profile</h3>
     <?= $form->field($model, 'buisness_id')->hiddenInput(['value'=> $model->buisness_id])->label(false); ?>
 
@@ -63,16 +65,22 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
-    
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
     
-    
-
-    
-
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?php if($model->image): ?>
+        <div class="row">
+            <div class="col">
+                <img src="/uploads/company/<?= $model->image; ?>" height="100"/>
+            </div>
+            <div class="col">
+                 <?= $form->field($model, 'imageFile')->fileInput() ?>
+            </div>
+        </div>
+    <?php else: ?>
+         <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <?php endif; ?>
+   
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

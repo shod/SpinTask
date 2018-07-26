@@ -101,9 +101,8 @@ class CompanyController extends Controller
         }
         
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        $profileModel = new \app\models\form\Company();
+        $profileModel->attributes = $model->attributes;
         
         $valueList = [];
         $svModel = \app\models\CompanyServiceValue::find()->where(['company_service_id' => $companyServiceIds])->all();
@@ -111,12 +110,41 @@ class CompanyController extends Controller
             $valueList[$sv->service_property_value_id] = 1;
         }
         return $this->render('update', [
+            'profileModel' => $profileModel,
             'model' => $model,
             'services' => $services,
             'sericeList' => $sericeList,
             'values' => $values,
             'valueList' => $valueList,
         ]);
+    }
+    
+    public function actionProfile($id)
+    {
+        $model = $this->findModel($id);
+        $profileModel = new \app\models\form\Company();
+        
+        $profileModel->load(Yii::$app->request->post());
+        $model->attributes = $profileModel->attributes;
+        
+        $profileModel->imageFile = \yii\web\UploadedFile::getInstance($profileModel, 'imageFile');
+        if ($profileModel->upload()) {
+            $model->image = $profileModel->getImgFileName();
+            if ($model->save()) {
+                return $this->redirect(['/buisness/company/update/', 'id' => $model->id]);
+            } 
+        }
+        
+        \app\models\CompanyService::deleteAll(['company_id' => $id]);
+        $service  = Yii::$app->request->post('service');
+        foreach ($service as $service_id => $value) {
+            $model = new \app\models\CompanyService();
+            $model->company_id = $id;
+            $model->service_id = $service_id;
+            $model->save();
+        }
+        
+        $this->redirect(['/buisness/company/update/', 'id' => $id, '#' => 'service_details']);
     }
     
     public function actionService($id)
@@ -137,22 +165,23 @@ class CompanyController extends Controller
     {
         $service = Yii::$app->request->post('Service');
         $values = Yii::$app->request->post('value');
-            
         $companyService = \app\models\CompanyService::find()
             ->where([
                 'company_id' => $id,
                 'service_id' => $service['id'],
             ])->one();
         $companyService->load(Yii::$app->request->post());
-        $companyService->save();
         
+        $companyService->upload();
+        
+        $companyService->save();
         
         \app\models\CompanyServiceValue::deleteAll(['company_service_id' => $companyService->id]);
         foreach ($values as $value_id => $v) {
-            $model = new \app\models\CompanyServiceValue();
-            $model->company_service_id = $companyService->id;
-            $model->service_property_value_id = $value_id;
-            $model->save();
+            $companyServiceValue = new \app\models\CompanyServiceValue();
+            $companyServiceValue->company_service_id = $companyService->id;
+            $companyServiceValue->service_property_value_id = $value_id;
+            $companyServiceValue->save();
         }
         
         $this->redirect(['/buisness/company/update/', 'id' => $id, '#' => 'service_details']);

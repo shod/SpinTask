@@ -19,7 +19,7 @@ use Yii;
  * @property CompanyServiceValue[] $companyServiceValues
  * @property ServicePropertyValue[] $servicePropertyValues
  */
-class CompanyService extends \yii\db\ActiveRecord
+class CompanyService extends \app\models_ex\CompanyService
 {
     /**
      * {@inheritdoc}

@@ -65,6 +65,16 @@ $i = FALSE;
                                 <?= $form->field($sericeList[$service->id], 'email')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
+                        <div class="row">
+                            <?php if($sericeList[$service->id]->image): ?>
+                                <div class="col">
+                                    <img src="/uploads/company/service/<?= $sericeList[$service->id]->image; ?>" height="100"/>
+                                </div>
+                            <?php endif; ?>
+                            <div class="col">
+                                <?= $form->field($sericeList[$service->id], 'imageFile')->fileInput() ?>
+                            </div>
+                        </div>
                         <div class="row" >
                             <div class="col">
                                 <div class="form-group">

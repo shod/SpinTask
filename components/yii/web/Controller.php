@@ -75,6 +75,13 @@ class Controller extends \yii\web\Controller {
 
     
     public function beforeAction($action) {
+        
+        \Yii::$container->set('yii\widgets\ActiveForm', [
+                        'fieldConfig' => [
+                                'inputOptions' => ['class' => 'form-control', 'size' => 1],
+                            ],
+        ]);
+        
         if (parent::beforeAction($action)) {
             // If you want to change it only in one or few actions, add additional check
 
