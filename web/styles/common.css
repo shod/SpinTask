@@ -79,10 +79,10 @@ body.ks-page-header-fixed .ks-page-header {
     z-index: 2;
     /* Minimum: 2 */
 }
-
+/*
 body.ks-page-header-fixed .ks-page-content .ks-page-content-body {
     padding-top: 60px;
-}
+}*/
 
 /* DEPRECATED: .ks-container, use .ks-page-container */
 .ks-page-container {

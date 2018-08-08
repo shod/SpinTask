@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Информационная панель';
+$this->title = 'Main page';
+
 ?>
 <div class="ks-dashboard-tabbed-sidebar-widgets">
     <div class="row">

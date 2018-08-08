@@ -42,6 +42,7 @@ class AppAsset extends AssetBundle
         'styles/pricing/subscriptions.min.css',
         'styles/pickmeup.min.css',
         'styles/chosen.css',
+        'web/css/contact.min.css',
         'scripts/charts/radial-progress/radial-progress.chart.min.css',
         '/assets/styles/apps/projects/tasks.min.css',
         //'styles/widgets/payment.min.css',

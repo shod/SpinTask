@@ -109,7 +109,7 @@ class Company extends Model
     public function upload()
     {
         if ($this->validate()) {
-            $this->imageFile->saveAs(Yii::getAlias('@webroot') . '/uploads/company/' . $this->getImgFileName() );
+            $this->imageFile->saveAs( \app\models_ex\Company::getImageDir() . $this->getImgFileName() );
             return true;
         } else {
             return false;

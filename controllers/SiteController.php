@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -29,23 +30,7 @@ class SiteController extends Controller
         ];
     }
     
-    /**
-     * {@inheritdoc}
-     */
-   /* public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }*/
-
-    /**
+     /**
      * Displays homepage.
      *
      * @return string
@@ -55,30 +40,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin_()
-    {
-        var_dump('actionLogin');
-        die;
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        var_dump(1111);
-        die;
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
     
     public function actionLogin()
 	{
@@ -132,5 +93,29 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    
+     /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionBuisness($id)
+    {
+        $model = \app\models\Company::findOne($id);
+        
+        $companyService = \app\models\CompanyService::find()->where(['company_id' => $id])->all();
+        return $this->render('buisness', ['model' => $model, 'companyService' => $companyService]);
+    }
+    
+    public function actionCatalog()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => \app\models\Company::find(),
+        ]);
+
+        return $this->render('catalog', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

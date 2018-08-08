@@ -20,4 +20,12 @@ use Yii;
 class Company extends \app\components\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
+    
+    public static function getImageDir() {
+        return Yii::getAlias('@webroot') . '/uploads/company/';
+    }
+    
+    public static function getImageUrl() {
+        return '/uploads/company/';
+    }
 }

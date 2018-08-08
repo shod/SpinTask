@@ -31,7 +31,7 @@ use Yii;
  * @property CompanyServiceValue[] $companyServiceValues
  * @property ServiceInquiry[] $serviceInquiries
  */
-class Company extends \yii\db\ActiveRecord
+class Company extends \app\models_ex\Company
 {
     /**
      * {@inheritdoc}
