@@ -1,7 +1,7 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$db = require __DIR__ . '/components/db.php';
 
 $config = [
     'id' => 'basic',
@@ -9,7 +9,7 @@ $config = [
     'bootstrap' => ['log'],
     'language'=>'en-EN',
     'charset' => 'utf-8',
-    'name' => 'OLG.BY',
+    'name' => 'test.servicecallonline.ca',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -23,7 +23,7 @@ $config = [
         ],
     ],
     'components' => [
-        'sphinx'  => require(__DIR__ . '/components/sphinx.php'),
+       // 'sphinx'  => require(__DIR__ . '/components/sphinx.php'),
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
          /* 'defaultRoles' => [
