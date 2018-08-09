@@ -40,6 +40,10 @@ abstract class SingletonActiveRecord extends \yii\db\ActiveRecord {
         if ($this->hasAttribute('updated_at')) {
             $this->setAttribute('updated_at', new \yii\db\Expression('NOW()'));
         }
+        if ($this->hasAttribute('setting_bit')  && !$this->setting_bit) {
+            $this->setAttribute('setting_bit', 0);
+        }
+        
         return parent::beforeSave($insert);
     }
 

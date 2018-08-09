@@ -64,10 +64,10 @@ class CompanyController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Company();
+        $model = new \app\models\form\Company();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/buisness/default/view', 'id' => $model->buisness_id]);
+            return $this->redirect(['/buisness/default/update', 'id' => $model->buisness_id]);
         }
         $model->buisness_id = Yii::$app->request->get('buisness_id');
         return $this->render('create', [
@@ -119,14 +119,18 @@ class CompanyController extends Controller
         ]);
     }
     
-    public function actionProfile($id)
+    public function actionProfile($id = false)
     {
-        $model = $this->findModel($id);
+        if(!$id){
+            $model = new Company();
+        }else{
+            $model = $this->findModel($id);
+        }
+        
         $profileModel = new \app\models\form\Company();
         
         $profileModel->load(Yii::$app->request->post());
         $model->attributes = $profileModel->attributes;
-        
         $profileModel->imageFile = \yii\web\UploadedFile::getInstance($profileModel, 'imageFile');
         if ($profileModel->upload()) {
             $model->image = $profileModel->getImgFileName();
@@ -137,7 +141,7 @@ class CompanyController extends Controller
         
         \app\models\CompanyService::deleteAll(['company_id' => $id]);
         $service  = Yii::$app->request->post('service');
-        foreach ($service as $service_id => $value) {
+        foreach ((array)$service as $service_id => $value) {
             $model = new \app\models\CompanyService();
             $model->company_id = $id;
             $model->service_id = $service_id;

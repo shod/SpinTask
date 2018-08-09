@@ -70,7 +70,7 @@ class Company extends Model
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['buisness_id'], 'required'],
             [['buisness_id', 'setting_bit', 'paid', 'city_id'], 'integer'],
             [['id', 'name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'safe'],
@@ -108,15 +108,18 @@ class Company extends Model
 
     public function upload()
     {
-        if ($this->validate()) {
+        if ($this->validate() && $this->imageFile) {
             $this->imageFile->saveAs( \app\models_ex\Company::getImageDir() . $this->getImgFileName() );
             return true;
+        }elseif(!$this->imageFile){
+       //     return true;
         } else {
             return false;
         }
     }
     
     public function getImgFileName() {
+        if($this->imageFile)
         return $this->imageFile->baseName . '.' . $this->imageFile->extension;
     }
 }
