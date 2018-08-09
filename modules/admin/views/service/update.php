@@ -9,8 +9,8 @@ use yii\grid\GridView;
 $this->title = 'Update Service: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin/']];
 $this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+//$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="service-update">
 
@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = 'Update';
             'name',
 
             ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['/admin/serviceproperty/update', 'id' =>  $model->id]);

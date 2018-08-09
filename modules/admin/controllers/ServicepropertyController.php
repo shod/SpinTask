@@ -67,7 +67,14 @@ class ServicepropertyController extends Controller
         $model = new ServiceProperty();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->type == 'bool'){
+                $val = new \app\models\ServicePropertyValue();
+                $val->service_property_id = $model->id;
+                $val->service_id = $model->service_id;
+                $val->value = '1';
+                $val->save();
+            }
+            return $this->redirect(['/admin/serviceproperty/update', 'id' => $model->id]);
         }
         $model->service_id = Yii::$app->request->get('service_id');
         return $this->render('create', [

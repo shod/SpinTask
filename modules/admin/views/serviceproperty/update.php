@@ -9,7 +9,7 @@ use app\models\ServicePropertyValue;
 
 $this->title = 'Update Service Property: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin/']];
-$this->params['breadcrumbs'][] = ['label' => $model->service->name, 'url' => ['/admin/service/view', 'id' => $model->service_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->service->name, 'url' => ['/admin/service/update', 'id' => $model->service_id]];
 $this->params['breadcrumbs'][] = 'Update';
 
 $valuesModel = new ServicePropertyValue();
@@ -23,7 +23,7 @@ $valuesModel->service_property_id = $model->id;
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-    
+    <?php if($model->type != 'bool'): ?>
     <h1>Values:</h1>
 
     <p>
@@ -52,5 +52,5 @@ $valuesModel->service_property_id = $model->id;
             ],
         ],
     ]); ?>
-
+    <?php endif; ?>
 </div>
