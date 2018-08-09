@@ -17,5 +17,9 @@ use yii\helpers\Html;
         <p>
             <?= Html::a('Service', ['/admin/service/',], ['class' => 'btn btn-success']) ?>
         </p>
+        
+        <p>
+            <?= Html::a('Buisness', ['/buisness/',], ['class' => 'btn btn-success']) ?>
+        </p>
     </p>
 </div>
