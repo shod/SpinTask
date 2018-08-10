@@ -188,9 +188,10 @@ class CompanyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/buisness/default/update/', 'id' => $model->buisness_id]);
     }
 
     /**

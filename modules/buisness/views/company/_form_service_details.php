@@ -47,7 +47,12 @@ $i = FALSE;
                                     <?php if(isset($values[$service->id])) : ?>
                                         <?php foreach ($values[$service->id] as $value): ?>
                                             <li style="list-style: none;">
-                                                <?= Html::checkbox('value['.$value->id.']', (isset($valueList[$value->id])), ['label' => $value->value]); ?>
+                                                <?php if($value->serviceProperty->type == 'bool'): ?>
+                                                    <?= Html::hiddenInput('value['.$value->id.']', '1'); ?> 
+                                                    <?= $value->serviceProperty->name; ?>
+                                                <?php else : ?>
+                                                    <?= Html::checkbox('value['.$value->id.']', (isset($valueList[$value->id])), ['label' => $value->value]); ?>
+                                                <?php endif; ?>
                                             </li>
                                         <?php endforeach; ?>
 
@@ -57,7 +62,7 @@ $i = FALSE;
                         </div>
                         <div class="row" >
                             <div class="col">
-                                <?= $form->field($sericeList[$service->id], 'description')->textInput(); ?>
+                                <?= $form->field($sericeList[$service->id], 'description')->textarea(); ?>
                             </div>
                         </div>
                         <div class="row" >
