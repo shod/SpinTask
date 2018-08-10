@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = 'Update ' . $model->name;
                 'template' => '{delete}',
                 'buttons' => [
                     'delete' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['/buisness/company/update', 'id' =>  $model->id]);
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['/buisness/company/delete', 'id' =>  $model->id]);
                     },
                 ],
             ],
