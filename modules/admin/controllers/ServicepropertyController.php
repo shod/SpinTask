@@ -17,7 +17,7 @@ class ServicepropertyController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    /*public function behaviors()
     {
         return [
             'verbs' => [
@@ -27,7 +27,7 @@ class ServicepropertyController extends Controller
                 ],
             ],
         ];
-    }
+    }*/
 
     /**
      * Lists all ServiceProperty models.
@@ -126,9 +126,10 @@ class ServicepropertyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/admin/service/update/', 'id' => $model->service_id]);
     }
 
     /**

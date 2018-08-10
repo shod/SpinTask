@@ -45,6 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['/admin/serviceproperty/update', 'id' =>  $model->id]);
                     },
+                    'delete' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['/admin/serviceproperty/delete', 'id' =>  $model->id]);
+                    },
                 ],
             ],
         ],
