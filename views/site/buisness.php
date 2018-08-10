@@ -121,7 +121,12 @@ $this->params['breadcrumbs'][] = $model->name;
                                                             <span class="badge ks-circle badge-info"></span>
                                                         </div>
                                                         <div class="ks-crm-user-view-activity-item-date">
-                                                            <?= $serviceValues->servicePropertyValue->value; ?>
+                                                            <?php if($serviceValues->servicePropertyValue->serviceProperty->type == 'bool'):?>
+                                                                <?= $serviceValues->servicePropertyValue->serviceProperty->name; ?>
+                                                            <?php else:?>
+                                                                <?= $serviceValues->servicePropertyValue->value; ?>
+                                                            <?php endif;?>
+                                                            
                                                             <?= $serviceValues->servicePropertyValue->serviceProperty->measure; ?>
                                                         </div>
                                                         <div class="ks-crm-user-view-activity-item-action">
