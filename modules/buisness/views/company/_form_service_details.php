@@ -48,8 +48,7 @@ $i = FALSE;
                                         <?php foreach ($values[$service->id] as $value): ?>
                                             <li style="list-style: none;">
                                                 <?php if($value->serviceProperty->type == 'bool'): ?>
-                                                    <?= Html::hiddenInput('value['.$value->id.']', '1'); ?> 
-                                                    <?= $value->serviceProperty->name; ?>
+                                                    <?= Html::checkbox('value['.$value->id.']', (isset($valueList[$value->id])), ['label' => $value->serviceProperty->name]); ?>
                                                 <?php else : ?>
                                                     <?= Html::checkbox('value['.$value->id.']', (isset($valueList[$value->id])), ['label' => $value->value]); ?>
                                                 <?php endif; ?>
