@@ -7,7 +7,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language'=>'en-EN',
+    
+    'language'=>'pl-PL',
+    'sourceLanguage' => 'en-US',
+    
     'charset' => 'utf-8',
     'name' => 'test.servicecallonline.ca',
     'aliases' => [
@@ -23,20 +26,42 @@ $config = [
         ],
     ],
     'components' => [
+        
+        'view' => require(__DIR__ . '/components/view.php'),
+        'i18n' => require(__DIR__ . '/components/i18n.php'), 
+        
+        
+//        'i18n' => [
+//            'translations' => [
+//                'app*' => [
+//                    'class' => 'yii\i18n\DbMessageSource',
+//                    'sourceLanguage' => 'en',
+//                    'forceTranslation'=>true,
+//                  
+//                    //'basePath' => '@app/messages',
+//                    //'sourceLanguage' => 'en-US',
+//                    /* 'fileMap' => [
+//                        'app' => 'app.php',
+//                        'app/error' => 'error.php',
+//                    ],*/
+//                    'on missingTranslation' => [
+//                        '\app\components\YandexTranslation',/* => [
+//                            'apiKey' => 'trnsl.1.1.20180829T091450Z.552d72ffdc99179d.5520a5e45b0667b30c96fc1c00d023c02507f48f',
+//                        ],*/
+//                        'handleMissingTranslation'
+//                    ],
+//                ],
+//         
+//            ],
+//            
+//        ], 
+        
+        
+        
+        
        // 'sphinx'  => require(__DIR__ . '/components/sphinx.php'),
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
-         /* 'defaultRoles' => [
-                'main',
-                'admin',
-                'simple',
-                'order',
-                'editor',
-                'article',
-                'billing',
-                'card',
-                'crm',
-                ],*/
         ],
         
         'request' => [

@@ -13,6 +13,7 @@ $this->title = 'Main page';
         The action belongs to the controller "<?= get_class($this->context) ?>"
         in the "<?= $this->context->module->id ?>" module.
     </p>
+    <p><b>themes/RED</b></p>
     <p>
         You may customize this page by editing the following file:<br>
         <p>
