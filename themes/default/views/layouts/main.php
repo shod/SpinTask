@@ -37,7 +37,7 @@ DefaultAsset::register($this);
                 <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
                     <!-- header-logo -->
                     <div class="header-logo">
-                        <a href="index.html"><img src="/themes/default/images/logo.png" alt="Wedding Vendor & Supplier Directory HTML Template "></a>
+                        <a href="/"><img src="/themes/default/images/logo.png" alt="Wedding Vendor & Supplier Directory HTML Template "></a>
                     </div>
                     <!-- /.header-logo -->
                 </div>
@@ -45,12 +45,6 @@ DefaultAsset::register($this);
                     <!-- navigations -->
                      <div id="navigation">
                         <ul>
-                            <li><a href="#" title="#">Homepages</a>
-                                <ul>
-                                    <li><a href="index.html" title="">Homepage 1</a></li>
-                                    <li><a href="index-2.html" title="">Homepage 2</a></li>
-                                </ul>
-                            </li>
                             <li><a href="#" title="#">Venue</a>
                                 <ul>
                                     <li><a href="#" title="">Listing</a>
