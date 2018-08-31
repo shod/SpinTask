@@ -60,10 +60,3 @@ $this->title = 'Main page';
          </div>
      </div>
  </div>
-
- <p>
-            <?= Html::a('Admin', ['/admin/',], ['class' => 'btn btn-success']) ?>
-        </p>
-        <p>
-            <?= Html::a('Catalog', ['/site/catalog/',], ['class' => 'btn btn-success']) ?>
-        </p>
