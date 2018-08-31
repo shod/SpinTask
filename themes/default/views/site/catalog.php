@@ -8,13 +8,37 @@ use app\models\Service;
 
 $this->title = 'Buisness list';
 ?>
-<div class="ks-dashboard-tabbed-sidebar-widgets">
-    <div class="row">
-          <?=
-          yii\widgets\ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemView' => '_company',
-    ]);
-    ?>
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <!-- page section -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-caption">
+                    <h1 class="page-title"> <?= $this->title; ?></h1>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<?= $this->render('_filter'); ?>
+<div class="content">
+    <div class="container">
+            <?=
+                yii\widgets\ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemView' => '_company',
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'row',
+                    'id' => 'list-wrapper',
+                ],
+                'itemOptions' => [
+                    'class' => 'col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12',
+                ],
+                'layout' => "{items}\n{pager}",
+            ]);
+            ?>
+    </div>
+</div>
+
