@@ -8,6 +8,7 @@ $this->title = 'Buisness page';
 $this->params['breadcrumbs'][] = ['label' => 'buisness list', 'url' => ['/site/catalog']];
 $this->params['breadcrumbs'][] = $model->name;
 
+$boolArr = [];
 //  \app\models_ex\Company::getImageUrl() . $model->image; 
 ?>
 
@@ -41,52 +42,45 @@ $this->params['breadcrumbs'][] = $model->name;
                     <div class="venue-highlights">
                         <h3 class="border-bottom mb20 pdb10">Venue Highlights</h3>
                         <ul class="list-unstyled text-dark">
-                            <li>
-                                <div>Maximum Capacity
-                                    <div class="venue-highlight-meta">350</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>Guest Minimum
-                                    <div class="venue-highlight-meta">40</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>Style
-                                    <div class="venue-highlight-meta">Barn, Mansion, Winery</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>Event Spaces
-                                    <div class="venue-highlight-meta">Outdoorsy, Rustic/Country, Unique</div>
-                                </div>
-                            </li>
+                            <?php foreach ($companyService as $cs): ?>
+                            <?php 
+                                $val = $cs->companyServiceValues[0];
+                                $service = $val->servicePropertyValue->serviceProperty;
+                            ?>
+                                <?php if($service->type == 'bool'): ?>
+                                <?php $boolArr[] = $val;?>
+                                <?php else: ?>
+                                    <li>
+                                        <div><?= $service->name; ?>
+                                            <div class="venue-highlight-meta"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></div>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            
                         </ul>
                     </div>
                     <!-- /.venue-highlights -->
                     <!-- aminities-block -->
-                    <div class="amenities-block">
-                        <h3 class="border-bottom mb20 pdb10">Accommodations / Amenities Included</h3>
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                <div class="animities-list">
-                                    <ul class="list-unstyled arrow">
-                                        <?php foreach ($companyService as $cs): ?>
-                                        <?php 
-                                            $val = $cs->companyServiceValues[0];
-                                            $service = $val->servicePropertyValue->serviceProperty;
-                                        ?>
-                                            <?php if($service->type == 'bool'): ?>
+                    <?php if(count($boolArr)): ?>
+                        <div class="amenities-block">
+                            <h3 class="border-bottom mb20 pdb10">Services</h3>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                    <div class="animities-list">
+                                        <ul class="list-unstyled arrow">
+                                            <?php foreach ($boolArr as $val): ?>
+                                            <?php 
+                                                $service = $val->servicePropertyValue->serviceProperty;
+                                            ?>
                                                 <li><?= $service->name ?></li>
-                                            <?php else: ?>
-                                                <li><?= $service->name . ': ' .$val->servicePropertyValue->value ?> <?= $service->measure; ?></li>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </ul>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
