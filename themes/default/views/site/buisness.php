@@ -85,19 +85,6 @@ $this->params['breadcrumbs'][] = $model->name;
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                <div class="animities-list">
-                                    <ul class="list-unstyled arrow">
-                                        <li> Parking</li>
-                                        <li><strike>Pet-friendly</strike> </li>
-                                        <li>Towels supplied </li>
-                                        <li>TV</li>
-                                        <li>Washing machine</li>
-                                        <li>Wheelchair</li>
-                                        <li>Access Wifi</li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
