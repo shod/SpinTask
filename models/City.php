@@ -8,9 +8,12 @@ use Yii;
  * This is the model class for table "city".
  *
  * @property int $id
+ * @property int $region_id
  * @property string $name
+ * @property string $code
  *
- * @property CompanyServiceValue[] $companyServiceValues
+ * @property CompanyServiceCity[] $companyServiceCities
+ * @property Company[] $companyServices
  */
 class City extends \yii\db\ActiveRecord
 {
@@ -28,7 +31,10 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 255],
+            [['id', 'region_id', 'name'], 'required'],
+            [['id', 'region_id'], 'integer'],
+            [['name', 'code'], 'string', 'max' => 32],
+            [['id'], 'unique'],
         ];
     }
 
@@ -39,15 +45,25 @@ class City extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'region_id' => 'Region ID',
             'name' => 'Name',
+            'code' => 'Code',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyServiceValues()
+    public function getCompanyServiceCities()
     {
-        return $this->hasMany(CompanyServiceValue::className(), ['city_id' => 'id']);
+        return $this->hasMany(CompanyServiceCity::className(), ['city_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanyServices()
+    {
+        return $this->hasMany(Company::className(), ['id' => 'company_service_id'])->viaTable('company_service_city', ['city_id' => 'id']);
     }
 }

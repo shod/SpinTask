@@ -37,8 +37,24 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        
+        $regions = \app\models\Region::find()->all();
+        //$city = \app\models\City::find()->where(['region_id' => 1,])->orderBy('name')->all();
+        
+        return $this->render('index', ['regions' => $regions, /*'city' => $city*/]);
     }
+    
+    public function actionCity($region_id)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $city = \app\models\City::find()->where(['region_id' => $region_id,])->orderBy('name')->all();
+        $data = [];
+        foreach ($city as $c){
+            $data[$c->id] = $c->name;
+        }
+        return $this->asJson($data);
+    }
+    
 
     
     public function actionLogin()

@@ -17,9 +17,8 @@ $href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
     <div class="vendor-content">
         <!-- Vendor Content -->
         <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
-        <p class="vendor-address">Ahmedabad, Gujarat.</p>
-        <div class="vendor-meta">
-            <!-- Vendor meta -->
+        <p class="vendor-address"><?= $model->city->name; ?></p>
+<!--        <div class="vendor-meta">
             <span class="price-box vendor-meta-box">
             <span class="vendor-price">
                 $150
@@ -40,7 +39,7 @@ $href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
                 <i class="fa fa-star rate-mute"></i> 
                 </span>
             <span class="rating-count">(20)</span></span>
-        </div>
+        </div>-->
         <!-- /.Vendor meta -->
     </div>
     <!-- /.Vendor Content -->

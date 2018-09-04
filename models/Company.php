@@ -27,8 +27,12 @@ use Yii;
  * @property string $image
  *
  * @property BillAccount[] $billAccounts
+ * @property City $city
  * @property BusinessOwner $buisness
- * @property CompanyServiceValue[] $companyServiceValues
+ * @property CompanyService[] $companyServices
+ * @property Service[] $services
+ * @property CompanyServiceCity[] $companyServiceCities
+ * @property City[] $cities
  * @property ServiceInquiry[] $serviceInquiries
  */
 class Company extends \app\models_ex\Company
@@ -51,6 +55,7 @@ class Company extends \app\models_ex\Company
             [['buisness_id', 'setting_bit', 'paid', 'city_id'], 'integer'],
             [['created_at'], 'safe'],
             [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
+            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
         ];
     }
@@ -93,6 +98,14 @@ class Company extends \app\models_ex\Company
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getBuisness()
     {
         return $this->hasOne(BusinessOwner::className(), ['id' => 'buisness_id']);
@@ -101,9 +114,33 @@ class Company extends \app\models_ex\Company
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyServiceValues()
+    public function getCompanyServices()
     {
-        return $this->hasMany(CompanyServiceValue::className(), ['company_id' => 'id']);
+        return $this->hasMany(CompanyService::className(), ['company_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServices()
+    {
+        return $this->hasMany(Service::className(), ['id' => 'service_id'])->viaTable('company_service', ['company_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanyServiceCities()
+    {
+        return $this->hasMany(CompanyServiceCity::className(), ['company_service_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasMany(City::className(), ['id' => 'city_id'])->viaTable('company_service_city', ['company_service_id' => 'id']);
     }
 
     /**
