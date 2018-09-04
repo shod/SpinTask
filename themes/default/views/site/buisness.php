@@ -39,8 +39,9 @@ $boolArr = [];
                     </div>
                     <!--vendor-description -->
                     <!--venue-highlights -->
+                    <?php if(count($boolArr) < count($companyService)): ?>
                     <div class="venue-highlights">
-                        <h3 class="border-bottom mb20 pdb10">Venue Highlights</h3>
+                        <h3 class="border-bottom mb20 pdb10">Services</h3>
                         <ul class="list-unstyled text-dark">
                             <?php foreach ($companyService as $cs): ?>
                             <?php 
@@ -60,6 +61,7 @@ $boolArr = [];
                             
                         </ul>
                     </div>
+                    <?php endif; ?>
                     <!-- /.venue-highlights -->
                     <!-- aminities-block -->
                     <?php if(count($boolArr)): ?>
