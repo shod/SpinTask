@@ -34,7 +34,7 @@
                         <select class="wide" name="region"  onchange="loadCity(this)" >
                             <option  disabled ><?= Yii::t('region', 'select state') ?></option>
                             <?php foreach ($regions as $reg): ?>
-                                <option value="<?= $reg->id ?>" <?= $_GET['region'] ?? 'selected'; ?> ><?= Yii::t('region', $reg->name) ?></option>
+                                <option value="<?= $reg->id ?>" <?= (isset($_GET['region']) && $reg->id == $_GET['region']) ? 'selected' : ''; ?> ><?= Yii::t('region', $reg->name) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                         <select class="wide" name="city">
                             <?php foreach ($city as $ct): ?>
-                                <option value="<?= $ct->id ?>" <?= $_GET['city'] ?? 'selected'; ?> ><?= Yii::t('region', $ct->name) ?></option>
+                                <option value="<?= $ct->id ?>" <?= (isset($_GET['city']) && $ct->id == $_GET['city']) ? 'selected' : ''; ?> ><?= Yii::t('region', $ct->name) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -51,8 +51,9 @@
                     <!-- price -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                         <select class="wide" name="service">
-                            <?php //foreach ($city as $cit): ?>
-                            <?php //endforeach; ?>
+                            <?php foreach ($service as $srv): ?>
+                                <option value="<?= $srv->id ?>" <?= (isset($_GET['service']) && $srv->id == $_GET['service']) ? 'selected' : ''; ?> ><?= Yii::t('service', $srv->name) ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <!-- /.price -->

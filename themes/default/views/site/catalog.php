@@ -21,7 +21,7 @@ $this->title = 'Buisness list';
         </div>
     </div>
 </div>
-<?= $this->render('_filter', ['regions' => $regions, 'city' => $city]); ?>
+<?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service]); ?>
 <div class="content">
     <div class="container">
             <?=

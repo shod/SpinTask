@@ -126,18 +126,24 @@ class SiteController extends Controller
     
     public function actionCatalog()
     {
+        $city_id = (int) \Yii::$app->request->get('city');
+        
         $dataProvider = new ActiveDataProvider([
-            'query' => \app\models\Company::find(),
+            'query' => \app\models\Company::find()->where(['city_id' => $city_id]),
         ]);
         $regions = $this->getRegionByCountry();
         
         $region_id = (int) \Yii::$app->request->get('region');
         $city = $this->getCityByRegion($region_id);
         
+        $service = \app\models\Service::find()->all();
+        
+        
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
             'regions' => $regions,
             'city' => $city,
+            'service' => $service,
         ]);
     }
     
