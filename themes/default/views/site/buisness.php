@@ -19,7 +19,7 @@ $boolArr = [];
                 <!--vendor-heading -->
                 <div class="vendor-headings">
                     <h2 class="mb10"><?= $model->name; ?></h2>
-                    <p class="vendor-address"><?= $model->city->name; ?>. <a href="#" class="btn-secondary-link ml-2">View Map</a> </p>
+                    <p class="vendor-address"><?= $model->city->name; ?>. <a href="#map" class="btn-secondary-link ml-2">View Map</a> </p>
                 </div>
                 <!--/.vendor-heading -->
             </div>
@@ -84,6 +84,7 @@ $boolArr = [];
                         </div>
                     <?php endif; ?>
                 </div>
+                <?= $this->render('buisness/map', ['model' => $model]); ?>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
                 <div class="sidebar-venue">
@@ -138,20 +139,21 @@ $boolArr = [];
                         </form>
                     </div>
                     <!-- venue-admin -->
-                    <div class="vendor-owner-profile mb30">
+<!--                    <div class="vendor-owner-profile mb30">
                         <div class="vendor-owner-profile-head">
                             <div class="vendor-owner-profile-img"><img src="./images/admin-pic.jpg" class="rounded-circle" alt=""></div>
                             <small>Venue Owner</small>
                             <h4 class="vendor-owner-name">Roberto F. McGill</h4>
                         </div>
                         <div class="vendor-owner-profile-content">
-                            <p class="mb-2">1847 Providence Lane
-                                <br> Alhambra, CA 91801</p>
+                            <?php if($model->street): ?>
+                                <p class="mb-2"><?= Yii::t('street', $model->street); ?></p>
+                            <?php endif; ?>
                             <p class="mb10">(123) 123 4567</p>
                             <p class="text-default mb10">vendorname@yourdomain.com</p>
                             <a href="#" class="btn btn-primary">contact vendor</a>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /.venue-admin -->
                 </div>
             </div>

@@ -4,46 +4,55 @@
 //dd($model);
 
 ?>
+<script>
+    
+   
+    function loadCity(select)
+    {
+        
+        // послыаем AJAX запрос, который вернёт список городов для выбранной области
+        $.getJSON('<?= yii\helpers\Url::to(['/site/city/',]); ?>', {region_id:select.value}, function(cityList){
+            var citySelect = $('select[name="city"]');
+            citySelect.html('');
+            citySelect.niceSelect('destroy');
 
+            // заполняем список городов новыми пришедшими данными
+            $.each(cityList, function(i){
+                citySelect.append('<option value="' + i + '">' + this + '</option>');
+            });
+            citySelect.niceSelect();
+        });
+    }
+</script>
 <div class="filter-form">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <form class="row">
+                <form class="row" action="<?= yii\helpers\Url::to(['/site/catalog/',]) ?>">
                     <!-- venue-type -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide">
-                            <option value="Venue Type">Venue Type</option>
-                            <option value="Hotel">Hotel</option>
-                            <option value="Restaurant">Restaurant</option>
-                            <option value="Castle">Castle</option>
-                            <option value="Barns">Barns</option>
-                            <option value="Resort">Resort</option>
-                            <option value="Church">Church</option>
-                            <option value="In Door">In Door</option>
+                        <select class="wide" name="region"  onchange="loadCity(this)" >
+                            <option  disabled ><?= Yii::t('region', 'select state') ?></option>
+                            <?php foreach ($regions as $reg): ?>
+                                <option value="<?= $reg->id ?>" <?= $_GET['region'] ?? 'selected'; ?> ><?= Yii::t('region', $reg->name) ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <!-- /.venue-type -->
                     <!-- distance km -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide">
-                            <option value="Guest">Guest</option>
-                            <option value="1 - 100">1 - 100</option>
-                            <option value="1 - 200">100 - 200</option>
-                            <option value="1 - 500">200 - 500</option>
-                            <option value="1 - 1000">500 - 1000</option>
+                        <select class="wide" name="city">
+                            <?php foreach ($city as $ct): ?>
+                                <option value="<?= $ct->id ?>" <?= $_GET['city'] ?? 'selected'; ?> ><?= Yii::t('region', $ct->name) ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <!-- /.distance km -->
                     <!-- price -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide">
-                            <option value="Price">Price</option>
-                            <option value="$100 tp $500">$100 to $500</option>
-                            <option value="$500 tp $2000">$500 to $2000</option>
-                            <option value="$2000 tp $3500">$2000 to $3500</option>
-                            <option value="$3500 tp $4500">$3500 to $4500</option>
-                            <option value="$4500 tp $5500">$4500 to $5500</option>
+                        <select class="wide" name="service">
+                            <?php //foreach ($city as $cit): ?>
+                            <?php //endforeach; ?>
                         </select>
                     </div>
                     <!-- /.price -->

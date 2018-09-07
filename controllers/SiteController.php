@@ -38,7 +38,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         
-        $regions = \app\models\Region::find()->all();
+        $regions = $this->getRegionByCountry();
         //$city = \app\models\City::find()->where(['region_id' => 1,])->orderBy('name')->all();
         
         return $this->render('index', ['regions' => $regions, /*'city' => $city*/]);
@@ -47,7 +47,7 @@ class SiteController extends Controller
     public function actionCity($region_id)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $city = \app\models\City::find()->where(['region_id' => $region_id,])->orderBy('name')->all();
+        $city = $this->getCityByRegion($region_id);
         $data = [];
         foreach ($city as $c){
             $data[$c->id] = $c->name;
@@ -129,9 +129,25 @@ class SiteController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => \app\models\Company::find(),
         ]);
-
+        $regions = $this->getRegionByCountry();
+        
+        $region_id = (int) \Yii::$app->request->get('region');
+        $city = $this->getCityByRegion($region_id);
+        
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
+            'regions' => $regions,
+            'city' => $city,
         ]);
+    }
+    
+    private function getCityByRegion($region_id) {
+        return \app\models\City::find()->where(['region_id' => $region_id,])->orderBy('name')->all();
+        
+    }
+    
+    private function getRegionByCountry() {
+        return \app\models\Region::find()->where(['country_id' => \Yii::$app->params['country']])->all();
+        
     }
 }
