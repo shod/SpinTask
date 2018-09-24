@@ -44,6 +44,31 @@ class SiteController extends Controller
         return $this->render('index', ['regions' => $regions, /*'city' => $city*/]);
     }
     
+    public function actionPage($id)
+    {
+        $model = \app\models\Texts::findOne($id);
+        $vars = ['model' => $model];
+        /*$seo_model = Yii::$app->request->seo;
+        
+        if($text_id){
+            $vars = $this->_get_page_type_text($text_id);                                                
+        }else{
+            $id = Yii::$app->request->get('pm');
+            $vars = $this->_get_page_type_sys($id);
+        }
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $seo_model['keyword'],           
+        ]);
+
+        \Yii::$app->view->registerMetaTag([            
+            'name' => 'description',
+            'content' => $seo_model['description'],            
+        ]);
+        $vars['meta_title'] = $seo_model['title'];  */      
+        return $this->render('page', $vars);
+    }
+    
     public function actionCity($region_id)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
