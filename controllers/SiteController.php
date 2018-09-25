@@ -149,6 +149,23 @@ class SiteController extends Controller
         return $this->render('buisness', ['model' => $model, 'companyService' => $companyService]);
     }
     
+    public function actionQuote($id)
+    {
+        $company = \app\models\Company::findOne($id);
+        if(!$company){
+            
+        }
+        
+        $model = new \app\models\Quote();
+        $model->attributes = $_GET;
+        $model->company_id = $id;
+        
+        $model->save();
+		
+        
+        return $this->render('quote_result', ['model' => $model]);
+    }
+    
     public function actionCatalog()
     {
         $city_id = (int) \Yii::$app->request->get('city');

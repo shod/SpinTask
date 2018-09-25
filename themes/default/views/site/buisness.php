@@ -89,7 +89,7 @@ $boolArr = [];
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
                 <div class="sidebar-venue">
                     <div class="well-box-dark">
-                        <form>
+                        <form action="/quote/<?= $model->id; ?>">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h3 class="mb30">Request Quote</h3>
@@ -101,13 +101,7 @@ $boolArr = [];
                                         <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
                                     </div>
                                 </div>
-                                <!-- Text input-->
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label class=" control-label sr-only" for="email">Email</label>
-                                        <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
-                                    </div>
-                                </div>
+                               
                                 <!-- Text input-->
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
@@ -115,19 +109,12 @@ $boolArr = [];
                                         <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required="">
                                     </div>
                                 </div>
-                                <!-- Text input-->
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label class="control-label sr-only" for="weddingdate">Wedding Date</label>
-                                        <input id="weddingdate" name="weddingdate" type="text" placeholder="Wedding Date" class="form-control input-md" required="">
-                                        <div class="venue-form-calendar"><i class="far fa-calendar-alt"></i></div>
-                                    </div>
-                                </div>
+                                
                                 <!-- Textarea -->
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label class="control-label sr-only" for="comments">Comment</label>
-                                        <textarea class="form-control" id="comments" name="comments" rows="5" placeholder="Write Comment"></textarea>
+                                        <label class="control-label sr-only" for="comment">Comment</label>
+                                        <textarea class="form-control" id="comments" name="comment" rows="5" placeholder="Write Comment"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
