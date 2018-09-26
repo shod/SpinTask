@@ -25,19 +25,24 @@ $boolArr = [];
         </div>
     </div>
 </div>
-<div class="vendor-content-wrapper">
+<div class="space-medium">
     <div class="container">
         <div class="row">
             <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12">
                 <div class="vendor-details">
                     
                     <div class="vendor-descriptions">
-                        <p>Request accepted. In the near future contact with you.</p>
+                        <p><?= $message; ?></p>
                     </div>
                    
                 </div>
             </div>
       
         </div>
+        <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                    <a href="<?= yii\helpers\Url::to(['site/buisness', 'id' => $model->company_id])?>" class="btn btn-default btn-lg">Go back</a>
+                </div>
+            </div>
     </div>
 </div>

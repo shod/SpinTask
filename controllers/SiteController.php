@@ -156,14 +156,18 @@ class SiteController extends Controller
             
         }
         
+        $message = 'Request accepted. In the near future contact with you.';
+        
         $model = new \app\models\Quote();
         $model->attributes = $_GET;
         $model->company_id = $id;
         
-        $model->save();
-		
+        $check = \app\models\Quote::find()->where(['company_id' => $model->company_id, 'phone' => $model->phone])->count();
+        if(!$check){
+            $model->save();
+        }
         
-        return $this->render('quote_result', ['model' => $model]);
+        return $this->render('quote_result', ['model' => $model, "message" => $message]);
     }
     
     public function actionCatalog()
