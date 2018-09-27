@@ -41,120 +41,7 @@ DefaultAsset::register($this);
                     </div>
                     <!-- /.header-logo -->
                 </div>
-                <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-12">
-                    <!-- navigations -->
-                     <div id="navigation">
-                        <ul>
-                            <li><a href="#" title="#">Venue</a>
-                                <ul>
-                                    <li><a href="#" title="">Listing</a>
-                                        <ul>
-                                            <li><a href="list-grid-view.html" title="">List Grid View</a></li>
-                                            <li><a href="list-view-sidebar.html" title="">List View Sidebar</a></li>
-                                            <li><a href="list-half-screen-map.html" title="">List Half Screen Map</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#" title="">List Single</a>
-                                        <ul>
-                                            <li><a href="list-single-1.html" title="">List Single 1</a></li>
-                                            <li><a href="list-single-2.html" title="">List Single 2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#" title="#">Real Weddings</a>
-                                <ul>
-                                    <li><a href="real-wedding-list.html" title="">Real Weddings List</a></li>
-                                    <li><a href="real-wedding-single.html" title="">Real Weddings Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" title="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog-listing.html" title="">Blog Listing</a></li>
-                                    <li><a href="blog-single.html" title="">Blog Single</a></li>
-                                </ul>
-                            </li>
-                                <li><a href="#" title="#">Features</a>
-                                <ul>
-                                    <li><a href="" title="">Pages</a>
-                                        <ul>
-                                            <li><a href="about-us.html" title="">About us</a></li>
-                                            <li><a href="pricing.html" title="">Pricing</a></li>
-                                            <li><a href="error-404.html" title="">404</a></li>
-                                            <li><a href="faq.html" title="">FAQ's</a></li>
-                                            <li><a href="contact-us.html" title="">Contact us</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="" title="">Forms</a>
-                                        <ul>
-                                            <li><a href="vendor-form.html" title="">Vendors Form</a></li>
-                                            <li><a href="couple-form.html" title="">Couple Form</a></li>
-                                            <li><a href="forgot-password.html" title="">Forgot Password</a></li>
-                                        </ul>
-                                    </li>
-                                      <li><a href="" title="">Help Center</a>
-                                        <ul>
-                                            <li><a href="help-center.html" title="">Help Center</a></li>
-                                            <li><a href="help-category-list.html" title="">Help Category List</a></li>
-                                            <li><a href="help-category-single.html" title="">Help Category Single</a></li>
-                                        
-                                        </ul>
-                                    </li>
-                                    <li><a href="" title="">Email Templates</a>
-                                        <ul>                                          
-                                            <li><a href="email-template/new-id-password.html" title="">New ID/Password</a></li>
-                                            <li><a href="email-template/reset-password.html" title="">Reset Password</a></li>
-                                            <li><a href="email-template/forgot-password.html" title="">Forgot Password</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="" title="">Shortcodes</a>
-                                        <ul>
-                                            <li><a href="shortcode-accordions.html" title="">Accordions</a></li>
-                                            <li><a href="shortcode-tabs.html" title="">Tabs</a></li>
-                                            <li><a href="shortcode-alerts.html" title="">Alerts</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#" title="">User Panel</a>
-                                <ul>
-                                    <li><a href="#" title="">Vendor Dashboard</a>
-                                        <ul>
-                                            <li><a href="vendor-dashboard-overview.html" title="">Dashboard</a></li>
-                                            <li><a href="vendor-dashboard-listing.html" title="">Listing</a></li>
-                                            <li><a href="vendor-dashboard-add-listing.html" title="">Add Listing</a></li>
-                                            <li><a href="vendor-dashboard-pricing.html" title="">Pricing</a></li>
-                                            <li><a href="vendor-dashboard-request-quote.html" title="">Request Quote</a></li>
-                                            <li><a href="vendor-dashboard-reviews.html" title="">Reviews</a></li>
-                                            <li><a href="vendor-dashboard-profile.html" title="">   Profile</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#" title="">Couple Dashboard</a>
-                                        <ul>
-                                            <li><a href="couple-dashboard-overview.html" title="">Dashboard</a></li>
-                                            <li><a href="couple-dashboard-mywishlist.html" title="">My Listing</a></li>
-                                            <li><a href="couple-dashboard-todolist" title="">To Do List</a></li>
-                                            <li><a href="couple-dashboard-budget.html" title="">Budget</a></li>
-                                            <li><a href="couple-dashboard-guest-manager.html" title="">Guest Manager</a></li>
-                                            <li><a href="couple-dashboard-add-new-guest.html" title="">Add New Guest</a></li>
-                                            <li><a href="couple-dashboard-table-planner.html" title="">Seating Table</a></li>
-                                            <li><a href="couple-dashboard-profile.html" title="">   Profile</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navigations -->
-                </div>
-                <div class="col-xl-3 col-lg-2 text-right col-md-2 col-sm-12 col-12 d-none d-xl-block d-lg-block">
-                    <!-- header-btn -->
-                    <div class="header-btn">
-                        <?= Html::a('Login', ['/admin/',], ['class' => 'btn btn-default btn-sm']) ?>
-                    </div>
-                    <!-- /.header-btn -->
-                </div>
+         
             </div>
         </div>
     </div>
@@ -198,11 +85,11 @@ DefaultAsset::register($this);
                             About Company
                         </h3>
                         <ul class="listnone">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Pricing Plan</a></li>
-                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">About us</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Contact us</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 3]); ?>">Faq</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 2]); ?>">Pricing Plan</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 1]); ?>">Meet The Team</a></li>
                         </ul>
                     </div>
                 </div>
