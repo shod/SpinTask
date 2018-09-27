@@ -6,8 +6,8 @@ use app\models\Service;
 
 /* @var $this yii\web\View */
 
-$this->title = 'Buisness list';
-?>
+$this->title = $meta_title;
+;?>
 
 <div class="page-header">
     <div class="container">

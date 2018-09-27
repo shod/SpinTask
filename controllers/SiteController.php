@@ -146,8 +146,12 @@ class SiteController extends Controller
         $model = \app\models\Company::findOne($id);
         
         $companyService = \app\models\CompanyService::find()->where(['company_id' => $id])->all();
+        
+        $metainfo = \app\components\SeoTextService::getMetaInfo();
         return $this->render('buisness', ['model' => $model, 'companyService' => $companyService]);
     }
+    
+  
     
     public function actionQuote($id)
     {
@@ -184,12 +188,26 @@ class SiteController extends Controller
         
         $service = \app\models\Service::find()->all();
         
+        $metainfo = \app\components\SeoTextService::getMetaIfno();
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $metainfo['keyword'],           
+        ]);
+         
+        \Yii::$app->view->registerMetaTag([            
+            'name' => 'description',
+            'content' => $metainfo['description'],            
+        ]);
+        
+        
+        
         
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
             'regions' => $regions,
             'city' => $city,
             'service' => $service,
+            'meta_title' => $metainfo['title'],    
         ]);
     }
     
