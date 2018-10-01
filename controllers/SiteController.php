@@ -30,20 +30,18 @@ class SiteController extends Controller
         ];
     }
     
-     /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        
+    /**
+    * Displays homepage.
+    *
+    * @return string
+    */
+    public function actionIndex() {
+
         $regions = $this->getRegionByCountry();
-        //$city = \app\models\City::find()->where(['region_id' => 1,])->orderBy('name')->all();
-        
-        return $this->render('index', ['regions' => $regions, /*'city' => $city*/]);
+
+        return $this->render('index', ['regions' => $regions, /* 'city' => $city */]);
     }
-    
+
     public function actionPage($id)
     {
         $model = \app\models\Texts::findOne($id);
@@ -147,7 +145,6 @@ class SiteController extends Controller
         
         $companyService = \app\models\CompanyService::find()->where(['company_id' => $id])->all();
         
-        $metainfo = \app\components\SeoTextService::getMetaInfo();
         return $this->render('buisness', ['model' => $model, 'companyService' => $companyService]);
     }
     
@@ -177,7 +174,9 @@ class SiteController extends Controller
     public function actionCatalog()
     {
         $city_id = (int) \Yii::$app->request->get('city');
-        
+        /* $aa = \yii\helpers\Url::to(['site/catalog', 'region' => 744, 'city' => 9006]);
+         dd($aa);
+        die;*/
         $dataProvider = new ActiveDataProvider([
             'query' => \app\models\Company::find()->where(['city_id' => $city_id]),
         ]);
@@ -188,26 +187,11 @@ class SiteController extends Controller
         
         $service = \app\models\Service::find()->all();
         
-        $metainfo = \app\components\SeoTextService::getMetaIfno();
-        \Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $metainfo['keyword'],           
-        ]);
-         
-        \Yii::$app->view->registerMetaTag([            
-            'name' => 'description',
-            'content' => $metainfo['description'],            
-        ]);
-        
-        
-        
-        
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
             'regions' => $regions,
             'city' => $city,
             'service' => $service,
-            'meta_title' => $metainfo['title'],    
         ]);
     }
     

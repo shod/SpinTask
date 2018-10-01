@@ -70,7 +70,9 @@ $config = [
             'baseUrl'=> '',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\DummyCache',
+            'keyPrefix' => 5,
+            
         ],
         'user' => array(
 			'identityClass' => 'app\models\User',
@@ -105,13 +107,13 @@ $config = [
 				//'' => 'site/index',
 				'login' => 'site/login',
 				'logout' => 'site/logout',
+                ['class' => 'app\components\SeoRule',],
+                //'<action:\w+>/<id:\d+>'=>'site/<action>',
+            //    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 
-                '<action:\w+>/<id:\d+>'=>'site/<action>',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                
-                '<module:\w+>/<controller:\w+>/<id:\d+>'=>'<module>/<controller>/view',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
+              //  '<module:\w+>/<controller:\w+>/<id:\d+>'=>'<module>/<controller>/view',
+             //   '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
+              //  '<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
                 
                 
                 

@@ -15,31 +15,44 @@ class SeoTextService {
      * Получение мета информации о странице
      */
 
-    public static function getMetaIfno(): array {
-        $arrmeta = ['title' => '', 'keyword' => '', 'description' => '', ];
-        $seo_id = Yii::$app->request->get('seo_id');
-        $seo_model = \app\models\SeoPattern::findOne($seo_id);
+    public static function getMetaIfno($seo_model): array {
+        //$arrmeta = ['title' => '', 'keyword' => '', 'description' => '', ];
+        //$seo_id = Yii::$app->request->get('seo_id');
+        //$seo_model = \app\models\SeoPattern::findOne($seo_id);
 
-        if ($seo_model) {
-            $arrmeta['title'] = self::regionTextReplace($seo_model->title);
-            $arrmeta['keyword'] = self::regionTextReplace($seo_model->keyword);
-            $arrmeta['description'] = self::regionTextReplace($seo_model->description);
+        $arrmeta['title'] = self::regionTextReplace($seo_model->title);
+        $arrmeta['keyword'] = self::regionTextReplace($seo_model->keyword);
+        $arrmeta['description'] = self::regionTextReplace($seo_model->description);
 
-            if (empty($arrmeta['title'])) {
-                $arrmeta['title'] = $seo_model->h1;
-            }
-            if (empty($arrmeta['keyword'])) {
-                $arrmeta['keyword'] = $seo_model->h1;
-            }
-            if (empty($arrmeta['description'])) {
-                $arrmeta['description'] = $seo_model->h1;
-            }
+        if (empty($arrmeta['title'])) {
+            $arrmeta['title'] = $seo_model->h1;
+        }
+        if (empty($arrmeta['keyword'])) {
+            $arrmeta['keyword'] = $seo_model->h1;
+        }
+        if (empty($arrmeta['description'])) {
+            $arrmeta['description'] = $seo_model->h1;
         }
 
         return $arrmeta;
     }
     
-     /*     * *
+    public static function setMetaInformation($meta) {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $meta['keyword'],           
+        ]);
+         
+        \Yii::$app->view->registerMetaTag([            
+            'name' => 'description',
+            'content' => $meta['description'],            
+        ]);
+        
+        \Yii::$app->view->title = $meta['title'];
+    }
+
+
+    /*     * *
      * Заменяет резион в тексте
      * @$text - текст для замены
      * @$region_name - регион для замены

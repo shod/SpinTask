@@ -6,7 +6,7 @@ use app\models\Service;
 
 /* @var $this yii\web\View */
 
-$this->title = $meta_title;
+//$this->title = $meta_title;
 ;?>
 
 <div class="page-header">

@@ -24,7 +24,7 @@ use Yii;
  * @property int $hide
  * @property int $setting_bit
  */
-class SeoPattern extends \yii\db\ActiveRecord
+class SeoPattern extends \app\models_ex\SeoPattern
 {
     /**
      * {@inheritdoc}

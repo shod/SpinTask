@@ -2,8 +2,7 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Html;
-
-$this->title = 'Main page';
+//$this->title = 'Main page';
 
 ?>
 <script>
@@ -38,7 +37,7 @@ $this->title = 'Main page';
                      <!-- /.search-block -->
                      <!-- search-form -->
                      <div class="search-form">
-                         <form class="" action="<?= yii\helpers\Url::to(['/site/catalog/',]) ?>">
+                         <form class="" action="<?= yii\helpers\Url::to(['site/catalog',]) ?>">
                              <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                      <!-- select -->
