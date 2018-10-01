@@ -21,5 +21,9 @@ use yii\helpers\Html;
         <p>
             <?= Html::a('Buisness', ['/buisness/',], ['class' => 'btn btn-success']) ?>
         </p>
+        
+        <p>
+            <?= Html::a('Seo Pattern', ['/admin/seopattern/',], ['class' => 'btn btn-success']) ?>
+        </p>
     </p>
 </div>
