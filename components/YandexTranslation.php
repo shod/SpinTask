@@ -34,7 +34,7 @@ class YandexTranslation extends \yii\base\Component
                 $sourceLang = explode('-', $messageSource->sourceLanguage)[0];
                 $targetLang = explode('-', $event->language)[0];
 
-                $content = file_get_contents('https://translate.yandex.net/api/v1.5/tr.json/translate?' . http_build_query([
+                $content = Tools::curl('https://translate.yandex.net/api/v1.5/tr.json/translate?' . http_build_query([
                         'key' => self::apiKey,
                         'text' => $event->message,
                         'format' => 'plain',
