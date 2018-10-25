@@ -113,14 +113,40 @@ $serviceForm = [];
                                         <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required="">
                                     </div>
                                 </div>
+                                
+                                <?php if(count($boolArr) < count($companyService)): ?>
+                                    <?php foreach ($companyService as $cs): ?>
+                                        <?php 
+                                            $val = $cs->companyServiceValues[0];
+                                            $service = $val->servicePropertyValue->serviceProperty;
+                                            if(!$service->isShowinform){
+                                                continue;
+                                            }
+                                            if($service->type == 'bool'){
+                                                continue;
+                                            }
+                                        ?>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <select class="wide">
+                                                <option ><?= $service->name; ?></option>
+                                                <option value="<?= $val->servicePropertyValue->value; ?>"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></option>
+                                            </select>
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                <?php endif; ?>
+                                
                                 <?php if(count($boolArr)): ?>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb20">
                                         <!-- aminites -->
                                         <div class="aminities">
                                         <?php foreach ($boolArr as $val): ?>
-                                       <?php 
-                                           $service = $val->servicePropertyValue->serviceProperty;
-                                       ?>
+                                        <?php 
+                                            $service = $val->servicePropertyValue->serviceProperty;
+                                            if(!$service->isShowinform){
+                                               continue;
+                                            }
+                                        ?>
                                            <div class="custom-control custom-checkbox">
                                                <input type="checkbox" class="custom-control-input" id="customCheck1"  name="<?= $service->name; ?>" >
                                                <label class="custom-control-label" for="customCheck1"> <?= $service->name; ?></label>
