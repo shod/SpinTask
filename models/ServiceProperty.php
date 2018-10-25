@@ -17,7 +17,7 @@ use Yii;
  * @property Service $service
  * @property ServicePropertyValue[] $servicePropertyValues
  */
-class ServiceProperty extends \yii\db\ActiveRecord
+class ServiceProperty extends \app\models_ex\ServiceProperty
 {
     /**
      * {@inheritdoc}

@@ -48,7 +48,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
-
+            [
+                'attribute' => 'showinform',
+                'label' => 'show in form',
+                'format' => 'boolean',
+                'value' => function ($model) {
+                    return $model->isShowinform;
+                },
+            ],
+            [
+                'attribute' => 'required',
+                'label' => 'Required',
+                'format' => 'boolean',
+                'value' => function ($model) {
+                    return $model->isRequired;
+                },
+            ],
             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'update' => function ($url, $model, $key) {

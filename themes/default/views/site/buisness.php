@@ -9,6 +9,7 @@ $this->params['breadcrumbs'][] = ['label' => 'buisness list', 'url' => ['/site/c
 $this->params['breadcrumbs'][] = $model->name;
 
 $boolArr = [];
+$serviceForm = [];
 //  \app\models_ex\Company::getImageUrl() . $model->image; 
 ?>
 
@@ -47,6 +48,9 @@ $boolArr = [];
                             <?php 
                                 $val = $cs->companyServiceValues[0];
                                 $service = $val->servicePropertyValue->serviceProperty;
+                                if($service->isShowinform){
+                                    $serviceForm[$service->id] =   $service;
+                                }
                             ?>
                                 <?php if($service->type == 'bool'): ?>
                                 <?php $boolArr[] = $val;?>
@@ -109,6 +113,23 @@ $boolArr = [];
                                         <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required="">
                                     </div>
                                 </div>
+                                <?php if(count($boolArr)): ?>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb20">
+                                        <!-- aminites -->
+                                        <div class="aminities">
+                                        <?php foreach ($boolArr as $val): ?>
+                                       <?php 
+                                           $service = $val->servicePropertyValue->serviceProperty;
+                                       ?>
+                                           <div class="custom-control custom-checkbox">
+                                               <input type="checkbox" class="custom-control-input" id="customCheck1"  name="<?= $service->name; ?>" >
+                                               <label class="custom-control-label" for="customCheck1"> <?= $service->name; ?></label>
+                                           </div>
+                                       <?php endforeach; ?>
+                                       </div>
+                                    </div>
+                                <?php endif; ?>
+               
                                 
                                 <!-- Textarea -->
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

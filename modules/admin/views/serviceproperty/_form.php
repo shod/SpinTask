@@ -20,6 +20,49 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'measure')->textInput(['maxlength' => true]) ?>
 
+    <h4>Form property</h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card panel">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div>
+                               
+                                <div class="form-group field-serviceproperty-measure">
+                                    <label class="control-label" for="serviceproperty-measure">Show in form</label>
+                                    <label class="ks-checkbox-slider ks-on-off ks-solid ks-primary">
+                                        <input type="checkbox" value="1"  name="ServiceProperty[showinform]" <?= ($model->isShowinform)? 'checked' : '' ; ?> >
+                                        <span class="ks-indicator"></span>
+                                        <span class="ks-on">On</span>
+                                        <span class="ks-off">Off</span>
+                                    </label>
+                                    <div class="help-block"></div>
+                                </div>
+
+                                <div class="form-group field-serviceproperty-measure">
+                                    <label class="control-label" for="serviceproperty-measure">Required</label>
+                                    <label class="ks-checkbox-slider ks-on-off ks-solid ks-primary">
+                                        <input type="checkbox" value="1"  name="ServiceProperty[required]" <?= ($model->isRequired)? 'checked' : '' ; ?>  />
+                                        <span class="ks-indicator"></span>
+                                        <span class="ks-on">On</span>
+                                        <span class="ks-off">Off</span>
+                                    </label>
+                                    <div class="help-block"></div>
+                                </div>
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

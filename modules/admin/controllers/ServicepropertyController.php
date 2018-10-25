@@ -102,10 +102,21 @@ class ServicepropertyController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if( Yii::$app->request->isPost ){
+            $model->load(Yii::$app->request->post());
+            
+            $ServiceProperty = Yii::$app->request->post('ServiceProperty');
+            
+            
+            $model->setFlag('showinform', isset($ServiceProperty['showinform']));
+            $model->setFlag('required', isset($ServiceProperty['required']));
+            if ( $model->save() ) {
+                return $this->redirect(['/admin/service/view', 'id' => $model->service_id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/admin/service/view', 'id' => $model->service_id]);
         }
+        
+        
         
         $dataProvider = new ActiveDataProvider([
             'query' => \app\models\ServicePropertyValue::find()->where(['service_property_id' => $model->id]),
