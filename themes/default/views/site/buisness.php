@@ -46,6 +46,9 @@ $serviceForm = [];
                         <ul class="list-unstyled text-dark">
                             <?php foreach ($companyService as $cs): ?>
                             <?php 
+                                if(!isset($cs->companyServiceValues[0])){
+                                    continue;
+                                }
                                 $val = $cs->companyServiceValues[0];
                                 $service = $val->servicePropertyValue->serviceProperty;
                                 if($service->isShowinform){
@@ -117,6 +120,9 @@ $serviceForm = [];
                                 <?php if(count($boolArr) < count($companyService)): ?>
                                     <?php foreach ($companyService as $cs): ?>
                                         <?php 
+                                            if(!isset($cs->companyServiceValues[0])){
+                                                continue;
+                                            }
                                             $val = $cs->companyServiceValues[0];
                                             $service = $val->servicePropertyValue->serviceProperty;
                                             if(!$service->isShowinform){
