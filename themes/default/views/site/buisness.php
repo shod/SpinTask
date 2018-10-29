@@ -43,39 +43,32 @@ $serviceForm = [];
                     <?php if(count($boolArr) < count($companyService)): ?>
                     <div class="venue-highlights">
                         <h3 class="border-bottom mb20 pdb10">Services</h3>
-                        <ul class="list-unstyled text-dark">
+                        
+                            
+                            <?php $datafilter = []; ?>
                             <?php foreach ($companyService as $cs): ?>
-                            <?php 
-                                if(!isset($cs->companyServiceValues[0])){
-                                    continue;
-                                }
-								$arrServiceValues = $cs->companyServiceValues;
-								$val_0 = $cs->companyServiceValues[0];
-								$service = $val_0->servicePropertyValue->serviceProperty;	
-                                if($service->isShowinform){
-                                    $serviceForm[$service->id] =   $service;
-                                }
-                            ?>
-                                <?php if($service->type == 'bool'): ?>
-                                <?php $boolArr[] = $val;?>
-                                <?php else: ?>
-                                    <li>
-                                        <div><?= $service->name; ?>
-											<?php 
-												$delimiter = ', ';
-												$icnt = count($arrServiceValues)-1;
-												for ($i=$icnt; $i >= 0; $i--): 
-													$val = $arrServiceValues[$i];
-													if($i == 0){$delimiter = ', ';}
-												?>
-												<div class="venue-highlight-meta"><?= $val->servicePropertyValue->value;?> <?= $service->measure.$delimiter;?></div>
-											<?php endfor; ?>
-                                        </div>
-                                    </li>
-                                <?php endif; ?>
+                                <?php foreach ($cs->companyServiceValues as $csv): ?>
+                                    <?php 
+                                        $datafilter[$csv->servicePropertyValue->serviceProperty->name][] = [
+                                            'val' => $csv->servicePropertyValue->value,
+                                            'measure' => $csv->servicePropertyValue->serviceProperty->measure,
+                                        ];
+                                    ?>
+                                <?php endforeach; ?>    
+                            <?php endforeach; ?>
+
+                            <?php foreach ($datafilter as $name => $csp): ?>
+                            <ul class="list-unstyled text-dark">
+                                <?= $name; ?>
+                                        <?php foreach ($csp as $val): ?>
+                                            <div class="venue-highlight-meta"><?= $val['val'];?> <?= $val['measure'];?></div>
+                                        <?php endforeach; ?>
+                                             </ul>
                             <?php endforeach; ?>
                             
-                        </ul>
+                           
+                            
+                       
                     </div>
                     <?php endif; ?>
                     <!-- /.venue-highlights -->
@@ -127,32 +120,30 @@ $serviceForm = [];
                                     </div>
                                 </div>
                                 
-                                <?php if(count($boolArr) < count($companyService)): ?>
+                                <?php $datafilter = []; if(count($boolArr) < count($companyService)): ?>
                                     <?php foreach ($companyService as $cs): ?>
-                                        <?php 
-                                            if(!isset($cs->companyServiceValues[0])){
-                                                continue;
-                                            }
-											$arrServiceValues = $cs->companyServiceValues;
-                                            $val_0 = $cs->companyServiceValues[0];
-                                            $service = $val_0->servicePropertyValue->serviceProperty;											
-                                            if(!$service->isShowinform){
-                                                continue;
-                                            }
-                                            if($service->type == 'bool'){
-                                                continue;
-                                            }
-                                        ?>
+                                        <?php foreach ($cs->companyServiceValues as $csv): ?>
+                                            <?php 
+                                                $datafilter[$csv->servicePropertyValue->serviceProperty->name][] = [
+                                                    'val' => $csv->servicePropertyValue->value,
+                                                    'measure' => $csv->servicePropertyValue->serviceProperty->measure,
+                                                ];
+                                            ?>
+                                        <?php endforeach; ?>    
+                                    <?php endforeach; ?>
+                                
+                                    <?php foreach ($datafilter as $name => $csp): ?>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <select class="wide">
-                                                <option ><?= $service->name; ?></option>
-												<?php foreach ($arrServiceValues as $val): ?>
-													<option value="<?= $val->servicePropertyValue->value; ?>"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></option>
-												<?php endforeach; ?>
+                                                <option ><?= $name; ?></option>
+                                                <?php foreach ($csp as $val): ?>
+                                                    <option value="<?= $val['val']; ?>"><?= $val['val']; ?> <?= $val['measure']; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     <?php endforeach; ?>
-
+                                
+                                
                                 <?php endif; ?>
                                 
                                 <?php if(count($boolArr)): ?>
