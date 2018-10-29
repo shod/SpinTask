@@ -11,7 +11,15 @@ $this->params['breadcrumbs'][] = ['label' => $model->buisness->name, 'url' => ['
 $this->params['breadcrumbs'][] = 'Update ' . $model->name;
 ?>
 <div class="company-update">
-
+	<style>
+   li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+   ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+   }
+  </style>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Edit Company Profile</a>

@@ -35,7 +35,7 @@ $serviceForm = [];
                     <? // $this->render('_vendor_info'); ?>
                     
                     <div class="vendor-descriptions">
-                        <h3 class="border-bottom mb20 pdb10">About Service</h3>
+                        <h3 class="border-bottom mb20 pdb10">About Company</h3>
                         <p><?= $model->description; ?></p>
                     </div>
                     <!--vendor-description -->
@@ -49,8 +49,9 @@ $serviceForm = [];
                                 if(!isset($cs->companyServiceValues[0])){
                                     continue;
                                 }
-                                $val = $cs->companyServiceValues[0];
-                                $service = $val->servicePropertyValue->serviceProperty;
+								$arrServiceValues = $cs->companyServiceValues;
+								$val_0 = $cs->companyServiceValues[0];
+								$service = $val_0->servicePropertyValue->serviceProperty;	
                                 if($service->isShowinform){
                                     $serviceForm[$service->id] =   $service;
                                 }
@@ -60,7 +61,15 @@ $serviceForm = [];
                                 <?php else: ?>
                                     <li>
                                         <div><?= $service->name; ?>
-                                            <div class="venue-highlight-meta"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></div>
+											<?php 
+												$delimiter = ', ';
+												$icnt = count($arrServiceValues)-1;
+												for ($i=$icnt; $i >= 0; $i--): 
+													$val = $arrServiceValues[$i];
+													if($i == 0){$delimiter = ', ';}
+												?>
+												<div class="venue-highlight-meta"><?= $val->servicePropertyValue->value;?> <?= $service->measure.$delimiter;?></div>
+											<?php endfor; ?>
                                         </div>
                                     </li>
                                 <?php endif; ?>
@@ -93,6 +102,7 @@ $serviceForm = [];
                 </div>
                 <?= $this->render('buisness/map', ['model' => $model]); ?>
             </div>
+			<!-- Request Quote-block -->
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
                 <div class="sidebar-venue">
                     <div class="well-box-dark">
@@ -123,8 +133,9 @@ $serviceForm = [];
                                             if(!isset($cs->companyServiceValues[0])){
                                                 continue;
                                             }
-                                            $val = $cs->companyServiceValues[0];
-                                            $service = $val->servicePropertyValue->serviceProperty;
+											$arrServiceValues = $cs->companyServiceValues;
+                                            $val_0 = $cs->companyServiceValues[0];
+                                            $service = $val_0->servicePropertyValue->serviceProperty;											
                                             if(!$service->isShowinform){
                                                 continue;
                                             }
@@ -135,7 +146,9 @@ $serviceForm = [];
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <select class="wide">
                                                 <option ><?= $service->name; ?></option>
-                                                <option value="<?= $val->servicePropertyValue->value; ?>"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></option>
+												<?php foreach ($arrServiceValues as $val): ?>
+													<option value="<?= $val->servicePropertyValue->value; ?>"><?= $val->servicePropertyValue->value; ?> <?= $service->measure; ?></option>
+												<?php endforeach; ?>
                                             </select>
                                         </div>
                                     <?php endforeach; ?>
