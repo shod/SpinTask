@@ -8,6 +8,7 @@ use yii\grid\GridView;
 /* @var $model app\models\BusinessOwner */
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin/']];
 $this->params['breadcrumbs'][] = ['label' => 'Business Owners', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

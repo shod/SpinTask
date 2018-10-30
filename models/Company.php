@@ -54,7 +54,8 @@ class Company extends \app\models_ex\Company
             [['buisness_id'], 'required'],
             [['buisness_id', 'setting_bit', 'paid', 'city_id'], 'integer'],
             [['created_at'], 'safe'],
-            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
+            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 2048],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
         ];

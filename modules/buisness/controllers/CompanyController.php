@@ -131,13 +131,16 @@ class CompanyController extends Controller
             $id = $model->id;
         }
         
-        \app\models\CompanyService::deleteAll(['company_id' => $id]);
         $service  = Yii::$app->request->post('service');
-        foreach ((array)$service as $service_id => $value) {
-            $modelCompanyService = new \app\models\CompanyService();
-            $modelCompanyService->company_id = $id;
-            $modelCompanyService->service_id = $service_id;
-            $modelCompanyService->save();
+        if($service){
+            \app\models\CompanyService::deleteAll(['company_id' => $id]);
+            
+            foreach ((array)$service as $service_id => $value) {
+                $modelCompanyService = new \app\models\CompanyService();
+                $modelCompanyService->company_id = $id;
+                $modelCompanyService->service_id = $service_id;
+                $modelCompanyService->save();
+            }
         }
         
         $this->redirect(['/buisness/company/update/', 'id' => $id, '#' => 'service_details']);

@@ -119,7 +119,13 @@ $serviceForm = [];
                                         <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required="">
                                     </div>
                                 </div>
-                                
+                                <!-- Text input-->
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label class=" control-label sr-only" for="email">Email</label>
+                                        <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
+                                    </div>
+                                </div>
                                 <?php $datafilter = []; if(count($boolArr) < count($companyService)): ?>
                                     <?php foreach ($companyService as $cs): ?>
                                         <?php foreach ($cs->companyServiceValues as $csv): ?>
@@ -131,7 +137,7 @@ $serviceForm = [];
                                             ?>
                                         <?php endforeach; ?>    
                                     <?php endforeach; ?>
-                                
+                                    
                                     <?php foreach ($datafilter as $name => $csp): ?>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <select class="wide">

@@ -7,6 +7,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Business Owners';
+$this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin/']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="business-owner-index">
