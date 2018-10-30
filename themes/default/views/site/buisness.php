@@ -137,7 +137,7 @@ $serviceForm = [];
                                     </div>
                                 </div>
                                 <?php $datafilter = []; ?>
-                                <?php if(count($boolArr) < count($companyService)): ?>
+                                <?php if(count($companyService)): ?>
                                     <?php foreach ($companyService as $cs): ?>
                                         <?php foreach ($cs->companyServiceValues as $csv): ?>
                                             <?php 
