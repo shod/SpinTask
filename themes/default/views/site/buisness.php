@@ -58,12 +58,16 @@ $serviceForm = [];
                             <?php endforeach; ?>
 
                             <?php foreach ($datafilter as $name => $csp): ?>
-                            <ul class="list-unstyled text-dark">
-                                <?= $name; ?>
-                                        <?php foreach ($csp as $val): ?>
-                                            <div class="venue-highlight-meta"><?= $val['val'];?> <?= $val['measure'];?></div>
-                                        <?php endforeach; ?>
-                                             </ul>
+                                <ul class="list-unstyled text-dark" style="overflow: auto;">
+                                    <?= $name; ?>
+                                    <div class="venue-highlight-meta">
+                                        
+                                            <?php foreach ($csp as $val): ?>
+                                                <li ><?= $val['val'];?> <?= $val['measure'];?></li>
+                                            <?php endforeach; ?>
+                                        
+                                    </div>
+                                </ul>
                             <?php endforeach; ?>
                             
                            
