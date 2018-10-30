@@ -47,14 +47,20 @@ $serviceForm = [];
                             
                             <?php $datafilter = []; ?>
                             <?php foreach ($companyService as $cs): ?>
-                                <?php foreach ($cs->companyServiceValues as $csv): ?>
-                                    <?php 
-                                        $datafilter[$csv->servicePropertyValue->serviceProperty->name][] = [
-                                            'val' => $csv->servicePropertyValue->value,
-                                            'measure' => $csv->servicePropertyValue->serviceProperty->measure,
-                                        ];
-                                    ?>
-                                <?php endforeach; ?>    
+                                
+                                    <?php foreach ($cs->companyServiceValues as $csv): ?>
+                                        <?php 
+                                        if($csv->servicePropertyValue->serviceProperty->type == 'bool'){
+                                            $boolArr[] = $csv;
+                                        }else{
+                                            $datafilter[$csv->servicePropertyValue->serviceProperty->name][] = [
+                                                'val' => $csv->servicePropertyValue->value,
+                                                'measure' => $csv->servicePropertyValue->serviceProperty->measure,
+                                            ];
+                                        }
+                                            
+                                        ?>
+                                    <?php endforeach; ?> 
                             <?php endforeach; ?>
 
                             <?php foreach ($datafilter as $name => $csp): ?>
@@ -130,9 +136,15 @@ $serviceForm = [];
                                         <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
                                     </div>
                                 </div>
-                                <?php $datafilter = []; if(count($boolArr) < count($companyService)): ?>
+                                <?php $datafilter = []; ?>
+                                <?php if(count($boolArr) < count($companyService)): ?>
                                     <?php foreach ($companyService as $cs): ?>
                                         <?php foreach ($cs->companyServiceValues as $csv): ?>
+                                            <?php 
+                                                if($csv->servicePropertyValue->serviceProperty->type == 'bool'){
+                                                    continue;
+                                                }
+                                            ?>
                                             <?php 
                                                 $datafilter[$csv->servicePropertyValue->serviceProperty->name][] = [
                                                     'val' => $csv->servicePropertyValue->value,
