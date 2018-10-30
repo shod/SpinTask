@@ -9,7 +9,7 @@ $href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
         <!-- Vendor img -->
         <a href="<?= $href; ?>">
             <?php if($model->image): ?>
-                <img src="<?= \app\models_ex\Company::getImageUrl() . $model->image; ?>" width="55" height="55" class="img-fluid">
+                <img src="<?= \app\models_ex\Company::getImageUrl() . $model->image; ?>" width="55" height="55" style="height: 180px;" class="img-fluid">
             <?php endif; ?>
         </a>
     </div>

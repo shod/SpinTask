@@ -122,6 +122,7 @@ class CompanyController extends Controller
         if ($profileModel->upload()) {
             $model->image = $profileModel->getImgFileName();
             if ($model->save()) {
+            
                 return $this->redirect(['/buisness/company/update/', 'id' => $model->id]);
             } 
         }
@@ -129,17 +130,17 @@ class CompanyController extends Controller
         
             $id = $model->id;
         }
-  
         
         $service  = Yii::$app->request->post('service');
         if($service){
             \app\models\CompanyService::deleteAll(['company_id' => $id]);
-
+            
             foreach ((array)$service as $service_id => $value) {
-                $model = new \app\models\CompanyService();
-                $model->company_id = $id;
-                $model->service_id = $service_id;
-                $model->save();
+                $modelCompanyService = new \app\models\CompanyService();
+                $modelCompanyService->company_id = $id;
+                $modelCompanyService->service_id = $service_id;
+                $modelCompanyService->save();
+
             }
         }
         

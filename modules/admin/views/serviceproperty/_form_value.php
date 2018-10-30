@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'service_id')->hiddenInput(['value'=> $model->service_id])->label(false); ?>
     <?= $form->field($model, 'service_property_id')->hiddenInput(['value'=> $model->service_property_id])->label(false); ?>
 
-    <?= $form->field($model, 'value')->textInput(['maxlength' => true])->label(false) ?>
+    <?= $form->field($model, 'value')->textInput(['size' => 64,'maxlength' => true])->label(false) ?>
     <?= Html::submitButton('Add', ['class' => 'btn btn-primary mb-2']) ?>
 
     <?php ActiveForm::end(); ?>

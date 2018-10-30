@@ -82,7 +82,7 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 10]) ?>
     
     <?php if($model->image): ?>
         <div class="row">

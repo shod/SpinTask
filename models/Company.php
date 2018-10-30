@@ -29,8 +29,8 @@ use Yii;
  * @property int $state_id
  *
  * @property BillAccount[] $billAccounts
- * @property Region $state
  * @property City $city
+ * @property Region $state
  * @property BusinessOwner $buisness
  * @property CompanyService[] $companyServices
  * @property Service[] $services
@@ -58,10 +58,10 @@ class Company extends \app\models_ex\Company
             [['buisness_id'], 'required'],
             [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id'], 'integer'],
             [['created_at'], 'safe'],
-            [['map'], 'string'],
-            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
-            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['state_id' => 'id']],
+            [['description', 'map'], 'string'],
+            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
+            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['state_id' => 'id']],
             [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
         ];
     }
@@ -106,17 +106,17 @@ class Company extends \app\models_ex\Company
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getState()
+    public function getCity()
     {
-        return $this->hasOne(Region::className(), ['id' => 'state_id']);
+        return $this->hasOne(City::className(), ['id' => 'city_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCity()
+    public function getState()
     {
-        return $this->hasOne(City::className(), ['id' => 'city_id']);
+        return $this->hasOne(Region::className(), ['id' => 'state_id']);
     }
 
     /**
