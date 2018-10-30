@@ -23,6 +23,7 @@ class DefaultAsset extends AssetBundle
     public $css = [
         //'libs/bootstrap/css/bootstrap.min.css',
         'https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i',
+        '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
         '/themes/default/fontawesome/css/fontawesome-all.css',
         '/themes/default/fontello/css/fontello.css',
         '/themes/default/css/owl.carousel.css',
@@ -30,6 +31,7 @@ class DefaultAsset extends AssetBundle
         '/themes/default/css/style.css',
     ];
     public $js = [
+        'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
         "/themes/default/js/menumaker.min.js",
         "/themes/default/js/owl.carousel.min.js",
         "/themes/default/js/jquery.nice-select.min.js",
