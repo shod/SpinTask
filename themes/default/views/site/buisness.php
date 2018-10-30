@@ -180,8 +180,8 @@ $serviceForm = [];
                                             }
                                         ?>
                                            <div class="custom-control custom-checkbox">
-                                               <input type="checkbox" class="custom-control-input" id="customCheck1"  name="<?= $service->name; ?>" >
-                                               <label class="custom-control-label" for="customCheck1"> <?= $service->name; ?></label>
+                                               <input type="checkbox" class="custom-control-input" id="bool_<?= $service->id; ?>"  name="<?= $service->name; ?>" >
+                                               <label class="custom-control-label" for="bool_<?= $service->id; ?>"> <?= $service->name; ?></label>
                                            </div>
                                        <?php endforeach; ?>
                                        </div>
