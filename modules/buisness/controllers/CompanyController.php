@@ -125,17 +125,41 @@ class CompanyController extends Controller
                 return $this->redirect(['/buisness/company/update/', 'id' => $model->id]);
             } 
         }
+        if ($model->save()) {
         
-        \app\models\CompanyService::deleteAll(['company_id' => $id]);
+            $id = $model->id;
+        }
+  
+        
         $service  = Yii::$app->request->post('service');
-        foreach ((array)$service as $service_id => $value) {
-            $model = new \app\models\CompanyService();
-            $model->company_id = $id;
-            $model->service_id = $service_id;
-            $model->save();
+        if($service){
+            \app\models\CompanyService::deleteAll(['company_id' => $id]);
+
+            foreach ((array)$service as $service_id => $value) {
+                $model = new \app\models\CompanyService();
+                $model->company_id = $id;
+                $model->service_id = $service_id;
+                $model->save();
+            }
         }
         
         $this->redirect(['/buisness/company/update/', 'id' => $id, '#' => 'service_details']);
+    }
+    
+    public function actionCity($id)
+    {
+        $cities = \app\models\City::find()->where(['region_id' => $id,])->orderBy('name')->all();
+        $html = '';
+        if($cities)
+        {
+            foreach($cities as $city ){
+                $html .= "<option value='".$city->id."'>".$city->name."</option>";
+            }
+        }
+        else{
+            $html .= "<option> - </option>";
+        }
+        return $html;
     }
     
     public function actionService($id)

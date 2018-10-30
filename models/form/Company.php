@@ -41,6 +41,7 @@ class Company extends Model
     public $imageFile;
     public $buisness_id;
     public $paid;
+    public $state_id;
     public $city_id;
     public $name;
     public $phone;
@@ -72,7 +73,7 @@ class Company extends Model
         return [
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['buisness_id'], 'required'],
-            [['buisness_id', 'setting_bit', 'paid', 'city_id'], 'integer'],
+            [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id'], 'integer'],
             [['id', 'name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'safe'],
             [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
          //   [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
@@ -95,6 +96,7 @@ class Company extends Model
             'extention' => 'Extention',
             'ring_central_extention' => 'Ring Central Extention',
             'city_id' => 'City ID',
+            'state_id' => 'State ID',
             'local_phone' => 'Local Phone',
             'local_contact_name' => 'Local Contact Name',
             'email' => 'Email',

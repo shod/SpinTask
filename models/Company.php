@@ -25,14 +25,18 @@ use Yii;
  * @property string $street
  * @property string $postal_code
  * @property string $image
+ * @property string $map
+ * @property int $state_id
  *
  * @property BillAccount[] $billAccounts
+ * @property Region $state
  * @property City $city
  * @property BusinessOwner $buisness
  * @property CompanyService[] $companyServices
  * @property Service[] $services
  * @property CompanyServiceCity[] $companyServiceCities
  * @property City[] $cities
+ * @property Quote[] $quotes
  * @property ServiceInquiry[] $serviceInquiries
  */
 class Company extends \app\models_ex\Company
@@ -52,9 +56,11 @@ class Company extends \app\models_ex\Company
     {
         return [
             [['buisness_id'], 'required'],
-            [['buisness_id', 'setting_bit', 'paid', 'city_id'], 'integer'],
+            [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id'], 'integer'],
             [['created_at'], 'safe'],
+            [['map'], 'string'],
             [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
+            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['state_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
         ];
@@ -84,6 +90,8 @@ class Company extends \app\models_ex\Company
             'street' => 'Street',
             'postal_code' => 'Postal Code',
             'image' => 'Image',
+            'map' => 'Map',
+            'state_id' => 'State ID',
         ];
     }
 
@@ -93,6 +101,14 @@ class Company extends \app\models_ex\Company
     public function getBillAccounts()
     {
         return $this->hasMany(BillAccount::className(), ['company_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getState()
+    {
+        return $this->hasOne(Region::className(), ['id' => 'state_id']);
     }
 
     /**
@@ -141,6 +157,14 @@ class Company extends \app\models_ex\Company
     public function getCities()
     {
         return $this->hasMany(City::className(), ['id' => 'city_id'])->viaTable('company_service_city', ['company_service_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuotes()
+    {
+        return $this->hasMany(Quote::className(), ['company_id' => 'id']);
     }
 
     /**

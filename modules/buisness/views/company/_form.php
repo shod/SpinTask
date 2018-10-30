@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Company */
@@ -31,10 +32,25 @@ use yii\widgets\ActiveForm;
     
     <div class="row">
         <div class="col">
-            state TODO
+            <?= $form->field($model,'state_id')->dropDownList(
+                yii\helpers\ArrayHelper::map(\app\models\Region::find()->where(['country_id' => \Yii::$app->params['country']])->all(), 'id', 'name'),
+                [
+                    'prompt'=>'Select state',
+                    'onchange'=>'
+                    $.get( "'.Url::toRoute('/buisness/company/city').'", { id: $(this).val() } )
+                        .done(function( data ) {
+                            $( "#'.Html::getInputId($model, 'city_id').'" ).html( data );
+                        }
+                    );'    
+                ]); ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'city_id')->textInput() ?>
+            <?= $form->field($model,'city_id')->dropDownList(
+                yii\helpers\ArrayHelper::map(
+                    \app\models\City::find()->where(['region_id' => $model->state_id,])->orderBy('name')->all(), 'id', 'name'),
+                [
+                    'prompt'=>'Select city',   
+                ]); ?>
         </div>
     </div>
     
