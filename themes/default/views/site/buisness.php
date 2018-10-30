@@ -33,7 +33,7 @@ $serviceForm = [];
             <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12">
                 <div class="vendor-details">
                     <? // $this->render('_vendor_info'); ?>
-                    
+                    <img src="/uploads/company/<?= $model->image; ?>" alt="" class="img-fluid">
                     <div class="vendor-descriptions">
                         <h3 class="border-bottom mb20 pdb10">About Company</h3>
                         <p><?= $model->description; ?></p>
