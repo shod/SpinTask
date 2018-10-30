@@ -107,6 +107,7 @@ $config = [
 				//'' => 'site/index',
 				'login' => 'site/login',
 				'logout' => 'site/logout',
+                '/quote/<id:\d+>' => 'site/quote',
                 ['class' => 'app\components\SeoRule',],
                 //'<action:\w+>/<id:\d+>'=>'site/<action>',
             //    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
