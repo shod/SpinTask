@@ -104,6 +104,15 @@ class SeoRule extends UrlRule
     {
         $model = \app\models\SeoPattern::getByUrl( $request->getPathInfo() );
         if($model){
+            if(count($_GET)){
+                $modelByParams = \app\models\SeoPattern::getByParams($model->controller, $_GET );
+                if($modelByParams && $model->id != $modelByParams->id){
+                    \Yii::$app->getResponse()->redirect('/' . $modelByParams->url, 301);
+                    \Yii::$app->end();
+                }
+            }
+            
+            \Yii::$app->request->seo = $model;
             $parms = \yii\helpers\Json::decode($model->parms, TRUE);
             $parms['seo_id'] = $model->id;
             $metainfo = \app\components\SeoTextService::getMetaIfno($model);
@@ -111,6 +120,8 @@ class SeoRule extends UrlRule
         
             return [$model->controller, $parms];
             return array_merge([$model->controller], $parms);
+        }else{
+            //$model = \app\models\SeoPattern::getByParams( $_GET );
         }
         return false;
     }

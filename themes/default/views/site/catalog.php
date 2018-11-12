@@ -4,11 +4,12 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Service;
 
-/* @var $this yii\web\View */
-
-//$this->title = $meta_title;
-;?>
-
+?>
+<style>
+    .page-header {
+        background: url(/themes/default/images/<?= ( !empty(Yii::$app->request->seo->image) )? Yii::$app->request->seo->image : 'page-header.jpg'; ?>) no-repeat center;
+    }
+</style>
 <div class="page-header">
     <div class="container">
         <div class="row">
