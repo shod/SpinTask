@@ -161,6 +161,7 @@ class SiteController extends Controller
         
         $model = new \app\models\Quote();
         $model->attributes = $_GET;
+        $model->params = \yii\helpers\Json::encode($_GET['params']);
         $model->company_id = $id;
         
         $check = \app\models\Quote::find()->where(['company_id' => $model->company_id, 'phone' => $model->phone])->count();
