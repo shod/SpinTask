@@ -188,11 +188,15 @@ class SiteController extends Controller
         
         $service = \app\models\Service::find()->all();
         
+        
+        $filters = \app\models\SeoFilter::find()->with(['seo'])->all();
+        
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
             'regions' => $regions,
             'city' => $city,
             'service' => $service,
+            'filters' => $filters,
         ]);
     }
     

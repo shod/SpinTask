@@ -46,4 +46,9 @@ class SeoPattern extends \yii\db\ActiveRecord
         return self::_convert_param_item_to_str($un_param);
     }
     
+    public function getUrlParams() {
+        $params = yii\helpers\Json::decode($this->parms);
+        return array_merge([$this->controller], $params);
+    }
+    
 }

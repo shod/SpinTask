@@ -3,45 +3,24 @@
 //dd($model);
 $href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
 ?>
-<div class="vendor-thumbnail">
-    <!-- Vendor thumbnail -->
-    <div class="vendor-img">
-        <!-- Vendor img -->
-        <a href="<?= $href; ?>">
-            <?php if($model->image): ?>
-                <img src="<?= \app\models_ex\Company::getImageUrl() . $model->image; ?>" width="55" height="55" style="height: 180px;" class="img-fluid">
-            <?php endif; ?>
-        </a>
+<!-- Vendor thumbnail -->
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+        <div class="vendor-img">
+            <!-- Vendor img -->
+            <a href="<?= $href; ?>"><img src="<?= \app\models_ex\Company::getImageUrl() . $model->image; ?>" alt="" 
+                              width="35" height="35"  class="img-fluid"></a>
+        </div>
     </div>
     <!-- /.Vendor img -->
-    <div class="vendor-content">
-        <!-- Vendor Content -->
-        <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
-        <p class="vendor-address"><?= $model->city->name; ?></p>
-<!--        <div class="vendor-meta">
-            <span class="price-box vendor-meta-box">
-            <span class="vendor-price">
-                $150
-            </span>
-            <span>Start From</span>
-            </span>
-            <span class="guest-box vendor-meta-box"><span class="guest-no">
-                120+
-            </span>
-            <span>Guest</span>
-            </span>
-            <span class="rating-box vendor-meta-box">
-                <span class="rating-star">
-                <i class="fa fa-star rated"></i>
-                <i class="fa fa-star rated"></i>
-                <i class="fa fa-star rated"></i>
-                <i class="fa fa-star rated"></i>
-                <i class="fa fa-star rate-mute"></i> 
-                </span>
-            <span class="rating-count">(20)</span></span>
-        </div>-->
-        <!-- /.Vendor meta -->
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <div class="vendor-content">
+            <!-- Vendor Content -->
+            <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
+            <p class="vendor-address"><?= $model->city->name; ?></p>
+            <!-- /.Vendor meta -->
+        </div>
+        <!-- /.Vendor Content -->
     </div>
-    <!-- /.Vendor Content -->
 </div>
-<!-- /.Vendor thumbnail -->
+
