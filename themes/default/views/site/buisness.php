@@ -190,8 +190,8 @@ $serviceForm = [];
                                 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label class="control-label sr-only" for="weddingdate">Wedding Date</label>
-                                        <input id="weddingdate" name="weddingdate" type="text" placeholder="Wedding Date" class="form-control input-md" required="">
+                                        <label class="control-label sr-only" for="weddingdate">Reserve Date</label>
+                                        <input id="weddingdate" name="weddingdate" type="text" placeholder="Reserve Date" class="form-control input-md" required="">
                                         <div class="venue-form-calendar"><i class="far fa-calendar-alt"></i></div>
                                     </div>
                                 </div>
