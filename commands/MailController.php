@@ -50,7 +50,7 @@ class MailController extends Controller{
                         ->setSubject($params['subject'])
                         ->send();
 
-                   // \Yii::$app->db->createCommand('delete from sys_job_commands where id = '.$id)->execute();
+                    \Yii::$app->db->createCommand('delete from sys_job_commands where id = '.$id)->execute();
                 }else{
                     \Yii::$app->db->createCommand('update sys_job_commands set is_error = is_error+1 where id = '.$id)->execute();
                 }
