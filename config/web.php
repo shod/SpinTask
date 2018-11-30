@@ -65,6 +65,7 @@ $config = [
         ],
         
         'request' => [
+            'class' => 'app\components\yii\web\Request',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '123123123',
             'baseUrl'=> '',

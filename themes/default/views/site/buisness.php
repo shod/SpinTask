@@ -156,7 +156,7 @@ $serviceForm = [];
                                     
                                     <?php foreach ($datafilter as $name => $csp): ?>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <select class="wide">
+                                            <select class="wide" name="params[<?= $name; ?>]" >
                                                 <option ><?= $name; ?></option>
                                                 <?php foreach ($csp as $val): ?>
                                                     <option value="<?= $val['val']; ?>"><?= $val['val']; ?> <?= $val['measure']; ?></option>
@@ -180,7 +180,7 @@ $serviceForm = [];
                                             }
                                         ?>
                                            <div class="custom-control custom-checkbox">
-                                               <input type="checkbox" class="custom-control-input" id="bool_<?= $service->id; ?>"  name="<?= $service->name; ?>" >
+                                               <input type="checkbox" class="custom-control-input" id="bool_<?= $service->id; ?>"  name="params[<?= $service->name; ?>]" >
                                                <label class="custom-control-label" for="bool_<?= $service->id; ?>"> <?= $service->name; ?></label>
                                            </div>
                                        <?php endforeach; ?>
@@ -188,13 +188,13 @@ $serviceForm = [];
                                     </div>
                                 <?php endif; ?>
                                 
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!--div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label class="control-label sr-only" for="weddingdate">Reserve Date</label>
                                         <input id="weddingdate" name="weddingdate" type="text" placeholder="Reserve Date" class="form-control input-md" required="">
                                         <div class="venue-form-calendar"><i class="far fa-calendar-alt"></i></div>
                                     </div>
-                                </div>
+                                </div-->
                                 
                                 <!-- Textarea -->
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
