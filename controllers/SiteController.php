@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\SysService;
 use Yii;
 use app\components\yii\web\Controller; //app\components\yii\web\Controller;
 use yii\web\Response;
@@ -166,6 +167,8 @@ class SiteController extends Controller
         
         $check = \app\models\Quote::find()->where(['company_id' => $model->company_id, 'phone' => $model->phone])->count();
         if(!$check){
+            SysService::sendEmail($_GET['email'], 'You have made new request', Yii::$app->params['email_from'],false, 'simple', array_merge($_GET['params'], ['name' => $_GET['name']]) );
+            SysService::sendEmail($company->email, 'New Request', Yii::$app->params['email_from'],false, 'simple-owner', array_merge($_GET['params'], ['name' => $_GET['name']]) );
             $model->save();
         }
         
