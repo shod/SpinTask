@@ -35,15 +35,23 @@ class MailController extends Controller{
                     $mailTo = $params['email'];
                     $mailTo = trim($mailTo);
                     $mailTo = strtolower($mailTo);
+                    $print_params = $params;
+
+                    // unset default
+                    unset($print_params['name']);
+                    unset($print_params['email']);
+                    unset($print_params['tmpl']);
+                    unset($print_params['from']);
+                    unset($print_params['subject']);
 
                     \Yii::$app->mailer->compose($params['tmpl']
-                        ,['params' => $params])
+                        ,['params' => $print_params])
                         ->setFrom([$params['from'] => 'RealWed'])
                         ->setTo( $mailTo )
                         ->setSubject($params['subject'])
                         ->send();
 
-                    \Yii::$app->db->createCommand('delete from sys_job_commands where id = '.$id)->execute();
+                   // \Yii::$app->db->createCommand('delete from sys_job_commands where id = '.$id)->execute();
                 }else{
                     \Yii::$app->db->createCommand('update sys_job_commands set is_error = is_error+1 where id = '.$id)->execute();
                 }
