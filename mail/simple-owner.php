@@ -327,7 +327,7 @@
                                 <tr>
                                     <td>
                                         <!--a href="../index.html" class="template-logo"><img src="./images/logo.png" alt=""></a-->
-                                        <p class="lead">Hello, <?= $params['name'] ?>! <br>You have just make request.
+                                        <p class="lead">Hello! <br>You have received a new request.
                                         </p>
                                         <table border="0" cellpadding="0" cellspacing="0" class="">
                                             <tbody>
