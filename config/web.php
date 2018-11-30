@@ -28,7 +28,7 @@ $config = [
     'components' => [
         
         'view' => require(__DIR__ . '/components/view.php'),
-        'i18n' => require(__DIR__ . '/components/i18n.php'), 
+        'i18n' => require(__DIR__ . '/components/i18n.php'),
         
         
 //        'i18n' => [
