@@ -38,7 +38,6 @@ class MailController extends Controller{
                     $print_params = $params;
 
                     // unset default
-                    unset($print_params['name']);
                     unset($print_params['email']);
                     unset($print_params['tmpl']);
                     unset($print_params['from']);
