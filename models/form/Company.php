@@ -75,7 +75,7 @@ class Company extends Model
             [['buisness_id'], 'required'],
             [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id'], 'integer'],
             [['id', 'name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'safe'],
-            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'description', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
+            [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
          //   [['buisness_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusinessOwner::className(), 'targetAttribute' => ['buisness_id' => 'id']],
         ];
     }
