@@ -20,7 +20,7 @@ $serviceForm = [];
                 <!--vendor-heading -->
                 <div class="vendor-headings">
                     <h2 class="mb10"><?= $model->name; ?></h2>
-                    <p class="vendor-address"><?= $model->city->name; ?>. <a href="#map" class="btn-secondary-link ml-2">View Map</a> </p>
+                    <p class="vendor-address"><?= $model->city->name; ?>. <!--a href="#map" class="btn-secondary-link ml-2">View Map</a--> </p>
                 </div>
                 <!--/.vendor-heading -->
             </div>
@@ -103,7 +103,7 @@ $serviceForm = [];
                         </div>
                     <?php endif; ?>
                 </div>
-                <?= $this->render('buisness/map', ['model' => $model]); ?>
+                <? // $this->render('buisness/map', ['model' => $model]); ?>
             </div>
 			<!-- Request Quote-block -->
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">

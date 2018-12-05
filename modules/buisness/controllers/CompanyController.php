@@ -111,20 +111,28 @@ class CompanyController extends Controller
         if(!$id){
             $model = new Company();
         }else{
+            
             $model = $this->findModel($id);
+            $oldImg = $model->image;
         }
-        
+       
         $profileModel = new \app\models\form\Company();
-        
+       
         $profileModel->load(Yii::$app->request->post());
         $model->attributes = $profileModel->attributes;
+       
         $profileModel->imageFile = \yii\web\UploadedFile::getInstance($profileModel, 'imageFile');
-        if ($profileModel->upload()) {
-            $model->image = $profileModel->getImgFileName();
-            if ($model->save()) {
-            
-                return $this->redirect(['/buisness/company/update/', 'id' => $model->id]);
-            } 
+        
+        if(!empty($profileModel->imageFile)){
+            if ($profileModel->upload()) {
+                $model->image = $profileModel->getImgFileName();
+                if ($model->save()) {
+                
+                    return $this->redirect(['/buisness/company/update/', 'id' => $model->id]);
+                } 
+            }
+        } else{
+            $model->image = $oldImg;
         }
         if ($model->save()) {
         
