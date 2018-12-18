@@ -12,7 +12,7 @@ $config = [
     'sourceLanguage' => 'en-US',
     
     'charset' => 'utf-8',
-    'name' => 'test.servicecallonline.ca',
+    'name' => 'SpinTask',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
