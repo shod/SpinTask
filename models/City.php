@@ -10,8 +10,9 @@ use Yii;
  * @property int $id
  * @property int $region_id
  * @property string $name
- * @property string $code
  *
+ * @property Region $region
+ * @property Company[] $companies
  * @property CompanyServiceCity[] $companyServiceCities
  * @property Company[] $companyServices
  */
@@ -31,10 +32,10 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'region_id', 'name'], 'required'],
-            [['id', 'region_id'], 'integer'],
-            [['name', 'code'], 'string', 'max' => 32],
-            [['id'], 'unique'],
+            [['region_id', 'name'], 'required'],
+            [['region_id'], 'integer'],
+            [['name'], 'string', 'max' => 128],
+            [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['region_id' => 'id']],
         ];
     }
 
@@ -47,8 +48,23 @@ class City extends \yii\db\ActiveRecord
             'id' => 'ID',
             'region_id' => 'Region ID',
             'name' => 'Name',
-            'code' => 'Code',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(Region::className(), ['id' => 'region_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanies()
+    {
+        return $this->hasMany(Company::className(), ['city_id' => 'id']);
     }
 
     /**
