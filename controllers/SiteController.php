@@ -204,12 +204,10 @@ class SiteController extends Controller
     }
     
     private function getCityByRegion($region_id) {
-        return \app\models\City::find()->where(['region_id' => $region_id,])->orderBy('name')->all();
-        
+        return \app\models\City::find()->innerJoinWith('companies', false)->where(['region_id' => $region_id,])->orderBy('name')->all();
     }
     
     private function getRegionByCountry() {
-        return \app\models\Region::find()->where(['country_id' => \Yii::$app->params['country']])->all();
-        
+        return \app\models\Region::find()->innerJoinWith('companies', false)->where(['country_id' => \Yii::$app->params['country']])->all();
     }
 }

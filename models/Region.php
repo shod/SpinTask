@@ -8,8 +8,11 @@ use Yii;
  * This is the model class for table "region".
  *
  * @property int $id
+ * @property int $country_id
  * @property string $name
- * @property string $reg_code
+ *
+ * @property City[] $cities
+ * @property Company[] $companies
  */
 class Region extends \yii\db\ActiveRecord
 {
@@ -27,9 +30,10 @@ class Region extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'reg_code'], 'required'],
-            [['name'], 'string', 'max' => 32],
-            [['reg_code'], 'string', 'max' => 3],
+            [['id', 'country_id', 'name'], 'required'],
+            [['id', 'country_id'], 'integer'],
+            [['name'], 'string', 'max' => 128],
+            [['id'], 'unique'],
         ];
     }
 
@@ -40,8 +44,24 @@ class Region extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'country_id' => 'Country ID',
             'name' => 'Name',
-            'reg_code' => 'Reg Code',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasMany(City::className(), ['region_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanies()
+    {
+        return $this->hasMany(Company::className(), ['state_id' => 'id']);
     }
 }
