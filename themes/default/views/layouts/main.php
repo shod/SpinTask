@@ -19,7 +19,7 @@ DefaultAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Yii::$app->name ?> - <?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

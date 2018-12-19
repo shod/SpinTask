@@ -40,8 +40,8 @@ class SeoPattern extends \app\models_ex\SeoPattern
     public function rules()
     {
         return [
-            [['section_id', 'parms_md5', 'setting_bit'], 'required'],
-            [['section_id', 'type', 'parms_crc', 'hide', 'setting_bit'], 'integer'],
+            [['parms', 'url'], 'required'],
+            [['type', 'parms_crc', 'hide', 'setting_bit'], 'integer'],
             [['parms', 'description'], 'string'],
             [['url', 'title', 'keyword', 'h1', 'parms_md5', 'title_2'], 'string', 'max' => 255],
             [['route'], 'string', 'max' => 64],
@@ -58,7 +58,6 @@ class SeoPattern extends \app\models_ex\SeoPattern
     {
         return [
             'id' => 'ID',
-            'section_id' => 'Section ID',
             'url' => 'Url',
             'parms' => 'Parms',
             'title' => 'Title',
