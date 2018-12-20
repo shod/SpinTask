@@ -47,6 +47,29 @@ class SeoController extends Controller
                 die;
             }
         }
+
+        $this->company();
         return ExitCode::OK;
     }
+
+    private function company(){
+        $sql = "SELECT id, lower(name) as name FROM `company` t1";
+
+        $data = \Yii::$app->db->createCommand($sql)->queryAll();
+        foreach ($data as $key => $value) {
+            $model = new \app\models\SeoPattern();
+            $model->url = str_replace(' ', '-', $value['name']);
+            $model->controller = 'site/buisness';
+            $model->h1 = $value['name'];
+            $model->parms = \json_encode(['company_id' => $value['id']]);
+
+            try {
+                $model->save();
+            } catch (\Throwable $th) {
+                var_dump($th->getMessage());
+                die;
+            }
+        }
+    }
+
 }
