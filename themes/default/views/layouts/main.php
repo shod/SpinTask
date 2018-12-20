@@ -24,6 +24,14 @@ DefaultAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/themes/default/images/favicon.ico">
+    <script src="https://www.googletagmanager.com/gtag/js?id=<?= Yii::$app->analytics->getCode('google_tag_id'); ?>"></script> 
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<?= Yii::$app->analytics->getCode('google_tag_id'); ?>');
+    </script>
     <?php $this->head() ?>
 </head>
 

@@ -29,6 +29,7 @@ $config = [
         
         'view' => require(__DIR__ . '/components/view.php'),
         'i18n' => require(__DIR__ . '/components/i18n.php'),
+        'analytics' => require(__DIR__ . '/components/analytics.php'),
         
         
 //        'i18n' => [

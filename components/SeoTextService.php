@@ -43,14 +43,17 @@ class SeoTextService {
         if($seo_model->description){
             $patterns['description'] = $seo_model->description;
         }
+       
     
         
         $arrmeta['title'] = self::paramsReplace($patterns['title'], $parms, $seo_model->h1);
         $arrmeta['title'] = self::regionTextReplace($arrmeta['title']);
+        $arrmeta['title'] = ucwords($arrmeta['title']);
 
         $arrmeta['description'] = self::paramsReplace($patterns['description'], $parms, $seo_model->h1);
         $arrmeta['description'] = self::regionTextReplace($arrmeta['description']);
 
+        $seo_model->h1 = ucwords($seo_model->h1);
         $arrmeta['h1'] = $seo_model->h1;
 
         return $arrmeta;
