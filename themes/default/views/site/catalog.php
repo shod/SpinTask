@@ -55,7 +55,7 @@ use app\models\Service;
                         <?php foreach ($filters as $value) {
                             $params = yii\helpers\Json::decode($value->seo->parms);
                             
-                            echo Html::a($value->seo->title, $value->seo->getUrlParams() );
+                            echo Html::a($value->seo->h1, $value->seo->getUrlParams() );
                         }?>
                     </div>
                 </div>
