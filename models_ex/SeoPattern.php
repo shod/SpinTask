@@ -50,5 +50,6 @@ class SeoPattern extends \yii\db\ActiveRecord
         $params = yii\helpers\Json::decode($this->parms);
         return array_merge([$this->controller], $params);
     }
+
     
 }

@@ -3,6 +3,7 @@
 namespace app\models_ex;
 
 use Yii;
+use \app\models\CompanyServiceValue;
 
 /**
  * This is the model class for table "company".
@@ -27,5 +28,13 @@ class Company extends \app\components\db\TSFlaggedActiveRecord
     
     public static function getImageUrl() {
         return '/uploads/company/';
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanyServiceValues()
+    {
+        return $this->hasMany(CompanyServiceValue::className(), ['company_service_id' => 'id'])->viaTable('company_service', ['company_id' => 'id']);
     }
 }

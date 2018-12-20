@@ -16,7 +16,7 @@ use app\models\Service;
             <!-- page section -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-caption">
-                    <h1 class="page-title"> <?= $this->title; ?></h1>
+                    <h1 class="page-title"> <?= Yii::$app->request->seo->h1; ?></h1>
                 </div>
             </div>
         </div>

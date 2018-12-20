@@ -17,7 +17,7 @@ $href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
         <div class="vendor-content">
             <!-- Vendor Content -->
             <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
-            <p class="vendor-address"><?= $model->city->name; ?></p>
+            <p class="vendor-address"><?= $model->city->name??''; ?></p>
             <!-- /.Vendor meta -->
         </div>
         <!-- /.Vendor Content -->

@@ -88,6 +88,6 @@ class CompanyService extends \app\models_ex\CompanyService
      */
     public function getServicePropertyValues()
     {
-        return $this->hasMany(ServicePropertyValue::className(), ['id' => 'service_property_value_id'])->viaTable('company_service_value', ['company_service_id' => 'id']);
+        return $this->hasMany(ServicePropertyValue::className(), ['id' => 'service_property_value_id'])->viaTable('company_service', ['company_service_id' => 'id']);
     }
 }
