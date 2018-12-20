@@ -30,13 +30,14 @@ class SeoController extends Controller
         $sql = "SELECT DISTINCT t2.id,t2.service_id, lower(t2.value) as name1, lower(s.name) as name2  
             FROM `company_service_value` t1
             join service_property_value t2 ON t1.service_property_value_id = t2.id
-            join service s ON s.id = t2.service_id";
+            join service s ON s.id = t2.service_id where  `service_property_id` = '17' ";
 
         $data = \Yii::$app->db->createCommand($sql)->queryAll();
         foreach ($data as $key => $value) {
             $model = new \app\models\SeoPattern();
             $model->url = 'catalog/' . str_replace(' ', '-', $value['name1']) . '/' . str_replace(' ', '-', $value['name2']);
             $model->controller = 'site/catalog';
+            $model->h1 = $value['name1'] . ' ' . $value['name2'];
             $model->parms = \json_encode(['service_property_value_id' => $value['id'], 'service_id' => $value['service_id']]);
 
             try {

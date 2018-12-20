@@ -47,24 +47,6 @@ class SiteController extends Controller
     {
         $model = \app\models\Texts::findOne($id);
         $vars = ['model' => $model];
-        /*$seo_model = Yii::$app->request->seo;
-        
-        if($text_id){
-            $vars = $this->_get_page_type_text($text_id);                                                
-        }else{
-            $id = Yii::$app->request->get('pm');
-            $vars = $this->_get_page_type_sys($id);
-        }
-        \Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $seo_model['keyword'],           
-        ]);
-
-        \Yii::$app->view->registerMetaTag([            
-            'name' => 'description',
-            'content' => $seo_model['description'],            
-        ]);
-        $vars['meta_title'] = $seo_model['title'];  */      
         return $this->render('page', $vars);
     }
     
@@ -178,9 +160,11 @@ class SiteController extends Controller
     public function actionCatalog()
     {
         $city_id = (int) \Yii::$app->request->get('city');
-        /* $aa = \yii\helpers\Url::to(['site/catalog', 'region' => 744, 'city' => 9006]);
-         dd($aa);
-        die;*/
+        $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
+
+        if($service_property_value_id);
+
+
         $dataProvider = new ActiveDataProvider([
             'query' => \app\models\Company::find()->where(['city_id' => $city_id]),
         ]);
