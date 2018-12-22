@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Buisness page';
+//$this->title = 'Buisness page';
 
 
 $this->params['breadcrumbs'][] = ['label' => 'buisness list', 'url' => ['/site/catalog']];

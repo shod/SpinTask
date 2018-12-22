@@ -103,7 +103,19 @@ class SeoTextService {
                 case 'service_id':
                     $replaceText = \app\models\Service::findOne($value)->name;
                     $key = 'Service';
-                    break;   
+                    break;  
+                case 'company_id':
+                    $replaceText = \app\models\Company::findOne($value)->name;
+                    $key = 'Company';
+                    break;      
+                case 'city_id':
+                    $replaceText = \app\models\City::findOne($value)->name;
+                    $key = 'City';
+                    break;  
+                case 'region_id':
+                    $replaceText = \app\models\Region::findOne($value)->name;
+                    $key = 'Region';
+                    break;     
                 default:
                     $replaceText = '';
                     break;

@@ -122,8 +122,11 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionBuisness($id)
+    public function actionBuisness($id = 0)
     {
+        if(!$id){
+            $id = \Yii::$app->request->get('company_id');
+        }
         $model = \app\models\Company::findOne($id);
         
         $companyService = \app\models\CompanyService::find()->where(['company_id' => $id])->all();

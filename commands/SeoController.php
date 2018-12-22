@@ -53,15 +53,28 @@ class SeoController extends Controller
     }
 
     private function company(){
-        $sql = "SELECT id, lower(name) as name FROM `company` t1";
+        $sql = "SELECT
+            c.id,
+            lower( c.NAME ) AS buisnes,
+            city_id,
+            ci.region_id,
+            lower( ci.name ) as city,
+            lower( r.name ) as region  
+        FROM
+            `company` c
+            JOIN city ci ON ci.id = c.city_id
+            join region r ON r.id = ci.region_id";
 
         $data = \Yii::$app->db->createCommand($sql)->queryAll();
         foreach ($data as $key => $value) {
+            $url = $value['region'].'/'.$value['city'].'/'.$value['buisnes'];
+            $url = preg_replace('/[^\/ a-z]/u', '', $url );
+            $url = str_replace(['  ',' '], [' ','-'],$url);
             $model = new \app\models\SeoPattern();
-            $model->url = str_replace(' ', '-', $value['name']);
+            $model->url = $url;
             $model->controller = 'site/buisness';
-            $model->h1 = $value['name'];
-            $model->parms = \json_encode(['company_id' => $value['id']]);
+            $model->h1 = $value['buisnes'];
+            $model->parms = \json_encode(['company_id' => $value['id'], 'region_id' => $value['region_id'], 'city_id' => $value['city_id']]);
 
             try {
                 $model->save();
