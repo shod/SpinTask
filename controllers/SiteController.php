@@ -162,18 +162,21 @@ class SiteController extends Controller
     
     public function actionCatalog()
     {
-        $city_id = (int) \Yii::$app->request->get('city');
-        
+        $city_id = (int) \Yii::$app->request->get('city_id');
+        dd($city_id);
         $query = \app\models\Company::find();
         if(\Yii::$app->request->seo){
             $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
             if($service_property_value_id){
                 $query->joinWith(['companyServiceValues'])->where(['service_property_value_id' => $service_property_value_id]);
             }
+            /*if($city_id){
+                $query->andWhere(['city_id' => $city_id]);
+            }*/
         }
         
         if($city_id){
-            $query->where(['city_id' => $city_id]);
+            $query->andWhere(['city_id' => $city_id]);
         }
 
 

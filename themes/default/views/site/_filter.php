@@ -41,9 +41,9 @@
                     <!-- /.venue-type -->
                     <!-- distance km -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide" name="city">
+                        <select class="wide" name="city_id">
                             <?php foreach ($city as $ct): ?>
-                                <option value="<?= $ct->id ?>" <?= (isset($_GET['city']) && $ct->id == $_GET['city']) ? 'selected' : ''; ?> ><?= Yii::t('region', $ct->name) ?></option>
+                                <option value="<?= $ct->id ?>" <?= (isset($_GET['city_id']) && $ct->id == $_GET['city_id']) ? 'selected' : ''; ?> ><?= Yii::t('region', $ct->name) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
