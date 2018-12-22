@@ -31,10 +31,10 @@
                 <form class="row" action="<?= yii\helpers\Url::to(['/site/catalog/',]) ?>">
                     <!-- venue-type -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide" name="region"  onchange="loadCity(this)" >
+                        <select class="wide" name="region_id"  onchange="loadCity(this)" >
                             <option  disabled ><?= Yii::t('region', 'select state') ?></option>
                             <?php foreach ($regions as $reg): ?>
-                                <option value="<?= $reg->id ?>" <?= (isset($_GET['region']) && $reg->id == $_GET['region']) ? 'selected' : ''; ?> ><?= Yii::t('region', $reg->name) ?></option>
+                                <option value="<?= $reg->id ?>" <?= (isset($_GET['region_id']) && $reg->id == $_GET['region_id']) ? 'selected' : ''; ?> ><?= Yii::t('region', $reg->name) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -50,9 +50,9 @@
                     <!-- /.distance km -->
                     <!-- price -->
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                        <select class="wide" name="service">
+                        <select class="wide" name="service_id">
                             <?php foreach ($service as $srv): ?>
-                                <option value="<?= $srv->id ?>" <?= (isset($_GET['service']) && $srv->id == $_GET['service']) ? 'selected' : ''; ?> ><?= Yii::t('service', $srv->name) ?></option>
+                                <option value="<?= $srv->id ?>" <?= (isset($_GET['service_id']) && $srv->id == $_GET['service_id']) ? 'selected' : ''; ?> ><?= Yii::t('service', $srv->name) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

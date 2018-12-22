@@ -75,6 +75,62 @@ class SeoController extends Controller
                 var_dump($th->getMessage());
                // die;
             }
+
+            //TOOLS
+            $model = new \app\models\SeoPattern();
+            $model->url = $this->formatUrl('catalog/' . $value['name1']);
+            $model->controller = 'site/catalog';
+            $model->h1 = $value['name1'];
+            $model->parms = \json_encode(['service_property_value_id' => $value['id'],]);
+
+            try {
+                $model->save();
+            } catch (\Throwable $th) {
+                var_dump($th->getMessage());
+               // die;
+            }
+
+            $model = new \app\models\SeoPattern();
+            $model->url = $this->formatUrl($value['region'] . '/' . $value['city'] . '/catalog/' . $value['name1']);
+            $model->controller = 'site/catalog';
+            $model->h1 = $value['name1'] . ' ' . $value['region'] . ' ' . $value['city'];
+            $model->parms = \json_encode(['service_property_value_id' => $value['id'], 
+                'city_id' => $value['city_id'], 'region_id' => $value['region_id']]);
+
+            try {
+                $model->save();
+            } catch (\Throwable $th) {
+                var_dump($th->getMessage());
+               // die;
+            }
+
+            //SERVICE
+            $model = new \app\models\SeoPattern();
+            $model->url = $this->formatUrl('catalog/' . $value['name2']);
+            $model->controller = 'site/catalog';
+            $model->h1 = $value['name1'];
+            $model->parms = \json_encode(['service_id' => $value['service_id'],]);
+
+            try {
+                $model->save();
+            } catch (\Throwable $th) {
+                var_dump($th->getMessage());
+               // die;
+            }
+
+            $model = new \app\models\SeoPattern();
+            $model->url = $this->formatUrl($value['region'] . '/' . $value['city'] . '/catalog/' . $value['name2']);
+            $model->controller = 'site/catalog';
+            $model->h1 = $value['name2'] . ' ' . $value['region'] . ' ' . $value['city'];
+            $model->parms = \json_encode(['service_id' => $value['service_id'], 
+                'city_id' => $value['city_id'], 'region_id' => $value['region_id']]);
+
+            try {
+                $model->save();
+            } catch (\Throwable $th) {
+                var_dump($th->getMessage());
+               // die;
+            }
         }
 
         $this->company();

@@ -163,7 +163,7 @@ class SiteController extends Controller
     public function actionCatalog()
     {
         $city_id = (int) \Yii::$app->request->get('city_id');
-        dd($city_id);
+        
         $query = \app\models\Company::find();
         if(\Yii::$app->request->seo){
             $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
@@ -185,7 +185,8 @@ class SiteController extends Controller
         ]);
         $regions = $this->getRegionByCountry();
         
-        $region_id = (int) \Yii::$app->request->get('region');
+        $region_id = (int) \Yii::$app->request->get('region_id');
+        
         $city = $this->getCityByRegion($region_id);
         
         $service = \app\models\Service::find()->all();
