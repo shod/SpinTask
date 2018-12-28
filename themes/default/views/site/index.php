@@ -11,7 +11,7 @@ use yii\helpers\Html;
         
         // послыаем AJAX запрос, который вернёт список городов для выбранной области
         $.getJSON('<?= yii\helpers\Url::to(['/site/city/',]); ?>', {region_id:select.value}, function(cityList){
-            var citySelect = $('select[name="city"]');
+            var citySelect = $('select[name="city_id"]');
             citySelect.html('');
             citySelect.niceSelect('destroy');
 
@@ -41,7 +41,7 @@ use yii\helpers\Html;
                              <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                      <!-- select -->
-                                    <select class="wide" name="region"  onchange="loadCity(this)" >
+                                    <select class="wide" name="region_id"  onchange="loadCity(this)" >
                                         <option  disabled selected><?= Yii::t('region', 'select state') ?></option>
                                         <?php foreach ($regions as $reg): ?>
                                             <option value="<?= $reg->id ?>"><?= Yii::t('region', $reg->name) ?></option>
@@ -50,7 +50,7 @@ use yii\helpers\Html;
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                      <!-- select -->
-                                     <select class="wide" name="city">
+                                     <select class="wide" name="city_id">
                                          <?php //foreach ($city as $cit): ?>
                                         <?php //endforeach; ?>
                                      </select>
