@@ -22,14 +22,14 @@ use app\models\Service;
         </div>
     </div>
 </div>
-<?= $this->render('catalog/_filter', ['regions' => $regions, 'city' => $city, 'service' => $service]); ?>
+<?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service]); ?>
 <div class="content">
     <div class="container">
         <div class="row">
             <?=
                 yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
-                'itemView' => 'catalog/_company',
+                'itemView' => '_company',
                 'options' => [
                     'tag' => 'div',
                     'class' => 'col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12',
@@ -65,5 +65,5 @@ use app\models\Service;
         </div>
     </div>
 </div>
-<?= $this->render('catalog/_region', ['regions' => $regions, 'city' => $city,]); ?>
+<?= $this->render('_region', ['regions' => $regions, 'city' => $city,]); ?>
 

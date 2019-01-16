@@ -16,7 +16,11 @@ class SeoRule extends UrlRule
         }
     }
 
-    private function sortParams($params){
+    public static function paramsFormating($params) : string {
+        return \json_encode(self::sortParams($params) );
+    }
+
+    public static function sortParams($params){
         $sort = ["industry_id","region_id","city_id","service_property_value_id","service_id"];
         $res = [];
         foreach ($sort as $key => $item){
@@ -36,14 +40,7 @@ class SeoRule extends UrlRule
 
     public function createUrl($manager, $route, $params)
     {
-        
-        
-        $params = $this->sortParams($params);
-    
-        //dd($manager);
-        //dd($route);
-        //dd($params);
-        //die('1111111111');
+        $params = self::sortParams($params);
         $route = trim($route);
         $params_md5 = md5(print_r($params,1));
         if(isset($this->collection[$route][$params_md5])){
@@ -69,33 +66,6 @@ class SeoRule extends UrlRule
                 $toRoute['type'] = $params['type'];
             }
            
-
-            /*
-            if(isset($params['new']) && $params['new']){
-                $model->url .= '/new';
-            }elseif(isset($params['hit']) && $params['hit']){
-                $model->url .= '/hit';
-            }elseif(isset($params['kredit']) && $params['kredit']){
-                $model->url .= '/kredit';
-            }elseif(isset($params['rassrochka']) && $params['rassrochka']){
-                $model->url .= '/rassrochka';
-            }else
-            */ 
-           /* if(isset($params['made']) && $params['made']){
-                $model->url .= '/' . $params['made'];
-            }
-*/
-        /*    if(count($toRoute) && count($p) ){
-                if($is_full_pattern){
-                    $diff = $this->array_diff_assoc_recursive($toRoute, $p);
-                }else{
-                    $diff = $toRoute;
-                }
-                if($http_build_query = @http_build_query($diff)){
-                    $this->collection[$route][$params_md5] = $model->url . '/?' . urldecode($http_build_query);
-                    return $this->collection[$route][$params_md5];
-                }
-            }*/
             $this->collection[$route][$params_md5] =  $model->url . '/';
             return $this->collection[$route][$params_md5];
         }

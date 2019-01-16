@@ -9,6 +9,7 @@ namespace app\commands;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
+use app\components\SeoRule;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -82,10 +83,10 @@ class SeoController extends Controller
     private function createIndustryRegionCity($value, $url, $h1, $params)
     {
         $model = new \app\models\SeoPattern();
-        $model->controller = 'site/catalog';
+        $model->controller = 'catalog/index';
         $model->url = $this->formatUrl($value['industry'] . '/' . $url); //$value['tool'] . '/' . $value['servicename']);
         $model->h1 = $h1; //$value['tool'] . ' ' . $value['servicename'];
-        $model->parms = \json_encode(array_merge(['industry_id' => $value['industry_id']], $params)); // 'service_property_value_id' => $value['id'], 'service_id' => $value['service_id']]);
+        $model->parms = SeoRule::paramsFormating(array_merge(['industry_id' => $value['industry_id']], $params)); // 'service_property_value_id' => $value['id'], 'service_id' => $value['service_id']]);
         try {
             $model->save();
         } catch (\Throwable $th) {
@@ -93,10 +94,10 @@ class SeoController extends Controller
         }
 
         $model = new \app\models\SeoPattern();
-        $model->controller = 'site/catalog';
+        $model->controller = 'catalog/index';
         $model->url = $this->formatUrl($value['industry'] . '/' . $value['region'] . '/' . $url);
         $model->h1 = $h1 . ' ' . $value['region'];
-        $model->parms = \json_encode(array_merge(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'],], $params));
+        $model->parms = SeoRule::paramsFormating(array_merge(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'],], $params));
    
         try {
             $model->save();
@@ -105,10 +106,10 @@ class SeoController extends Controller
         }
 
         $model = new \app\models\SeoPattern();
-        $model->controller = 'site/catalog';
+        $model->controller = 'catalog/index';
         $model->url = $this->formatUrl($value['industry'] . '/' . $value['region'] . '/' . $value['city'] . '/' . $url);
         $model->h1 = $h1 . ' ' . $value['region'] . ' ' . $value['city'];
-        $model->parms = \json_encode(array_merge(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'],'city_id' => $value['city_id'], ], $params));
+        $model->parms = SeoRule::paramsFormating(array_merge(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'],'city_id' => $value['city_id'], ], $params));
  
         try {
             $model->save();
@@ -137,7 +138,7 @@ class SeoController extends Controller
             $model->url = $this->formatUrl($value['region'] . '/' . $value['city'] . '/' . $value['buisnes']);
             $model->controller = 'site/buisness';
             $model->h1 = $value['buisnes'];
-            $model->parms = \json_encode(['company_id' => $value['id'], 'region_id' => $value['region_id'], 'city_id' => $value['city_id']]);
+            $model->parms = SeoRule::paramsFormating(['company_id' => $value['id'], 'region_id' => $value['region_id'], 'city_id' => $value['city_id']]);
 
             try {
                 $model->save();
@@ -170,10 +171,10 @@ class SeoController extends Controller
 
             $model = new \app\models\SeoPattern();
             $model->url = $this->formatUrl($value['industry']);
-            $model->controller = 'site/catalog';
+            $model->controller = 'catalog/index';
             $model->h1 = $value['industry'];
             $model->type = 2;
-            $model->parms = \json_encode(['industry_id' => $value['industry_id']]);
+            $model->parms = SeoRule::paramsFormating(['industry_id' => $value['industry_id']]);
 
             try {
                 $model->save();
@@ -184,10 +185,10 @@ class SeoController extends Controller
 
             $model = new \app\models\SeoPattern();
             $model->url = $this->formatUrl($value['industry'] . '/' . $value['region']);
-            $model->controller = 'site/catalog';
+            $model->controller = 'catalog/index';
             $model->h1 = $value['industry'] . ' in ' . $value['region'];
             $model->type = 3;
-            $model->parms = \json_encode(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id']]);
+            $model->parms = SeoRule::paramsFormating(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id']]);
 
             try {
                 $model->save();
@@ -198,9 +199,9 @@ class SeoController extends Controller
 
             $model = new \app\models\SeoPattern();
             $model->url = $this->formatUrl($value['industry'] . '/' . $value['region'] . '/' . $value['city']);
-            $model->controller = 'site/catalog';
+            $model->controller = 'catalog/index';
             $model->h1 = $value['industry'] . ' in ' . $value['region'] . ' ' . $value['city'];
-            $model->parms = \json_encode(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'], 'city_id' => $value['city_id']]);
+            $model->parms = SeoRule::paramsFormating(['industry_id' => $value['industry_id'], 'region_id' => $value['region_id'], 'city_id' => $value['city_id']]);
 
             try {
                 $model->save();
