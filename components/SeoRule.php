@@ -16,13 +16,34 @@ class SeoRule extends UrlRule
         }
     }
 
+    private function sortParams($params){
+        $sort = ["industry_id","region_id","city_id","service_property_value_id","service_id"];
+        $res = [];
+        foreach ($sort as $key => $item){
+            if(isset($params[$item])){
+                $res[$item] = $params[$item];
+            }
+            else{
+                unset($sort[$key]);
+            }
+        }
+        
+        if(count($res) == count($params)){
+            return $res;
+        }
+        return $params;
+    }
+
     public function createUrl($manager, $route, $params)
     {
         
-      /*  dd($manager);
-        dd($route);
-        dd($params);
-        die('1111111111');*/
+        
+        $params = $this->sortParams($params);
+    
+        //dd($manager);
+        //dd($route);
+        //dd($params);
+        //die('1111111111');
         $route = trim($route);
         $params_md5 = md5(print_r($params,1));
         if(isset($this->collection[$route][$params_md5])){
@@ -34,6 +55,7 @@ class SeoRule extends UrlRule
                 unset($params[$key]);
             }
         }
+       
         $model = \app\models\SeoPattern::getByParams($route, $params);
         if($model){
             $toRoute = [];

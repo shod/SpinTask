@@ -30,6 +30,10 @@ class Company extends \app\components\db\TSFlaggedActiveRecord
         return '/uploads/company/';
     }
 
+    public function getUrl(){
+        return yii\helpers\Url::to(['site/buisness', 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id,"region_id" => (string)$this->state_id]);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

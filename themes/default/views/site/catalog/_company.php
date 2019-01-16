@@ -1,15 +1,20 @@
 <?php 
 
 //dd($model);
-$href = yii\helpers\Url::to(['site/buisness', 'id' => $model->id]);
+$href = $model->getUrl();
+$imgUrl = \app\models_ex\Company::getImageUrl();
+if(empty($model->image) ){
+    $imgUrl = '/img/plug.jpg';
+}else{
+    $imgUrl .= $model->image;
+}
 ?>
 <!-- Vendor thumbnail -->
 <div class="row">
     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
         <div class="vendor-img">
             <!-- Vendor img -->
-            <a href="<?= $href; ?>"><img src="<?= \app\models_ex\Company::getImageUrl() . $model->image; ?>" alt="" 
-                              width="35" height="35"  class="img-fluid"></a>
+            <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name; ?>"   width="35" height="35"  class="img-fluid"></a>
         </div>
     </div>
     <!-- /.Vendor img -->

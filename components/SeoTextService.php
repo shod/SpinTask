@@ -44,7 +44,13 @@ class SeoTextService {
             $patterns['description'] = $seo_model->description;
         }
        
-    
+        if(!isset($patterns['title'])){
+            throw new \Exception("Seo title pattern not exist for:" . json_encode($parms_keys), 500);
+        }
+
+        if(!isset($patterns['description'])){
+            throw new \Exception("Seo description pattern not exist for:" . json_encode($parms_keys), 500);
+        }
         
         $arrmeta['title'] = self::paramsReplace($patterns['title'], $parms, $seo_model->h1);
         $arrmeta['title'] = self::regionTextReplace($arrmeta['title']);
@@ -115,7 +121,11 @@ class SeoTextService {
                 case 'region_id':
                     $replaceText = \app\models\Region::findOne($value)->name;
                     $key = 'Region';
-                    break;     
+                    break;    
+                case 'industry_id':
+                    $replaceText = \app\models\Industry::findOne($value)->name;
+                    $key = 'Industry';
+                    break;  
                 default:
                     $replaceText = '';
                     break;

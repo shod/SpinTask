@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Industry;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 
@@ -38,9 +39,9 @@ class SiteController extends Controller
     */
     public function actionIndex() {
 
-        $regions = $this->getRegionByCountry();
+        $industry = Industry::find()->where(['hide' => 0])->all();
 
-        return $this->render('index', ['regions' => $regions, /* 'city' => $city */]);
+        return $this->render('index', ['industry' => $industry,]);
     }
 
     public function actionPage($id)
@@ -188,18 +189,16 @@ class SiteController extends Controller
         $region_id = (int) \Yii::$app->request->get('region_id');
         
         $city = $this->getCityByRegion($region_id);
-        
         $service = \app\models\Service::find()->all();
         
-        
-        $filters = \app\models\SeoFilter::find()->with(['seo'])->all();
+    
         
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
             'regions' => $regions,
             'city' => $city,
             'service' => $service,
-            'filters' => $filters,
+            'filters' => $this->getFilters(),
         ]);
     }
     
@@ -209,5 +208,24 @@ class SiteController extends Controller
     
     private function getRegionByCountry() {
         return \app\models\Region::find()->innerJoinWith('companies', false)->where(['country_id' => \Yii::$app->params['country']])->all();
+    }
+
+    private function getFilters(){
+        $seoUrl = Yii::$app->request->seo->url;
+        
+        $region_id = Yii::$app->request->get('region_id');
+        $city_id = Yii::$app->request->get('city_id');
+
+        $sql = "SELECT * FROM `seo_pattern` WHERE  `url` LIKE '{$seoUrl}/%' AND `url` NOT LIKE '{$seoUrl}/%/%' ";
+        if($city_id){
+            //not added filters
+        }elseif($region_id){
+            $sql .= "and `parms` not like '%city_id%'";
+        }else{
+            $sql .= "and `parms` not like '%region%'";
+        }
+        
+        $filters = Yii::$app->db->createCommand($sql)->queryAll();
+        return $filters;
     }
 }

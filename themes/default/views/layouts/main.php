@@ -95,9 +95,6 @@ DefaultAsset::register($this);
                         <ul class="listnone">
                             <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">About us</a></li>
                             <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Contact us</a></li>
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 3]); ?>">Faq</a></li>
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 2]); ?>">Pricing Plan</a></li>
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 1]); ?>">Meet The Team</a></li>
                         </ul>
                     </div>
                 </div>

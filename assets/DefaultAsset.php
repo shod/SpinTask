@@ -28,7 +28,7 @@ class DefaultAsset extends AssetBundle
         '/themes/default/fontello/css/fontello.css',
         '/themes/default/css/owl.carousel.css',
         '/themes/default/css/owl.theme.default.css',
-        '/themes/default/css/style.css',
+        '/themes/default/css/style.css?v=3',
     ];
     public $js = [
         'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
