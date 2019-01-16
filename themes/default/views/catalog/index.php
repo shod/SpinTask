@@ -38,7 +38,15 @@ use app\models\Service;
                 'itemOptions' => [
                     'class' => 'vendor-thumbnail list-view',
                 ],
-                'layout' => "{items}\n{pager}",
+                'layout' => '{items}<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="st-paginations mb60 mt20">{pager}</div></div>',
+                'pager' => [
+                   // 'nextPageCssClass' => 'mynext',
+                   'options' => [
+                        //'tag' => 'div',
+                        'class' => 'pagination',
+                    ],
+                ],
             ]);
             ?>
             <?php if(count($filters)): ?>
