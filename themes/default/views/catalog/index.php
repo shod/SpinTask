@@ -22,7 +22,7 @@ use app\models\Service;
         </div>
     </div>
 </div>
-<?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service]); ?>
+
 <div class="content">
     <div class="container">
         <div class="row">
@@ -49,15 +49,10 @@ use app\models\Service;
                 ],
             ]);
             ?>
-            <?php if(count($filters)): ?>
-                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
-    <!--                <div class="filter-form">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h3 class="widget-title">filter</h3>
-                            </div>
-                        </div>
-                    </div>-->
+            
+            <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
+                <?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service, 'tools' => $tools]); ?>
+                <?php if(count($filters)): ?>
                     <div class="sidebar">
                         <div class="widget widget-tags">
                             <h3 class="widget-title">Tags</h3>
@@ -68,8 +63,9 @@ use app\models\Service;
                             }?>
                         </div>
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
+            </div>
+            
         </div>
     </div>
 </div>

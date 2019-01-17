@@ -22,7 +22,7 @@ use yii\helpers\Url;
                                 <!-- /.real wedding img -->
                         <div class="real-wedding-content">
                             <!-- real wedding content -->
-                            <h3 class="real-wedding-title"><a href="<?= Url::to(['catalog/index', 'industry_id' => $data->id]); ?>" class="title"><?= $data->name; ?></a></h3>
+                            <h3 class="real-wedding-title"><a href="<?= Url::to(['catalog/index', 'industry_id' => $data->id]); ?>" class="title"><?= mb_convert_case($data->name, MB_CASE_TITLE, 'utf-8'); ?> Service</a></h3>
                         
                         </div>
                                 <!-- /.real wedding img -->

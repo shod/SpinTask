@@ -3,6 +3,7 @@
 namespace app\models_ex;
 
 use Yii;
+use yii\helpers\Url;
 use \app\models\CompanyServiceValue;
 
 /**
@@ -31,7 +32,7 @@ class Company extends \app\components\db\TSFlaggedActiveRecord
     }
 
     public function getUrl(){
-        return yii\helpers\Url::to(['site/buisness', 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id,"region_id" => (string)$this->state_id]);
+        return Url::to(['site/buisness', 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id,"region_id" => (string)$this->state_id]);
     }
 
     /**

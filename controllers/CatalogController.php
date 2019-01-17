@@ -75,7 +75,6 @@ class CatalogController extends Controller
         $city = $this->getCityByRegion($region_id);
         $service = \app\models\Service::find()->all();
         
-    
         
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -83,6 +82,7 @@ class CatalogController extends Controller
             'city' => $city,
             'service' => $service,
             'filters' => $this->getFilters(),
+            'tools' => $this->getTools(),
         ]);
     }
     
@@ -92,6 +92,18 @@ class CatalogController extends Controller
     
     private function getRegionByCountry() {
         return \app\models\Region::find()->innerJoinWith('companies', false)->where(['country_id' => \Yii::$app->params['country']])->all();
+    }
+
+    private function getTools(){
+        $sql = "SELECT DISTINCT
+                    spv.id, spv.value as name
+                FROM
+                    `olg`.`service_property_value` spv
+                    inner join company_service_value csv on csv.service_property_value_id = spv.id
+                WHERE
+                    `service_property_id` = '17' ";
+        $filters = Yii::$app->db->createCommand($sql)->queryAll();
+        return $filters;            
     }
 
     private function getFilters(){
