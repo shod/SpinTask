@@ -17,7 +17,7 @@ use Yii;
  * @property CompanyServiceValue[] $companyServiceValues
  * @property ServiceInquiry[] $serviceInquiries
  */
-class CompanyService extends \app\components\db\TSFlaggedActiveRecord
+class CompanyService extends \schevgeny\yii\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
     

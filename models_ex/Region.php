@@ -6,7 +6,7 @@ use Yii;
 
 
 
-class Region extends \app\components\db\TSFlaggedActiveRecord
+class Region extends \schevgeny\yii\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
     

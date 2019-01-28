@@ -15,7 +15,7 @@ use Yii;
  * @property BillAccount $billAccount
  * @property Company $company
  */
-class Quote extends \app\components\db\TSFlaggedActiveRecord
+class Quote extends \schevgeny\yii\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
 }

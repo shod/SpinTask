@@ -19,7 +19,7 @@ use \app\models\CompanyServiceValue;
  * @property CompanyServiceValue[] $companyServiceValues
  * @property ServiceInquiry[] $serviceInquiries
  */
-class Company extends \app\components\db\TSFlaggedActiveRecord
+class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
     
