@@ -21,7 +21,8 @@
         "kartik-v/yii2-grid": "dev-master",
         "kartik-v/yii2-builder": "dev-master",
         "kartik-v/yii2-editable": "dev-master",
-        "schevgeny/sphinx": "dev-master"
+        "schevgeny/sphinx": "dev-master",
+        "schevgeny/yii-db": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
