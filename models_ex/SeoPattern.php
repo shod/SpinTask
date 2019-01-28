@@ -34,7 +34,7 @@ class SeoPattern extends \yii\db\ActiveRecord
     
     public static function getByParams($route, $params){
         $route = trim($route, '/');
-        //dd(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)]);
+        //dd(\yii\helpers\Json::encode($params));
         return self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one();
     }
     
@@ -47,7 +47,7 @@ class SeoPattern extends \yii\db\ActiveRecord
     }
     
     public function getUrlParams() {
-        $params = yii\helpers\Json::decode($this->parms);
+        $params = (array)yii\helpers\Json::decode($this->parms);
         return array_merge([$this->controller], $params);
     }
 

@@ -22,7 +22,7 @@ use app\models\Service;
         </div>
     </div>
 </div>
-<?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service]); ?>
+
 <div class="content">
     <div class="container">
         <div class="row">
@@ -38,29 +38,36 @@ use app\models\Service;
                 'itemOptions' => [
                     'class' => 'vendor-thumbnail list-view',
                 ],
-                'layout' => "{items}\n{pager}",
+                'layout' => '{items}<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="st-paginations mb60 mt20">{pager}</div></div>',
+                'pager' => [
+                   // 'nextPageCssClass' => 'mynext',
+                   'options' => [
+                        //'tag' => 'div',
+                        'class' => 'pagination',
+                    ],
+                ],
             ]);
             ?>
+            
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
-<!--                <div class="filter-form">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h3 class="widget-title">filter</h3>
+                <?= $this->render('_filter', ['regions' => $regions, 'city' => $city, 'service' => $service, 'tools' => $tools]); ?>
+                <?php if(count($filters)): ?>
+                    <div class="sidebar">
+                        <div class="widget widget-tags">
+                            <h3 class="widget-title">Tags</h3>
+                            <?php foreach ($filters as $value) {
+                                $params = yii\helpers\Json::decode($value['parms']);
+                                
+                                echo Html::a($value['h1'], array_merge([$value['controller']], $params) );
+                            }?>
                         </div>
                     </div>
-                </div>-->
-                <div class="sidebar">
-                    <div class="widget widget-tags">
-                        <h3 class="widget-title">Tags</h3>
-                        <?php foreach ($filters as $value) {
-                            $params = yii\helpers\Json::decode($value->seo->parms);
-                            
-                            echo Html::a($value->seo->h1, $value->seo->getUrlParams() );
-                        }?>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
+            
         </div>
     </div>
 </div>
+<?= $this->render('_region', ['regions' => $regions, 'city' => $city,]); ?>
 

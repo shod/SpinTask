@@ -90,7 +90,7 @@ class CompanyController extends Controller
         
         $profileModel = new \app\models\form\Company();
         $profileModel->attributes = $model->attributes;
-        
+       
         $valueList = [];
         $svModel = \app\models\CompanyServiceValue::find()->where(['company_service_id' => $companyServiceIds])->all();
         foreach ($svModel as $sv) {
@@ -123,6 +123,7 @@ class CompanyController extends Controller
        
         $profileModel->imageFile = \yii\web\UploadedFile::getInstance($profileModel, 'imageFile');
         
+        
         if(!empty($profileModel->imageFile)){
             if ($profileModel->upload()) {
                 $model->image = $profileModel->getImgFileName();
@@ -134,10 +135,14 @@ class CompanyController extends Controller
         } else{
             $model->image = $oldImg;
         }
+       
         if ($model->save()) {
         
             $id = $model->id;
         }
+       /* dd($model->attributes);
+        dd($model->getErrors());
+        die;*/
         
         $service  = Yii::$app->request->post('service');
         if($service){

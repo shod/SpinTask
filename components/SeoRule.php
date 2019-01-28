@@ -16,13 +16,34 @@ class SeoRule extends UrlRule
         }
     }
 
+    public static function paramsFormating($params) : string {
+        return \json_encode(self::sortParams($params) );
+    }
+
+    public static function sortParams($params){
+        unset($params['seo_id']);
+        unset($params['page']);
+        $sort = ["industry_id","region_id","city_id","service_property_value_id","service_id"];
+        $res = [];
+        foreach ($sort as $key => $item){
+            if(isset($params[$item])){
+                $res[$item] = $params[$item];
+            }
+            else{
+                unset($sort[$key]);
+            }
+        }
+        
+        if(count($res) == count($params)){
+            return $res;
+        }
+        return $params;
+    }
+
     public function createUrl($manager, $route, $params)
     {
+        $p = self::sortParams($params);
         
-      /*  dd($manager);
-        dd($route);
-        dd($params);
-        die('1111111111');*/
         $route = trim($route);
         $params_md5 = md5(print_r($params,1));
         if(isset($this->collection[$route][$params_md5])){
@@ -34,36 +55,16 @@ class SeoRule extends UrlRule
                 unset($params[$key]);
             }
         }
-        $model = \app\models\SeoPattern::getByParams($route, $params);
+       
+        $model = \app\models\SeoPattern::getByParams($route, $p);
         if($model){
+            $is_full_pattern = true;
             $toRoute = [];
-            if(isset($params['p']) && $params['p'] > 1){
-                $toRoute['p'] = (int)$params['p'];
+            if(isset($params['page']) && $params['page'] > 1){
+                $toRoute['page'] = (int)$params['page'];
             }
-            if(isset($params['order'])){
-                $toRoute['order'] = $params['order'];
-            }
-            if(isset($params['type']) && $params['type']){
-                $toRoute['type'] = $params['type'];
-            }
-           
 
-            /*
-            if(isset($params['new']) && $params['new']){
-                $model->url .= '/new';
-            }elseif(isset($params['hit']) && $params['hit']){
-                $model->url .= '/hit';
-            }elseif(isset($params['kredit']) && $params['kredit']){
-                $model->url .= '/kredit';
-            }elseif(isset($params['rassrochka']) && $params['rassrochka']){
-                $model->url .= '/rassrochka';
-            }else
-            */ 
-           /* if(isset($params['made']) && $params['made']){
-                $model->url .= '/' . $params['made'];
-            }
-*/
-        /*    if(count($toRoute) && count($p) ){
+            if(count($toRoute) && count($p) ){
                 if($is_full_pattern){
                     $diff = $this->array_diff_assoc_recursive($toRoute, $p);
                 }else{
@@ -73,7 +74,8 @@ class SeoRule extends UrlRule
                     $this->collection[$route][$params_md5] = $model->url . '/?' . urldecode($http_build_query);
                     return $this->collection[$route][$params_md5];
                 }
-            }*/
+            }
+
             $this->collection[$route][$params_md5] =  $model->url . '/';
             return $this->collection[$route][$params_md5];
         }

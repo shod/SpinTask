@@ -5,7 +5,12 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 function dd($v){
+  
+    /*if(!in_array($_SERVER["HTTP_CF_CONNECTING_IP"], ['86.57.147.222'])){
+        return false;
+    }*/
     echo '<pre>';
     var_dump($v);
     echo '</pre>';

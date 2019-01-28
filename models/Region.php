@@ -14,7 +14,7 @@ use Yii;
  * @property City[] $cities
  * @property Company[] $companies
  */
-class Region extends \yii\db\ActiveRecord
+class Region extends \app\models_ex\Region
 {
     /**
      * {@inheritdoc}

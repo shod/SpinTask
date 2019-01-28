@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Industry;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 
@@ -38,9 +39,9 @@ class SiteController extends Controller
     */
     public function actionIndex() {
 
-        $regions = $this->getRegionByCountry();
+        $industry = Industry::find()->where(['hide' => 0])->all();
 
-        return $this->render('index', ['regions' => $regions, /* 'city' => $city */]);
+        return $this->render('index', ['industry' => $industry,]);
     }
 
     public function actionPage($id)
@@ -50,16 +51,7 @@ class SiteController extends Controller
         return $this->render('page', $vars);
     }
     
-    public function actionCity($region_id)
-    {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $city = $this->getCityByRegion($region_id);
-        $data = [];
-        foreach ($city as $c){
-            $data[$c->id] = $c->name;
-        }
-        return $this->asJson($data);
-    }
+    
     
 
     
@@ -160,53 +152,5 @@ class SiteController extends Controller
         return $this->render('quote_result', ['model' => $model, "message" => $message]);
     }
     
-    public function actionCatalog()
-    {
-        $city_id = (int) \Yii::$app->request->get('city_id');
-        dd($city_id);
-        $query = \app\models\Company::find();
-        if(\Yii::$app->request->seo){
-            $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
-            if($service_property_value_id){
-                $query->joinWith(['companyServiceValues'])->where(['service_property_value_id' => $service_property_value_id]);
-            }
-            /*if($city_id){
-                $query->andWhere(['city_id' => $city_id]);
-            }*/
-        }
-        
-        if($city_id){
-            $query->andWhere(['city_id' => $city_id]);
-        }
 
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-        $regions = $this->getRegionByCountry();
-        
-        $region_id = (int) \Yii::$app->request->get('region');
-        $city = $this->getCityByRegion($region_id);
-        
-        $service = \app\models\Service::find()->all();
-        
-        
-        $filters = \app\models\SeoFilter::find()->with(['seo'])->all();
-        
-        return $this->render('catalog', [
-            'dataProvider' => $dataProvider,
-            'regions' => $regions,
-            'city' => $city,
-            'service' => $service,
-            'filters' => $filters,
-        ]);
-    }
-    
-    private function getCityByRegion($region_id) {
-        return \app\models\City::find()->innerJoinWith('companies', false)->where(['region_id' => $region_id,])->orderBy('name')->all();
-    }
-    
-    private function getRegionByCountry() {
-        return \app\models\Region::find()->innerJoinWith('companies', false)->where(['country_id' => \Yii::$app->params['country']])->all();
-    }
 }
