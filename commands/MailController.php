@@ -35,6 +35,7 @@ class MailController extends Controller{
                     $mailTo = $params['email'];
                     $mailTo = trim($mailTo);
                     $mailTo = strtolower($mailTo);
+                    
                     $print_params = $params;
 
                     // unset default
@@ -44,8 +45,9 @@ class MailController extends Controller{
 
                     \Yii::$app->mailer->compose($params['tmpl']
                         ,['params' => $print_params])
-                        ->setFrom([$params['from'] => 'RealWed'])
+                        ->setFrom([$params['from'] => \Yii::$app->name])
                         ->setTo( $mailTo )
+                        ->setBcc( \Yii::$app->params['adminEmail'] )
                         ->setSubject($params['subject'])
                         ->send();
 

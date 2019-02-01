@@ -137,15 +137,17 @@ class SiteController extends Controller
         
         $message = 'Request accepted. In the near future contact with you.';
         
+        $params = $_GET['params']??[];
+
         $model = new \app\models\Quote();
         $model->attributes = $_GET;
-        $model->params = \yii\helpers\Json::encode($_GET['params']);
+        $model->params = \yii\helpers\Json::encode($params);
         $model->company_id = $id;
         
         $check = \app\models\Quote::find()->where(['company_id' => $model->company_id, 'phone' => $model->phone])->count();
         if(!$check){
-            SysService::sendEmail($_GET['email'], 'You have made new request', Yii::$app->params['email_from'],false, 'simple', array_merge($_GET['params'], ['name' => $_GET['name']]) );
-            SysService::sendEmail($company->email, 'New Request', Yii::$app->params['email_from'],false, 'simple-owner', array_merge($_GET['params'], ['name' => $_GET['name']]) );
+            SysService::sendEmail($_GET['email'], 'You have made new request', Yii::$app->params['email_from'],false, 'simple', array_merge($params, ['name' => $_GET['name']]) );
+            SysService::sendEmail($company->email, 'New Request', Yii::$app->params['email_from'],false, 'simple-owner', array_merge($params, ['name' => $_GET['name']]) );
             $model->save();
         }
         
