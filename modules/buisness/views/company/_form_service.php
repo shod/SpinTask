@@ -20,10 +20,12 @@ $model->company_id = $company->id;
             'options' => [
                     'class' => 'form-inline'
                  ]
-        ]); ?>
+        ]); 
+        //dd($services);
+    ?>
         <ul>
             <?php foreach ($services as $service): ?>
-                <?php if(!isset($values[$service->id])) continue; ?>
+                <?php //if(!isset($values[$service->id])) continue; ?>
                 <li>
                     <?= Html::checkbox('service['.$service->id.']', (isset($sericeList[$service->id])), ['label' => $service->name]); ?>
                 </li>
