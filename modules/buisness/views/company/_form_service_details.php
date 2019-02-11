@@ -7,12 +7,13 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Company */
 /* @var $form yii\widgets\ActiveForm */
 $i = FALSE;
+
 ?>
 <div class="company-form">
     <ul class="nav nav-tabs" id="serviceTab" role="tablist">
         <?php foreach ($services as $service): ?>
-            <?php if(!isset($sericeList[$service->id])) continue; ?>
-            <?php if(!isset($values[$service->id])) continue; ?>
+            <?php //if(!isset($sericeList[$service->id])) continue; ?>
+            <?php //if(!isset($values[$service->id])) continue; ?>
             <li class="nav-item">
                 <a class="nav-link <?= (!$i)? 'active': '' ?>" id="serv_<?= $service->id; ?>-tab" data-toggle="tab" 
                    href="#serv_<?= $service->id; ?>" role="tab" 
@@ -27,7 +28,7 @@ $i = FALSE;
     ?>
     <div class="tab-content" id="serviceContent">
         <?php foreach ($services as $service): ?>
-            <?php if(!isset($sericeList[$service->id])) continue; ?>
+            <?php //if(!isset($sericeList[$service->id])) continue; ?>
 
             <div class="tab-pane fade  <?= (!$i)? 'show active': '' ?>" id="serv_<?= $service->id; ?>" role="tabpanel" aria-labelledby="serv_<?= $service->id; ?>-tab">
                 <?php $form = ActiveForm::begin([
@@ -59,26 +60,28 @@ $i = FALSE;
                                 </ul>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col">
-                                <?= $form->field($sericeList[$service->id], 'description')->textarea(); ?>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col">
-                                <?= $form->field($sericeList[$service->id], 'email')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <?php if($sericeList[$service->id]->image): ?>
+                        <?php if (isset($sericeList[$service->id]) ): ?>
+                            <div class="row" >
                                 <div class="col">
-                                    <img src="/uploads/company/service/<?= $sericeList[$service->id]->image; ?>" height="100"/>
+                                    <?= $form->field($sericeList[$service->id], 'description')->textarea(); ?>
                                 </div>
-                            <?php endif; ?>
-                            <div class="col">
-                                <?= $form->field($sericeList[$service->id], 'imageFile')->fileInput() ?>
                             </div>
-                        </div>
+                            <div class="row" >
+                                <div class="col">
+                                    <?= $form->field($sericeList[$service->id], 'email')->textInput(['maxlength' => true]) ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <?php if($sericeList[$service->id]->image): ?>
+                                    <div class="col">
+                                        <img src="/uploads/company/service/<?= $sericeList[$service->id]->image; ?>" height="100"/>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col">
+                                    <?= $form->field($sericeList[$service->id], 'imageFile')->fileInput() ?>
+                                </div>
+                            </div>
+                        <?php endif;?>
                         <div class="row" >
                             <div class="col">
                                 <div class="form-group">
@@ -90,7 +93,7 @@ $i = FALSE;
                     </section>
                 <?php ActiveForm::end(); ?>
             </div>
-             <?php $i = TRUE; ?>
+            <?php $i = TRUE; ?>
         <?php endforeach; ?>
        
     </div>    

@@ -31,7 +31,7 @@ class BusinessOwner extends \app\models_ex\BusinessOwner
     public function rules()
     {
         return [
-            [['created_at'], 'safe'],
+            [['name'], 'safe'],
             [['setting_bit'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];

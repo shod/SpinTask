@@ -68,8 +68,8 @@ DefaultAsset::register($this);
                     <!-- footer-widget -->
                     <div class="footer-widget">
                         <a href="#"><img src="/themes/default/images/footer-logo.png" alt="" class="mb20"></a>
-                        <p class="mb10">Vestibulum ante elit, convallis quis nibh in, vulputate rhoncus massa. In hac habitasse platea dictumst.</p>
-                        <p>In hac habitasse platea dictumst simple dummy content here.</p>
+                        <p class="mb10"></p>
+                        <p></p>
                     </div>
                 </div>
                 <!-- /.footer-widget -->
@@ -79,10 +79,9 @@ DefaultAsset::register($this);
                         <h3 class="widget-title">
                             Contact Address
                         </h3>
-                        <p>4998 Elk Creek Road Canton,
-                            <br> GA 30114</p>
-                        <p class="mb0 text-default">+0-800-1234-123</p>
-                        <p class="mb0 text-default">info@realwed.com</p>
+                        <p>Belca Resources Inc. 7-1240 Holtby St,
+							<br>Coquitlam, BC V3B 0E5, Canada</p>                        
+                        <p class="mb0 text-default"></p>
                     </div>
                 </div>
                 <!-- /.footer-widget -->
@@ -93,8 +92,8 @@ DefaultAsset::register($this);
                             About Company
                         </h3>
                         <ul class="listnone">
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">About us</a></li>
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Contact us</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">Terms Of Service Agreement</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +105,7 @@ DefaultAsset::register($this);
                             List you Business
                         </h3>
                         <p>Are you vendor ? List your venue and service get more from listing business.</p>
-                        <a href="#" class="btn btn-default">List your Business</a>
+                        <!--<a href="#" class="btn btn-default">List your Business</a>-->
                     </div>
                 </div>
                 <!-- /.footer-widget -->
@@ -118,7 +117,7 @@ DefaultAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-                    <p>© 2018 RealWed. All Rights Reserved.</p>
+                    <p>© 2018 SpinTask. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
