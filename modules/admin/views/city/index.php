@@ -4,41 +4,31 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $searchModel app\modules\admin\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Seo Patterns';
+$this->title = 'Cities';
 $this->params['breadcrumbs'][] = ['label' => 'admin', 'url' => ['/admin/']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="seo-pattern-index">
+<div class="city-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Seo Pattern', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create City', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'url:url',
-            'controller',
-            'parms:ntext',
-            'title',
-            //'keyword',
-            //'description:ntext',
-            //'h1',
-            //'type',
-            //'route',
-            //'class',
-            //'parms_crc',
-            //'parms_md5',
-            //'title_2',
-            //'hide',
-            //'setting_bit',
+            'region_id',
+            'name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
