@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>RealWed | Wedding Vendor & Supplier Directory HTML Template - Reset Password</title>
+    <title>You have just make request.</title>
     <!-- Bootstrap CSS -->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
@@ -350,7 +350,7 @@
                                         </table>
 
                                         <p>Thank you</p>
-                                        <p class="mb0">If you have any problems, please contact me at <a href="#" class="click-link">example@realwed.com</a> </p>
+                                        <p class="mb0">If you have any problems, please contact me at <a href="#" class="click-link"><?= \Yii::$app->params['adminEmail']; ?></a> </p>
                                     </td>
                                 </tr>
                             </table>
@@ -379,7 +379,7 @@
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="content-block">
-                                <p class="text-center">© 2018 RelWed Wedding Planner, 4998 Elk Creek Road Canton, GA 30114
+                                <p class="text-center">Belca Resources Inc. 7-1240 Holtby St, Coquitlam, BC V3B 0E5, Canada
                                     <br> If these emails get annoying, please feel to <a href="#">unsubscribe</a></p>
                             </td>
                         </tr>
