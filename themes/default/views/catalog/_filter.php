@@ -12,7 +12,7 @@
             var citySelect = $('select[name="city_id"]');
             citySelect.html('');
             citySelect.niceSelect('destroy');
-            citySelect.append('<option value="">' + '<?= Yii::t('region', 'select city') ?>' + '</option>');
+            citySelect.append('<option value="">' + '<?= Yii::t('region', 'Select city') ?>' + '</option>');
             // заполняем список городов новыми пришедшими данными
             $.each(cityList, function(i){
                 citySelect.append('<option value="' + i + '">' + this + '</option>');
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <select class="wide" name="region_id"  onchange="loadCity(this)" >
-                    <option  ><?= Yii::t('region', 'State') ?></option>
+                    <option  ><?= Yii::t('region', 'Province') ?></option>
                     <?php foreach ($regions as $reg): ?>
                         <option value="<?= $reg->id ?>" <?= (isset($_GET['region_id']) && $reg->id == $_GET['region_id']) ? 'selected' : ''; ?> ><?= Yii::t('region', $reg->name) ?></option>
                     <?php endforeach; ?>

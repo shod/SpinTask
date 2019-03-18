@@ -91,7 +91,7 @@ $serviceForm = [];
                                     <div class="animities-list">
                                         <ul class="list-unstyled arrow">
                                             <?php foreach ($boolArr as $val): ?>
-                                            <?php 
+                                            <?php
                                                 $service = $val->servicePropertyValue->serviceProperty;
                                             ?>
                                                 <li><?= $service->name ?></li>

@@ -145,8 +145,8 @@ input::-webkit-input-placeholder { color: #6e6a6b !important; }
 input:focus::-webkit-input-placeholder { color: #252328 !important; }
 textarea::-webkit-input-placeholder { color: #6e6a6b !important; }
 textarea:focus::-webkit-input-placeholder { color: #252328 !important; }
-button.btn { font-size: 13px; height: 50px; }
-button.btn-default { }
+button.btn { font-size: 13px; height: 50px;}
+button.btn-default { cursor: pointer; }
 button.btn-primary { }
 address { }
 .table{margin-bottom: 0px;}

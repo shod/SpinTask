@@ -42,4 +42,15 @@ class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
     {
         return $this->hasMany(CompanyServiceValue::className(), ['company_service_id' => 'id'])->viaTable('company_service', ['company_id' => 'id']);
     }
+    
+    /**/
+    public function getCompanyTopServiceValues()
+    {
+        return Yii::$app->db->createCommand("select spv.value from company_service as cs, service_property as sp, service_property_value as spv, company_service_value as csv
+            where cs.company_id = ".$this->id."
+            and cs.service_id = 22 
+            and sp.service_id = cs.service_id 
+            and spv.service_property_id = sp.id and spv.service_id = cs.service_id
+            and sp.id = 17 and csv.company_service_id = cs.id and csv.service_property_value_id = spv.id;")->queryAll();
+    }
 }

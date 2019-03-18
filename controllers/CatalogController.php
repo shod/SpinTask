@@ -64,17 +64,24 @@ class CatalogController extends Controller
             $query->andWhere(['city_id' => $city_id]);
         }
 
+        $region_id = (int) \Yii::$app->request->get('region_id');
+        if($region_id){
+            
+            $query->andWhere(['state_id' => $region_id]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
         $regions = $this->getRegionByCountry();
         
-        $region_id = (int) \Yii::$app->request->get('region_id');
+        
         
         $city = $this->getCityByRegion($region_id);
         $service = \app\models\Service::find()->all();
         
+        /*Top service values*/
+        //$companyTopServiceValue = $model->getCompanyTopServiceValues();
         
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -82,7 +89,7 @@ class CatalogController extends Controller
             'city' => $city,
             'service' => $service,
             'filters' => $this->getFilters(),
-            'tools' => $this->getTools(),
+            'tools' => $this->getTools(),            
         ]);
     }
     
@@ -98,7 +105,7 @@ class CatalogController extends Controller
         $sql = "SELECT DISTINCT
                     spv.id, spv.value as name
                 FROM
-                    `olg`.`service_property_value` spv
+                    `service_property_value` spv
                     inner join company_service_value csv on csv.service_property_value_id = spv.id
                 WHERE
                     `service_property_id` = '17' ";

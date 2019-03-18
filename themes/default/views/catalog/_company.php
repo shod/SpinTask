@@ -8,6 +8,19 @@ if(empty($model->image) ){
 }else{
     $imgUrl .= $model->image;
 }
+$TopServiceList = $model->getCompanyTopServiceValues();
+$i = 1;
+$TopServiceValue = "";
+foreach ($TopServiceList as $val){                    
+     $TopServiceValue .= $val['value']; 
+     if($i++ < count($TopServiceList)){
+         $TopServiceValue .= ', ';
+     }     
+}
+
+if($TopServiceValue == ""){
+    $TopServiceValue = "<a href=\"{$href}\" class=\"title\">Read more...</a>";
+}
 ?>
 <!-- Vendor thumbnail -->
 <div class="row">
@@ -24,6 +37,9 @@ if(empty($model->image) ){
             <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
             <p class="vendor-address"><?= $model->city->name??''; ?></p>
             <!-- /.Vendor meta -->
+            <div class="vendor-meta">   
+                   <?= $TopServiceValue; ?>
+            </div>
         </div>
         <!-- /.Vendor Content -->
     </div>
