@@ -24,8 +24,8 @@ if($TopServiceValue == ""){
 ?>
 <!-- Vendor thumbnail -->
 <div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-        <div class="vendor-img">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 d-flex">
+        <div class="vendor-img d-flex align-items-center">
             <!-- Vendor img -->
             <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name; ?>"   width="35" height="35"  class="img-fluid"></a>
         </div>
