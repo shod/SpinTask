@@ -69,14 +69,23 @@ class CatalogController extends Controller
             
             $query->andWhere(['state_id' => $region_id]);
         }
+        
+        $service_id = (int) \Yii::$app->request->get('service_id');        
+        if($service_id){
+            
+            $query->joinWith(['companyServiceValues'])->andWhere(['service_id' => $service_id]);
+            
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
+                
         $regions = $this->getRegionByCountry();
-        
-        
-        
+                        
         $city = $this->getCityByRegion($region_id);
         $service = \app\models\Service::find()->all();
         

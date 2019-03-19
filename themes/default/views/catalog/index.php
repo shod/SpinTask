@@ -44,7 +44,9 @@ use app\models\Service;
                    // 'nextPageCssClass' => 'mynext',
                    'options' => [
                         //'tag' => 'div',
-                        'class' => 'pagination',
+                       'class' => 'pagination',
+                       'firstPageLabel' => '',
+                       'prevPageLabel' => '',
                     ],
                 ],
             ]);
