@@ -57,7 +57,7 @@ class SitemapController extends Controller
 		
 		$renderer = SiteMapRenderer::model('XML');
         
-		$renderer->setFileName('main.xml')
+		$renderer->setFileName('sitemap.xml')
             ->setDomain($prefix)
             ->setFolder($this->folder)
 			->setGzip(false)
