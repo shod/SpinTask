@@ -60,6 +60,10 @@ class CatalogController extends Controller
             }*/
         }
         
+        if(!\Yii::$app->request->seo->id){
+            \Yii::$app->view->registerMetaTag(['name' => 'title','content' => 'Spintask.com - The Search Filter',]);
+        }
+        
         if($city_id){
             $query->andWhere(['city_id' => $city_id]);
         }
@@ -83,7 +87,8 @@ class CatalogController extends Controller
                 'pageSize' => 10,
             ],
         ]);
-                
+        
+        //dd($dataProvider->getTotalCount()); exit;
         $regions = $this->getRegionByCountry();
                         
         $city = $this->getCityByRegion($region_id);
