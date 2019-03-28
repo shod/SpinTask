@@ -19,8 +19,8 @@ $serviceForm = [];
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <!--vendor-heading -->
                 <div class="vendor-headings">
-                    <h2 class="mb10"><?= $model->name; ?></h2>
-                    <p class="vendor-address"><?= $model->city->name; ?>. <!--a href="#map" class="btn-secondary-link ml-2">View Map</a--> </p>
+                    <h1 class="mb10"><?= $model->name; ?></h1>
+                    <p class="vendor-address">City <?= $model->city->name; ?> <!--a href="#map" class="btn-secondary-link ml-2">View Map</a--> </p>
                 </div>
                 <!--/.vendor-heading -->
             </div>

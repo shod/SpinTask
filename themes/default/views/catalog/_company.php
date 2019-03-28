@@ -18,16 +18,13 @@ foreach ($TopServiceList as $val){
      }     
 }
 
-if($TopServiceValue == ""){
-    $TopServiceValue = "<a href=\"{$href}\" class=\"title\">Read more...</a>";
-}
 ?>
 <!-- Vendor thumbnail -->
 <div class="row">
     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 d-flex">
         <div class="vendor-img d-flex align-items-center">
             <!-- Vendor img -->
-            <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name; ?>"   width="35" height="35"  class="img-fluid"></a>
+            <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name.' '.$model->city->name; ?>" title="<?= $model->name.' '.$model->city->name; ?>"  width="35" height="35"  class="img-fluid"></a>
         </div>
     </div>
     <!-- /.Vendor img -->

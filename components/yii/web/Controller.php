@@ -82,6 +82,10 @@ class Controller extends \yii\web\Controller {
                             ],
         ]);
         
+        if(!\Yii::$app->request->seo->id){
+            \Yii::$app->view->registerMetaTag(['name' => 'ROBOTS','content' => 'NOINDEX, NOFOLLOW',]);
+        }
+        
         if (parent::beforeAction($action)) {
             // If you want to change it only in one or few actions, add additional check
 
@@ -92,7 +96,7 @@ class Controller extends \yii\web\Controller {
             return false;
         }
         //if ( \Yii::$app->user->isGuest )
-        //    return \Yii::$app->getResponse()->redirect(\yii\helpers\Url::to(['site/login']),302);
+        //    return \Yii::$app->getResponse()->redirect(\yii\helpers\Url::to(['site/login']),302);        
         return true;
     }
 
