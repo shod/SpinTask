@@ -34,13 +34,21 @@ class SitemapController extends Controller
     {
         $data = [];
         
+        $data[] = array(
+                'url' => array(
+                    'loc' 			=>  $prefix . '/catalog/',
+                    'changefreq' 	=> 'monthly',
+                    'priority' 		=> 0.5,
+                ),
+            );
+        
         $models = SeoPattern::find()->where(['hide' => 0])->all();
 
 		foreach ((array) $models as $r)
 		{
             $data[] = array(
                 'url' => array(
-                    'loc' 			=>  $prefix . '/'. $r->url,
+                    'loc' 			=>  $prefix . '/'. $r->url. '/',
                     'changefreq' 	=> 'monthly',
                     'priority' 		=> 0.5,
                 ),
