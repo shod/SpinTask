@@ -36,7 +36,7 @@ class SitemapController extends Controller
         
         $data[] = array(
                 'url' => array(
-                    'loc' 			=>  $prefix . '/catalog/',
+                    'loc' 			=>  $prefix . '/catalog',
                     'changefreq' 	=> 'monthly',
                     'priority' 		=> 0.5,
                 ),
@@ -48,7 +48,7 @@ class SitemapController extends Controller
 		{
             $data[] = array(
                 'url' => array(
-                    'loc' 			=>  $prefix . '/'. $r->url. '/',
+                    'loc' 			=>  $prefix . '/'. $r->url,
                     'changefreq' 	=> 'monthly',
                     'priority' 		=> 0.5,
                 ),
