@@ -35,7 +35,8 @@ class MailController extends Controller{
                     $mailTo = $params['email'];
                     $mailTo = trim($mailTo);
                     $mailTo = strtolower($mailTo);
-                    
+                    $mailTo = explode(',',$mailTo);
+                                   
                     $print_params = $params;
 
                     // unset default
@@ -59,7 +60,7 @@ class MailController extends Controller{
                 \Yii::$app->db->createCommand('update sys_job_commands set is_error = is_error+1 where id = '.$id)->execute();
             }
             catch(\Swift_RfcComplianceException $Error){
-                dd($Error->getMessage());
+                print_r($Error->getMessage());
                 \Yii::$app->db->createCommand('update sys_job_commands set is_error = is_error+1 where id = '.$id)->execute();
             }
         }
