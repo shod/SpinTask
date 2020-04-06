@@ -24,14 +24,14 @@ foreach ($TopServiceList as $val){
     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 d-flex">
         <div class="vendor-img d-flex align-items-center">
             <!-- Vendor img -->
-            <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name.' '.$model->city->name; ?>" title="<?= $model->name.' '.$model->city->name; ?>"  width="35" height="35"  class="img-fluid"></a>
+            <a href="<?= $href; ?>"><img src="<?= $imgUrl; ?>" alt="<?= $model->name??''.' '.$model->city->name??''; ?>" title="<?= $model->name??''.' '.$model->city->name??''; ?>"  width="35" height="35"  class="img-fluid"></a>
         </div>
     </div>
     <!-- /.Vendor img -->
     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
         <div class="vendor-content">
             <!-- Vendor Content -->
-            <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name; ?></a></h2>
+            <h2 class="vendor-title"><a href="<?= $href; ?>" class="title"><?= $model->name??''; ?></a></h2>
             <p class="vendor-address"><?= $model->city->name??''; ?></p>
             <!-- /.Vendor meta -->
             <div class="vendor-meta">   
