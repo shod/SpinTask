@@ -146,6 +146,19 @@ class SiteController extends Controller
         
         $params = $_GET['params']??[];
 
+        if(isset($_GET['phone']) && !empty($_GET['phone']) && strlen($_GET['phone']) < 15){
+            $params['phone'] = $_GET['phone'];
+        }
+        if(isset($_GET['email']) && !empty($_GET['email']) && strlen($_GET['email']) < 100){
+            $params['user email'] = $_GET['email'];
+        }
+        if(isset($_GET['comment']) && !empty($_GET['comment']) && strlen($_GET['email']) < 256){
+            $params['comment'] = $_GET['comment'];
+        }
+        if(isset($_GET['name']) && !empty($_GET['name']) && strlen($_GET['email']) < 50){
+            $params['name'] = $_GET['name'];
+        }
+
         $model = new \app\models\Quote();
         $model->attributes = $_GET;
         $model->params = \yii\helpers\Json::encode($params);
@@ -153,8 +166,8 @@ class SiteController extends Controller
         
         $check = \app\models\Quote::find()->where(['company_id' => $model->company_id, 'phone' => $model->phone])->count();
         if(!$check){
-            SysService::sendEmail($_GET['email'], 'You have made new request', Yii::$app->params['email_from'],false, 'simple', array_merge($params, ['name' => $_GET['name']]) );
-            SysService::sendEmail($company->email, 'New Request', Yii::$app->params['email_from'],false, 'simple-owner', array_merge($params, ['name' => $_GET['name']]) );
+            SysService::sendEmail($_GET['email'], 'You have made new request', Yii::$app->params['email_from'],false, 'simple', $params );
+            SysService::sendEmail($company->email, 'New Request', Yii::$app->params['email_from'],false, 'simple-owner', $params );
             $model->save();
         }
         

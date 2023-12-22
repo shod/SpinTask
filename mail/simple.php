@@ -350,7 +350,7 @@
                                         </table>
 
                                         <p>Thank you</p>
-                                        <p class="mb0">If you have any problems, please contact me at <a href="#" class="click-link"><?= \Yii::$app->params['adminEmail']; ?></a> </p>
+                                        <p class="mb0">If you have any problems, please contact me at <a href="" class="click-link"><?= \Yii::$app->params['adminEmail']; ?></a> </p>
                                     </td>
                                 </tr>
                             </table>
@@ -379,9 +379,8 @@
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="content-block">
-                                <p class="text-center">Belca Resources Inc. 7-1240 Holtby St, Coquitlam, BC V3B 0E5, Canada
-                                    <br> If these emails get annoying, please feel to <a href="#">unsubscribe</a></p>
-                            </td>
+                                <p class="text-center">Belca Resources Inc. 7-1240 Holtby St, Coquitlam, BC V3B 0E5, Canada</p>
+							</td>
                         </tr>
                     </table>
                 </div>
