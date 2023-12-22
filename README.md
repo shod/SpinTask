@@ -231,3 +231,38 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 ```
 
 You can see code coverage output under the `tests/_output` directory.
+
+---
+
+# Sample LAMP virtual host file from Vultr. The default Apache conf files are located in /var/default-conf/httpd/conf.d
+
+Listen 80
+
+<VirtualHost *:80>
+    ServerName spintask.com
+    ServerAlias www.spintask.com
+
+    <Directory /var/www/html/>
+        Options -Indexes
+        Require all granted
+    </Directory>
+
+    <Files ".ht*">
+        Require all denied
+    </Files>
+
+    #ServerAdmin webmaster@example.com
+    #ServerName host.example.com
+
+    DocumentRoot "/var/www/html/"
+
+    SetEnvIf Request_URI "^/favicon\.ico$" dontlog
+    SetEnvIf Request_URI "^/robots\.txt$" dontlog
+
+    CustomLog "/var/log/httpd/http_access.log" combined env=!dontlog
+    ErrorLog "/var/log/httpd/http_error.log"
+
+    ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/html/$1
+    DirectoryIndex index.php index.html
+    
+</VirtualHost>
