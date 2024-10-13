@@ -1,0 +1,12 @@
+{
+  "favorites.resources": [
+    {
+      "filePath": "components\\SeoRule.php",
+      "group": "Default"
+    },
+    {
+      "filePath": "themes\\default\\views",
+      "group": "Default"
+    }
+  ]
+}

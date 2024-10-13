@@ -13,7 +13,7 @@ DefaultAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html  lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>">
 
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
@@ -24,13 +24,16 @@ DefaultAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/themes/default/images/favicon.ico">
-    <script src="https://www.googletagmanager.com/gtag/js?id=<?= Yii::$app->analytics->getCode('google_tag_id'); ?>"></script> 
+    <script src="https://www.googletagmanager.com/gtag/js?id=<?= Yii::$app->analytics->getCode('google_tag_id'); ?>"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', '<?= Yii::$app->analytics->getCode('google_tag_id'); ?>');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', '<?= Yii::$app->analytics->getCode('google_tag_id'); ?>');
     </script>
     <?php $this->head() ?>
 </head>
@@ -49,7 +52,7 @@ DefaultAsset::register($this);
                     </div>
                     <!-- /.header-logo -->
                 </div>
-         
+
             </div>
         </div>
     </div>
@@ -79,8 +82,9 @@ DefaultAsset::register($this);
                         <h3 class="widget-title">
                             Contact Address
                         </h3>
-                        <p>Belca Resources Inc. 7-1240 Holtby St,
-							<br>Coquitlam, BC V3B 0E5, Canada</p>                        
+                        <p>
+                            <br>
+                        </p>
                         <p class="mb0 text-default"></p>
                     </div>
                 </div>
@@ -117,15 +121,15 @@ DefaultAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-                    <p>© 2018 SpinTask. All Rights Reserved.</p>
+                    <p>© 2024 YachtService. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
     </div>
     <!-- /.tiny-footer-section -->
-      <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+    <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  
+
     <?php $this->endBody() ?>
 </body>
 

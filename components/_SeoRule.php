@@ -106,6 +106,7 @@ class SeoRule extends UrlRule
 
     public function parseRequest($manager, $request)
     {
+
         $model = \app\models\SeoPattern::getByUrl($request->getPathInfo());
         if ($model) {
             if (count($_GET)) {

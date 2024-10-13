@@ -56,7 +56,7 @@ class Company extends \app\models_ex\Company
     {
         return [
             [['buisness_id'], 'required'],
-            [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id'], 'integer'],
+            [['buisness_id', 'setting_bit', 'paid', 'city_id', 'state_id', 'is_active'], 'integer'],
             [['created_at'], 'safe'],
             [['description', 'map'], 'string'],
             [['name', 'phone', 'extention', 'ring_central_extention', 'local_phone', 'local_contact_name', 'email', 'website', 'street', 'postal_code', 'image'], 'string', 'max' => 255],
@@ -92,6 +92,7 @@ class Company extends \app\models_ex\Company
             'image' => 'Image',
             'map' => 'Map',
             'state_id' => 'State ID',
+            'is_active' => 'Active'
         ];
     }
 
