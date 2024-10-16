@@ -77,7 +77,7 @@ class SeoRule extends UrlRule
                 }
             }
 
-            $this->collection[$route][$params_md5] =  $model->url . '/';
+            $this->collection[$route][$params_md5] = $model->url . '/';
             return $this->collection[$route][$params_md5];
         }
         return false;  // это правило не подходит

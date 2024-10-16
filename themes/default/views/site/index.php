@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 //$this->title = 'Main page';
 
 ?>
@@ -18,13 +19,13 @@ use yii\helpers\Url;
                         <!-- real wedding block -->
                         <div class="real-wedding-img">
                             <!-- real wedding img -->
-                            <a href="<?= Url::to(['catalog/index', 'industry_id' => (string)$data->id]); ?>"><img src="img/industry/<?= $data->image; ?>" alt="<?= $data->name; ?>" class="img-fluid"></a>
+                            <a href="<?= Url::to(['catalog/index', 'industry_id' => $data->id]); ?>"><img src="img/industry/<?= $data->image; ?>" alt="<?= $data->name; ?>" class="img-fluid"></a>
                         </div>
                         <!-- /.real wedding img -->
                         <div class="real-wedding-content">
                             <!-- real wedding content -->
                             <h3 class="real-wedding-title"><a href="<?= Url::to(['catalog/index', 'industry_id' => $data->id]); ?>" class="title">
-                                <?= mb_convert_case($data->name, MB_CASE_TITLE, 'utf-8'); ?> Service</a></h3>
+                                    <?= mb_convert_case($data->name, MB_CASE_TITLE, 'utf-8'); ?> Service</a></h3>
 
                         </div>
                         <!-- /.real wedding img -->

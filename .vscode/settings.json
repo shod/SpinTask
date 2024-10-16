@@ -7,6 +7,10 @@
     {
       "filePath": "themes\\default\\views",
       "group": "Default"
+    },
+    {
+      "filePath": "html\\index.php",
+      "group": "Default"
     }
   ]
 }

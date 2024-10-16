@@ -10,6 +10,15 @@ ini_set('display_errors', 1);
 
 function dd($v)
 {
+    if (is_array($v) || is_object($v)) {
+        echo '<pre>';
+        var_dump($v);
+        echo '</pre>';
+        exit;
+    } else {
+        var_dump($v);
+        exit;
+    }
 
     /*if(!in_array($_SERVER["HTTP_CF_CONNECTING_IP"], ['86.57.147.222'])){
         return false;
