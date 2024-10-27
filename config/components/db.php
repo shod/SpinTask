@@ -2,12 +2,12 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=olg',
+    'dsn' => 'mysql:host=localhost;dbname=yachtdb',
     'commandClass' => 'app\components\yii\db\Command',
-    'username' => 'root',
-    'password' => 'XTjZj5bDq5yBo3L',
+    'username' => 'yacht',
+    'password' => 'superhero31',
     'charset' => 'utf8',
     'enableSchemaCache' => FALSE,
-    'schemaCacheDuration'=>3600,
+    'schemaCacheDuration'=>14600,
     'schemaCache' => 'cache',
 ];

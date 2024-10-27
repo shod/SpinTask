@@ -10,6 +10,6 @@ return [
     'class' => 'app\components\Analytics',
     
     'google_tag_id' => 'UA-131222649-1',
-    'yandex_metrica_id' => '',
-    'metrica' => '',
+    //'yandex_metrica_id' => '1',
+    //'metrica' => '',
 ];

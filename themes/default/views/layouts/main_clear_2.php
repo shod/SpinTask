@@ -21,12 +21,12 @@ app\assets\AppAsset::register($this);
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/assets/fonts/line-awesome/css/line-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="/assets/fonts/open-sans/styles.css">
-        <link rel="stylesheet" type="text/css" href="/libs/tether/css/tether.min.css">
-        <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
-        <link rel="stylesheet" type="text/css" href="/assets/styles/pages/auth.min.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/assets/fonts/line-awesome/css/line-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/assets/fonts/open-sans/styles.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/libs/tether/css/tether.min.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/assets/styles/common.min.css">
+        <link rel="stylesheet" type="text/css" href="/catalog/assets/styles/pages/auth.min.css">
 
      
 	</head>
