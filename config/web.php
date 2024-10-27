@@ -128,17 +128,17 @@ $config = [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => [
-                        '/libs/jquery/jquery.min.js'
+                        '//45.63.106.90' . '/libs/jquery/jquery.min.js'
                     ]
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [
-                        '/libs/bootstrap/css/bootstrap.min.css',
+                        '//45.63.106.90' . '/libs/bootstrap/css/bootstrap.min.css',
                     ]
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => [
-                        '/libs/bootstrap/js/bootstrap.min.js',
+                        '//45.63.106.90' . '/libs/bootstrap/js/bootstrap.min.js',
                     ]
                 ]
             ],
