@@ -11,7 +11,7 @@ use yii\helpers\VarDumper;
  * @var string $content
  */
 app\assets\AppAsset::register($this);
-$cdn_server = '//45.63.106.90';
+$cdn_server = 'http://45.63.106.90';
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
