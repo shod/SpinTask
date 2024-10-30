@@ -48,7 +48,7 @@ DefaultAsset::register($this);
                 <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
                     <!-- header-logo -->
                     <div class="header-logo">
-                        <a href="/"><img src="/themes/default/images/logo.png" alt="Wedding Vendor & Supplier Directory HTML Template "></a>
+                        <a href="/"><img src="/themes/default/images/logo.png" alt="YachtService.vip"></a>
                     </div>
                     <!-- /.header-logo -->
                 </div>
