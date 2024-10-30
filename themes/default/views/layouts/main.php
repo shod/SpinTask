@@ -48,7 +48,7 @@ DefaultAsset::register($this);
                 <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
                     <!-- header-logo -->
                     <div class="header-logo">
-                        <a href="/"><img src="/themes/default/images/logo.png" alt="YachtService.vip"></a>
+                        <a href="/"><img src="<?= \Yii::$app->params['cdn_url'] ?>/themes/default/images/logo.png" alt="YachtService.vip"></a>
                     </div>
                     <!-- /.header-logo -->
                 </div>
@@ -70,7 +70,7 @@ DefaultAsset::register($this);
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <!-- footer-widget -->
                     <div class="footer-widget">
-                        <a href="#"><img src="/themes/default/images/footer-logo.png" alt="" class="mb20"></a>
+                        <a href="#"><img src="<?= \Yii::$app->params['cdn_url'] ?>/themes/default/images/footer-logo.png" alt="" class="mb20"></a>
                         <p class="mb10"></p>
                         <p></p>
                     </div>

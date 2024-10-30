@@ -113,14 +113,12 @@ $config = [
                 ['class' => 'app\components\SeoRule',],
                 //'<action:\w+>/<id:\d+>'=>'site/<action>',
                 //    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                'catalog/site/buisness' => 'site/buisness',
+                'catalog/site/page' => 'site/page',
 
                 '<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-
-
-
-
             ),
         ),
         'assetManager' => [
@@ -128,17 +126,17 @@ $config = [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => [
-                        'https://45.63.106.90' . '/libs/jquery/jquery.min.js'
+                        $params['cdn_url'] . '/libs/jquery/jquery.min.js'
                     ]
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [
-                        'https://45.63.106.90' . '/libs/bootstrap/css/bootstrap.min.css',
+                        $params['cdn_url'] . '/libs/bootstrap/css/bootstrap.min.css',
                     ]
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => [
-                        'https://45.63.106.90' . '/libs/bootstrap/js/bootstrap.min.js',
+                        $params['cdn_url'] . '/libs/bootstrap/js/bootstrap.min.js',
                     ]
                 ]
             ],

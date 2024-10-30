@@ -11,7 +11,7 @@ use yii\helpers\VarDumper;
  * @var string $content
  */
 app\assets\AppAsset::register($this);
-$cdn_server = 'http://45.63.106.90';
+
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ $cdn_server = 'http://45.63.106.90';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href=$cdn_server. "/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/fonts/line-awesome/css/line-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/fonts/open-sans/styles.css">
     <link rel="stylesheet" type="text/css" href="/libs/tether/css/tether.min.css">
@@ -41,9 +41,9 @@ $cdn_server = 'http://45.63.106.90';
     <?= $content; ?>
 
 
-    <script src="/libs/jquery/jquery.min.js"></script>
-    <script src="/libs/tether/js/tether.min.js"></script>
-    <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/jquery/jquery.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/tether/js/tether.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

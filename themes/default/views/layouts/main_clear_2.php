@@ -23,12 +23,12 @@ app\assets\AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/catalog/libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/catalog/assets/fonts/line-awesome/css/line-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/assets/fonts/open-sans/styles.css">
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/libs/tether/css/tether.min.css">
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/assets/styles/common.min.css">
-    <link rel="stylesheet" type="text/css" href="https://45.63.106.90/assets/styles/pages/auth.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/catalog/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/catalog/assets/fonts/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/assets/fonts/open-sans/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/libs/tether/css/tether.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/assets/styles/common.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= \Yii::$app->params['cdn_url'] ?>/assets/styles/pages/auth.min.css">
 
 </head>
 
@@ -39,9 +39,9 @@ app\assets\AppAsset::register($this);
     <?= $content; ?>
 
 
-    <script src="https://45.63.106.90/libs/jquery/jquery.min.js"></script>
-    <script src="https://45.63.106.90/libs/tether/js/tether.min.js"></script>
-    <script src="https://45.63.106.90/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/jquery/jquery.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/tether/js/tether.min.js"></script>
+    <script src="<?= \Yii::$app->params['cdn_url'] ?>/libs/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

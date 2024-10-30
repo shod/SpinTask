@@ -266,3 +266,8 @@ Listen 80
     DirectoryIndex index.php index.html
     
 </VirtualHost>
+
+### Notice
+```
+<?= \Yii::$app->params['cdn_url'] ?>
+```
