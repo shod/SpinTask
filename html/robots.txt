@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: *?*
-Sitemap: https://spintask.com/sitemap_xml/sitemap.xml
-Host: https://www.spintask.com/
+Sitemap: https://yachtservice.vip/catalog/sitemap_xml/sitemap.xml
+Host: https://www.yachtservice.vip/

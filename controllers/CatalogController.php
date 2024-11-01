@@ -71,7 +71,7 @@ class CatalogController extends Controller
         }
 
         if (!\Yii::$app->request->seo->id) {
-            \Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => 'Spintask.com - The Search Filter',]);
+            \Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => 'YachtService.vip - The Search Filter',]);
         }
 
         if ($city_id) {

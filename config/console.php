@@ -18,11 +18,11 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-         'authManager' => [
+        'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['admin', 'BRAND', 'TALENT'],
         ],
-        
+
         'log' => [
             'targets' => [
                 [
@@ -36,8 +36,8 @@ $config = [
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'mail.spintask.com',
-                'username' => 'sales@spintask.com',
+                'host' => 'mail.yachtservice.vip',
+                'username' => 'sales@yachtservice.vip',
                 'password' => '41mm44Je4F6hHG',
                 'port' => '587',
                 'encryption' => 'tls',
