@@ -8,8 +8,8 @@
 
 return [
     'class' => 'app\components\Analytics',
-    
-    'google_tag_id' => 'UA-131222649-1',
+
+    'google_tag_id' => 'G-WPSCW8EEZM',
     //'yandex_metrica_id' => '1',
     //'metrica' => '',
 ];
