@@ -19,12 +19,11 @@ DefaultAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/themes/default/images/favicon.ico">
-    <script src="https://www.googletagmanager.com/gtag/js?id=<?= Yii::$app->analytics->getCode('google_tag_id'); ?>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= Yii::$app->analytics->getCode('google_tag_id'); ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

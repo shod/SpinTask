@@ -70,10 +70,6 @@ class CatalogController extends Controller
             $industry_id = (int) \Yii::$app->request->get('industry_id');
         }
 
-        if (!\Yii::$app->request->seo->id) {
-            \Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => 'YachtService.vip - The Search Filter',]);
-        }
-
         if ($city_id) {
             $query->andWhere(['city_id' => $city_id]);
         }
@@ -105,6 +101,12 @@ class CatalogController extends Controller
         $service = \app\models\Service::findAll(['industry_id' => $industry_id]);
         /*Top service values*/
         //$companyTopServiceValue = $model->getCompanyTopServiceValues();
+        //$this->view->title = 'YachtService.vip';
+
+        if (!\Yii::$app->request->seo->id) {
+            \Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => 'YachtService.vip - The Search Filter',]);
+            \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => \Yii::$app->name . ' - Service Catalog',]);
+        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

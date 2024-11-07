@@ -80,7 +80,13 @@ class SeoTextService
             'content' => $meta['description'],
         ]);
 
-        \Yii::$app->view->title = $meta['title'];
+        $title = $meta['title'];
+
+        if (!$title) {
+            $title = \Yii::$app->name;
+        }
+
+        \Yii::$app->view->title = $title;
         //\Yii::$app->view->h1 = $meta['h1'];
     }
 
