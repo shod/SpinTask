@@ -136,7 +136,7 @@ class SiteController extends Controller
             $model_city = \app\models\City::findOne($model->city_id);
             \Yii::$app->view->title = $model->name . ' - ' . $model_city->name;
 
-            \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->name . ' - ' . $model_city->name,]);
+            //\Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->name . ' - ' . $model_city->name,]);
         }
 
         return $this->render('buisness', ['model' => $model, 'companyService' => $companyService]);
