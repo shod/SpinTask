@@ -38,7 +38,7 @@ $config = [
         //                    'class' => 'yii\i18n\DbMessageSource',
         //                    'sourceLanguage' => 'en',
         //                    'forceTranslation'=>true,
-        //                  
+        //
         //                    //'basePath' => '@app/messages',
         //                    //'sourceLanguage' => 'en-US',
         //                    /* 'fileMap' => [
@@ -52,10 +52,10 @@ $config = [
         //                        'handleMissingTranslation'
         //                    ],
         //                ],
-        //         
+        //
         //            ],
-        //            
-        //        ], 
+        //
+        //        ],
 
 
 

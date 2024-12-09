@@ -47,6 +47,10 @@ class SeoTextService
             $patterns['description'] = $seo_model->description;
         }
 
+        if ($seo_model->keyword) {
+            $patterns['keyword'] = $seo_model->keyword;
+        }
+
         if (!isset($patterns['title'])) {
             throw new \Exception("Seo title pattern not exist for:" . json_encode($parms_keys), 500);
         }
@@ -62,6 +66,8 @@ class SeoTextService
         $arrmeta['description'] = self::paramsReplace($patterns['description'], $parms, $seo_model->h1);
         //$arrmeta['description'] = self::regionTextReplace($arrmeta['description']);
 
+        $arrmeta['keyword'] = self::paramsReplace($patterns['keyword'], $parms, $seo_model->keyword);
+
         $seo_model->h1 = ucwords($seo_model->h1);
         $arrmeta['h1'] = $seo_model->h1;
 
@@ -70,15 +76,17 @@ class SeoTextService
 
     public static function setMetaInformation($meta)
     {
-        /* \Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $meta['keyword'],           
-        ]);*/
-
         \Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => $meta['description'],
         ]);
+
+        if ($meta['keyword'] != null && $meta['keyword'] != '') {
+            \Yii::$app->view->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $meta['keyword'],
+            ]);
+        }
 
         $title = $meta['title'];
 
@@ -110,7 +118,6 @@ class SeoTextService
 
     private static function paramsReplace($text, $parms, $h1): string
     {
-
         $region = '';
         foreach ($parms as $key => $value) {
             switch ($key) {
@@ -142,6 +149,7 @@ class SeoTextService
                     $replaceText = '';
                     break;
             }
+
             $text = str_replace('{' . $key . '}', $replaceText, $text);
         }
         $text = str_replace(['{app_name}', '{h1}'], [\Yii::$app->name, $h1], $text);
