@@ -115,6 +115,7 @@ class CatalogController extends Controller
             'service' => $service,
             'filters' => $this->getFilters(),
             'tools' => $this->getTools(),
+			'seo_text'	=> \Yii::$app->request->seo->text
         ]);
     }
 

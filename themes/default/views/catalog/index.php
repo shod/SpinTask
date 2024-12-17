@@ -69,6 +69,9 @@ use app\models\Service;
             </div>
 
         </div>
+		<div>
+		<?= Yii::$app->request->seo->text; ?>
+		</div>
     </div>
 </div>
 <?= $this->render('_region', ['regions' => $regions, 'city' => $city,]); ?>
