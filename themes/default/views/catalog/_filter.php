@@ -29,7 +29,7 @@
         </div>
     </div>
     <form class="row" action="<?= yii\helpers\Url::to(['/catalog/index/',]) ?>">
-        <input type="hidden" name="industry_id" value="<?= Yii::$app->request->get('industry_id'); ?>" />
+        <input type="hidden" name="industry_id" value="<?= Yii::$app->request->get('industry_id',3); ?>" />
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <select class="wide" name="region_id" onchange="loadCity(this)">

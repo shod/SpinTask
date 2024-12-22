@@ -106,7 +106,6 @@ class CatalogController extends Controller
         if (!\Yii::$app->request->seo->id) {
             \Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => 'YachtService.vip - The Search Filter',]);
             \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => \Yii::$app->name . ' - Service Catalog',]);
-            \Yii::$app->view->registerMetaTag(['name' => 'keyword', 'content' => \Yii::$app->name . ' - Service Catalog',]);
         }
 
         return $this->render('index', [
@@ -116,6 +115,7 @@ class CatalogController extends Controller
             'service' => $service,
             'filters' => $this->getFilters(),
             'tools' => $this->getTools(),
+            'seo_text'    => \Yii::$app->request->seo->text
         ]);
     }
 
