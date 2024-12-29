@@ -33,6 +33,9 @@ class SeoTextService
         $h1Pattern = $seo_model->h1;
 
         $patterns = [];
+
+        $patterns['keyword'] = '';
+
         foreach ($patternModels as $model) {
             $patterns[$model->type] = $model->text;
         }

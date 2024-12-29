@@ -1,7 +1,5 @@
 <?php
-
-//dd($model);
-
+//dd($tools);
 ?>
 <script>
     function loadCity(select) {
@@ -29,7 +27,7 @@
         </div>
     </div>
     <form class="row" action="<?= yii\helpers\Url::to(['/catalog/index/',]) ?>">
-        <input type="hidden" name="industry_id" value="<?= Yii::$app->request->get('industry_id',3); ?>" />
+        <input type="hidden" name="industry_id" value="<?= Yii::$app->request->get('industry_id', 3); ?>" />
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <select class="wide" name="region_id" onchange="loadCity(this)">
@@ -57,9 +55,13 @@
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <select class="wide" name="service_property_value_id">
-                    <option value=''><?= Yii::t('region', 'Tools') ?></option>
-                    <?php foreach ($tools as $srv): ?>
-                        <option value="<?= $srv['id'] ?>" <?= (isset($_GET['service_property_value_id']) && $srv['id'] == $_GET['service_property_value_id']) ? 'selected' : ''; ?>><?= Yii::t('service', $srv['name']) ?></option>
+
+                    <?php foreach ($tools as $name => $groups): ?>
+                        <optgroup label='<?= Yii::t('region', $name) ?>' class='optgroup'>
+                            <?php foreach ($groups as $srv): ?>
+                                <option value="<?= $srv['id'] ?>" <?= (isset($_GET['service_property_value_id']) && $srv['id'] == $_GET['service_property_value_id']) ? 'selected' : ''; ?>><?= Yii::t('service', $srv['name']) ?></option>
+                            <?php endforeach; ?>
+                        </optgroup>
                     <?php endforeach; ?>
                 </select>
             </div>

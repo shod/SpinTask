@@ -137,14 +137,37 @@ class CatalogController extends Controller
 
     private function getTools()
     {
-        $sql = "SELECT DISTINCT
-                    spv.id, spv.value as name
-                FROM
-                    `service_property_value` spv
-                    inner join company_service_value csv on csv.service_property_value_id = spv.id
-                WHERE
-                    `service_property_id` = '21' ";
-        $filters = Yii::$app->db->createCommand($sql)->queryAll();
+        $filters = [];
+        $items = [];
+
+        $sql = "select sp.id as sp_id, spv.id, sp.name as sp_name,spv.value as name
+            from service as ssr										
+            inner join service_property as sp on sp.service_id = ssr.id
+            inner join service_property_value as spv on spv.service_property_id = sp.id
+            inner join company_service_value csv on csv.service_property_value_id = spv.id
+            where ssr.industry_id = 3
+            group by sp.id, spv.id
+            order by sp.name, spv.value";
+        $data = Yii::$app->db->createCommand($sql)->queryAll();
+
+        $parent_id = 0;
+        $parent_name = 'list of Services';
+        $items = [];
+        foreach ($data as $d) {
+
+            if ($parent_id != $d['sp_id']) {
+                $parent_id = $d['sp_id'];
+                $filters[$parent_name] = $items;
+
+                $parent_name = $d['sp_name'];
+                $items = [$d];
+            } else {
+                $items[] = $d;
+            }
+        }
+
+        $filters[$parent_name] = $items;
+
         return $filters;
     }
 
