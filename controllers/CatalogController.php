@@ -48,7 +48,7 @@ class CatalogController extends Controller
 
     public function actionIndex()
     {
-        $industry_id = 0;
+        $industry_id = 3;
         $city_id = (int) \Yii::$app->request->get('city_id');
 
         $query = \app\models\Company::find();
@@ -56,7 +56,7 @@ class CatalogController extends Controller
 
         $seo_pattern = \Yii::$app->request->seo;
 
-        if ($seo_pattern->parms != null) {
+        if ($seo_pattern->parms != null) {			
             $industry_id = $this->getIndustryId(\Yii::$app->request->seo);
 
             $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
@@ -67,7 +67,7 @@ class CatalogController extends Controller
                 $query->andWhere(['city_id' => $city_id]);
             }*/
         } else {
-            $industry_id = (int) \Yii::$app->request->get('industry_id');
+            $industry_id = (int) \Yii::$app->request->get('industry_id', $industry_id);
         }
 
         if ($city_id) {
@@ -98,7 +98,7 @@ class CatalogController extends Controller
 
         $city = $this->getCityByRegion($region_id);
         //$service = \app\models\Service::find()->all();        
-        $service = \app\models\Service::findAll(['industry_id' => $industry_id]);
+        $service = \app\models\Service::findAll(['industry_id' => $industry_id]);		
         /*Top service values*/
         //$companyTopServiceValue = $model->getCompanyTopServiceValues();
         //$this->view->title = 'YachtService.vip';
