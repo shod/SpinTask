@@ -1,6 +1,7 @@
 <?php
 //dd($tools);
 ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function loadCity(select) {
         // послыаем AJAX запрос, который вернёт список городов для выбранной области
@@ -31,7 +32,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <select class="wide" name="region_id" onchange="loadCity(this)">
-                    <option><?= Yii::t('region', 'Region') ?></option>
+                    <option value="0"><?= Yii::t('region', 'Region') ?></option>
                     <?php foreach ($regions as $reg): ?>
                         <option value="<?= $reg->id ?>" <?= (isset($_GET['region_id']) && $reg->id == $_GET['region_id']) ? 'selected' : ''; ?>><?= Yii::t('region', $reg->name) ?></option>
                     <?php endforeach; ?>
@@ -46,25 +47,28 @@
                 </select>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <select class="wide" name="service_id">
+                <select class="wide" name="service_id" id="service" onchange="filter_reload();">
                     <option value=''><?= Yii::t('region', 'Service') ?></option>
                     <?php foreach ($service as $srv): ?>
                         <option value="<?= $srv->id ?>" <?= (isset($_GET['service_id']) && $srv->id == $_GET['service_id']) ? 'selected' : ''; ?>><?= Yii::t('service', $srv->name) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <select class="wide" name="service_property_value_id">
 
-                    <?php foreach ($tools as $name => $groups): ?>
-                        <optgroup label='<?= Yii::t('region', $name) ?>' class='optgroup'>
-                            <?php foreach ($groups as $srv): ?>
-                                <option value="<?= $srv['id'] ?>" <?= (isset($_GET['service_property_value_id']) && $srv['id'] == $_GET['service_property_value_id']) ? 'selected' : ''; ?>><?= Yii::t('service', $srv['name']) ?></option>
-                            <?php endforeach; ?>
-                        </optgroup>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <?php if (isset($tools) && count($tools)): ?>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <select class="wide" name="service_property_value_id" onchange="filter_reload();">
+
+                        <?php foreach ($tools as $name => $groups): ?>
+                            <optgroup label='<?= Yii::t('region', $name) ?>' class='optgroup'>
+                                <?php foreach ($groups as $srv): ?>
+                                    <option value="<?= $srv['id'] ?>" <?= (isset($_GET['service_property_value_id']) && $srv['id'] == $_GET['service_property_value_id']) ? 'selected' : ''; ?>><?= Yii::t('service', $srv['name']) ?></option>
+                                <?php endforeach; ?>
+                            </optgroup>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            <?php endif; ?>
 
             <!-- /.price -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -73,3 +77,15 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+
+    });
+
+    function filter_reload() {
+        var form = $('form');
+        form.submit();
+    };
+</script>

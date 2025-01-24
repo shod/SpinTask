@@ -56,7 +56,7 @@ class CatalogController extends Controller
 
         $seo_pattern = \Yii::$app->request->seo;
 
-        if ($seo_pattern->parms != null) {			
+        if ($seo_pattern->parms != null) {
             $industry_id = $this->getIndustryId(\Yii::$app->request->seo);
 
             $service_property_value_id = (int) \Yii::$app->request->get('service_property_value_id');
@@ -98,7 +98,7 @@ class CatalogController extends Controller
 
         $city = $this->getCityByRegion($region_id);
         //$service = \app\models\Service::find()->all();        
-        $service = \app\models\Service::findAll(['industry_id' => $industry_id]);		
+        $service = \app\models\Service::findAll(['industry_id' => $industry_id]);
         /*Top service values*/
         //$companyTopServiceValue = $model->getCompanyTopServiceValues();
         //$this->view->title = 'YachtService.vip';
@@ -114,7 +114,7 @@ class CatalogController extends Controller
             'city' => $city,
             'service' => $service,
             'filters' => $this->getFilters(),
-            'tools' => $this->getTools(),
+            'tools' => $this->getTools($service_id),
             'seo_text'    => \Yii::$app->request->seo->text
         ]);
     }
@@ -135,7 +135,7 @@ class CatalogController extends Controller
         return \app\models\Region::find()->innerJoinWith('companies', false)->where(['country_id' => \Yii::$app->params['country']])->all();
     }
 
-    private function getTools()
+    private function getTools(int $service_id)
     {
         $filters = [];
         $items = [];
@@ -145,10 +145,14 @@ class CatalogController extends Controller
             inner join service_property as sp on sp.service_id = ssr.id
             inner join service_property_value as spv on spv.service_property_id = sp.id
             inner join company_service_value csv on csv.service_property_value_id = spv.id
-            where ssr.industry_id = 3
+            where ssr.industry_id = 3 and ssr.id = {$service_id}
             group by sp.id, spv.id
             order by sp.name, spv.value";
         $data = Yii::$app->db->createCommand($sql)->queryAll();
+
+        if (count($data) == 0) {
+            return $filters;
+        }
 
         $parent_id = 0;
         $parent_name = 'list of Services';
