@@ -25,12 +25,12 @@ class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
 
     public static function getImageDir()
     {
-        return Yii::getAlias('@webroot') . '/uploads/company/';
+        return Yii::getAlias('@webroot') . '/img/companies/';
     }
 
     public static function getImageUrl()
     {
-        return '/uploads/company/';
+        return '/img/companies/';
     }
 
     public function getUrl()
