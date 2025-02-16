@@ -39,8 +39,7 @@ class SiteController extends Controller
      * @return string
      */
     public function actionIndex()
-    {
-
+    {		
         $industry = Industry::find()->where(['hide' => 0])->all();
 
         return $this->render('index', ['industry' => $industry,]);

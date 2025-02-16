@@ -105,7 +105,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
-            'rules' => array(
+            /*'rules' => array(
                 //'' => 'site/index',
                 'login' => 'site/login',
                 'logout' => 'site/logout',
@@ -119,7 +119,25 @@ $config = [
                 '<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-            ),
+            ),*/
+			'rules' => [				
+                '/quote/<id:\d+>' => 'site/quote',
+                ['class' => 'app\components\SeoRule',],
+				
+				// Конкретные маршруты для страниц
+				//'<lang:\w{2}>/catalog/site/buisness' => 'site/buisness',
+				'<lang:\w{2}>/company' => 'site/buisness',
+				'<lang:\w{2}>/catalog/site/page' => 'site/page',
+
+				// Общие маршруты для контроллеров и действий
+				'<lang:\w{2}>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+				'<lang:\w{2}>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+				'<lang:\w{2}>/<controller:\w+>' => '<controller>/index',
+
+				// По умолчанию (если ничего не найдено)
+				'/' => 'site/index',
+				//'<lang:\w{2}>/catalog/' => 'site/index',
+			],
         ),
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
@@ -152,7 +170,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '86.57.147.222'],
+        'allowedIPs' => ['127.0.0.1', '178.235.191.33'],
     ];
 
     $config['bootstrap'][] = 'gii';

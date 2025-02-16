@@ -22,6 +22,7 @@ use \app\models\CompanyServiceValue;
 class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
 {
     protected static $singleton_class = __CLASS__;
+	protected $companyPath = 'us/company'; //us/catalog/site/buisness
 
     public static function getImageDir()
     {
@@ -35,7 +36,7 @@ class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
 
     public function getUrl()
     {
-        return Url::to(['site/buisness', 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id, "region_id" => (string)$this->state_id]);
+        return Url::to([$this->companyPath, 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id, "region_id" => (string)$this->state_id]);
     }
 
     /**

@@ -96,8 +96,8 @@ DefaultAsset::register($this);
                             About Company
                         </h3>
                         <ul class="listnone">
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">Terms Of Service Agreement</a></li>
-                            <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Privacy Policy</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['us/catalog/site/page', 'id' => 5]); ?>">Terms Of Service Agreement</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['us/catalog/site/page', 'id' => 4]); ?>">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

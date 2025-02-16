@@ -89,7 +89,7 @@ class CatalogController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 20,
             ],
         ]);
 
@@ -98,7 +98,11 @@ class CatalogController extends Controller
 
         $city = $this->getCityByRegion($region_id);
         //$service = \app\models\Service::find()->all();        
-        $service = \app\models\Service::findAll(['industry_id' => $industry_id]);
+        //$service = \app\models\Service::findAll(['industry_id' => $industry_id])->order('name');
+		$service = \app\models\Service::find()
+			->where(['industry_id' => $industry_id])
+			->orderBy(['name' => SORT_ASC]) // Change SORT_ASC to SORT_DESC for descending order
+			->all();
         /*Top service values*/
         //$companyTopServiceValue = $model->getCompanyTopServiceValues();
         //$this->view->title = 'YachtService.vip';
@@ -148,6 +152,7 @@ class CatalogController extends Controller
             where ssr.industry_id = 3 and ssr.id = {$service_id}
             group by sp.id, spv.id
             order by sp.name, spv.value";
+
         $data = Yii::$app->db->createCommand($sql)->queryAll();
 
         if (count($data) == 0) {
@@ -155,7 +160,7 @@ class CatalogController extends Controller
         }
 
         $parent_id = 0;
-        $parent_name = 'list of Services';
+        $parent_name = '';
         $items = [];
         foreach ($data as $d) {
 
@@ -183,6 +188,7 @@ class CatalogController extends Controller
         $city_id = Yii::$app->request->get('city_id');
 
         $sql = "SELECT * FROM `seo_pattern` WHERE  `url` LIKE '{$seoUrl}/%' AND `url` NOT LIKE '{$seoUrl}/%/%' ";
+		
         if ($city_id) {
             //not added filters
         } elseif ($region_id) {

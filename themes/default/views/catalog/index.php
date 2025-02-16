@@ -61,7 +61,8 @@ use app\models\Service;
                             <?php foreach ($filters as $value) {
                                 $params = yii\helpers\Json::decode($value['parms']);
 
-                                echo Html::a($value['h1'], array_merge([$value['controller']], $params));
+                                //echo Html::a($value['h1'], array_merge([$value['controller']], $params));								
+								echo Html::a($value['h1'], ['./' . $value['url']]);
                             } ?>
                         </div>
                     </div>

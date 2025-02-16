@@ -26,8 +26,8 @@ $this->title = $name;
         <!-- simple-links -->
         <div class="simple-links">
             <ul class="list-unstyled">
-                <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 5]); ?>">Terms Of Service Agreement</a></li>
-                <li><a href="<?= yii\helpers\Url::to(['site/page', 'id' => 4]); ?>">Privacy Policy</a></li>
+                <li><a href="<?= yii\helpers\Url::to(['en/catalog/site/page', 'id' => 5]); ?>">Terms Of Service Agreement</a></li>
+                <li><a href="<?= yii\helpers\Url::to(['en/catalog/site/page', 'id' => 4]); ?>">Privacy Policy</a></li>
             </ul>
         </div>
         <!-- simple-links -->

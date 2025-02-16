@@ -10,6 +10,18 @@ $this->params['breadcrumbs'][] = $model->name;
 
 $boolArr = [];
 $serviceForm = [];
+
+$href = $model->getUrl();
+$imgUrl = \app\models_ex\Company::getImageUrl();
+if (empty($model->image)) {
+    $imgUrl = Yii::$app->params['cdn_url'] . '/img/plug.jpg';
+} else {
+	$imgUrl .= $model->image;
+	if(substr($model->image, 0, 4) === 'http'){
+		$imgUrl = $model->image;
+	}
+}
+
 //  \app\models_ex\Company::getImageUrl() . $model->image; 
 ?>
 
@@ -33,7 +45,7 @@ $serviceForm = [];
             <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12">
                 <div class="vendor-details">
                     <?php // $this->render('_vendor_info'); ?>
-                    <img src="/img/companies//<?= $model->image; ?>" alt="<?= $model->name.' '.$model->city->name; ?>" title="<?= $model->name.' '.$model->city->name; ?>"  class="img-fluid">
+                    <img src="<?= $imgUrl; ?>" alt="<?= $model->name.' '.$model->city->name; ?>" title="<?= $model->name.' '.$model->city->name; ?>"  class="img-fluid">
                     <div class="vendor-descriptions">
                         <h3 class="border-bottom mb20 pdb10">About Company</h3>
                         <p><?= $model->description; ?></p>

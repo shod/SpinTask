@@ -2,11 +2,15 @@
 
 //dd($model);
 $href = $model->getUrl();
+
 $imgUrl = \app\models_ex\Company::getImageUrl();
 if (empty($model->image)) {
     $imgUrl = Yii::$app->params['cdn_url'] . '/img/plug.jpg';
 } else {
-    $imgUrl .= $model->image;
+	$imgUrl .= $model->image;
+	if(substr($model->image, 0, 4) === 'http'){
+		$imgUrl = $model->image;
+	}
 }
 $TopServiceList = $model->getCompanyTopServiceValues();
 $i = 1;

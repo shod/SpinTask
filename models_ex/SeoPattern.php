@@ -28,11 +28,13 @@ class SeoPattern extends \yii\db\ActiveRecord
 {
     
     public static function getByUrl($url) {
+		//dd($url);
         $url = trim($url, '/');
-        return self::find()->where(['url' => addslashes($url)])->limit(1)->cache(3600)->one();
+        return self::find()->where(['url' => addslashes($url)])->limit(1)->cache(0)->one();
     }
     
     public static function getByParams($route, $params){
+		//dd($params);
         $route = trim($route, '/');
         //dd(\yii\helpers\Json::encode($params));
         return self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one();
@@ -41,13 +43,23 @@ class SeoPattern extends \yii\db\ActiveRecord
     /**
      * Возвращает массив преобразованный из параметров
      */
-    public static function convertParamsToArray($params){
+    public static function convertParamsToArray($params){		
+	//dd($params);
         $un_param = \app\helpers\SiteService::unserialize($params);               
         return self::_convert_param_item_to_str($un_param);
     }
     
-    public function getUrlParams() {
-        $params = (array)yii\helpers\Json::decode($this->parms);
+    public function getUrlParams() 
+	{				
+        //$params = (array)yii\helpers\Json::decode($this->parms);		
+		//$params = (array)json_decode($this->parms);
+		//$this->parms = trim($this->parms, '/');
+		$params = [];
+		
+		if($this->parms !== '/' && $this->parms !== '' && $this->parms !== null){
+			$params = (array)json_decode($this->parms);
+		}
+		
         return array_merge([$this->controller], $params);
     }
 
