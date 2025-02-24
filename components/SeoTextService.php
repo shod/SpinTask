@@ -122,6 +122,7 @@ class SeoTextService
     private static function paramsReplace($text, $parms, $h1): string
     {
         $region = '';
+
         foreach ($parms as $key => $value) {
             switch ($key) {
                 case 'service_property_value_id':

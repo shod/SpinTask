@@ -85,6 +85,8 @@ class CatalogController extends Controller
 
             $query->joinWith(['companyServiceValues'])->andWhere(['service_id' => $service_id]);
         }
+		
+		$query->orderBy(['image' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

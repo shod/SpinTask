@@ -34,10 +34,25 @@ class SeoPattern extends \yii\db\ActiveRecord
     }
     
     public static function getByParams($route, $params){
-		//dd($params);
+		//dd($route);
         $route = trim($route, '/');
         //dd(\yii\helpers\Json::encode($params));
+		//dd(self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one());
         return self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one();
+    }
+	
+	public static function getUrlByParams($route, $params){
+		//dd($route);
+        $route = trim($route, '/');
+        //dd(\yii\helpers\Json::encode($params));		
+		$obj = self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one();
+		
+		if($obj !== null ){
+			$url = $obj->url;
+			return $url;
+		}
+		return null;
+        //return self::find()->where(['controller' => $route, 'parms' => \yii\helpers\Json::encode($params)])->one();
     }
     
     /**

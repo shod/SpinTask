@@ -34,3 +34,5 @@ phpunit.phar
 /tests/
 /vagrant/
 *.tgz
+
+html/img/companies/*

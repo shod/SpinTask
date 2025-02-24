@@ -12,7 +12,7 @@ $config = [
     'sourceLanguage' => 'en-US',
 
     'charset' => 'utf-8',
-    'name' => 'YachtService.vip',
+    'name' => 'YachtService.vip',	
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

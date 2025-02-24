@@ -12,11 +12,15 @@ $boolArr = [];
 $serviceForm = [];
 
 $href = $model->getUrl();
-$imgUrl = \app\models_ex\Company::getImageUrl();
+//$imgUrl = \app\models_ex\Company::getImageUrl();
+$imgUrl = $model->getImageUrl();
+
 if (empty($model->image)) {
     $imgUrl = Yii::$app->params['cdn_url'] . '/img/plug.jpg';
 } else {
-	$imgUrl .= $model->image;
+	//$imgUrl .= $model->image;
+	//$imgUrl = 'https://static.yachtservice.vip/img/' . $model->image;
+	$imgUrl = Yii::$app->params['cdn_url'] . '/img/' . $model->image;
 	if(substr($model->image, 0, 4) === 'http'){
 		$imgUrl = $model->image;
 	}

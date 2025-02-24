@@ -4,7 +4,8 @@ namespace app\models_ex;
 
 use Yii;
 use yii\helpers\Url;
-use \app\models\CompanyServiceValue;
+use app\models\CompanyServiceValue;
+//use app\models\SeoPattern;
 
 /**
  * This is the model class for table "company".
@@ -26,17 +27,29 @@ class Company extends \schevgeny\yii\db\TSFlaggedActiveRecord
 
     public static function getImageDir()
     {
-        return Yii::getAlias('@webroot') . '/img/companies/';
+        return Yii::getAlias('@webroot') . '/img/companies/us/';
     }
 
-    public static function getImageUrl()
+	/*
+	* Get loacl path to logo image
+	*/
+    public function getImageUrl()
     {
-        return '/img/companies/';
+        return $this->getImageDir() . substr($this->id, 0, 2);
     }
 
     public function getUrl()
     {
-        return Url::to([$this->companyPath, 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id, "region_id" => (string)$this->state_id]);
+		$params = ['company_id' => (int)$this->id, "city_id" => (int)$this->city_id, "region_id" => (int)$this->state_id];		
+		$url = SeoPattern::getUrlByParams('site/buisness', $params);
+				
+		//$url = $seoObj->getAttribute('url');
+		//var_dump($seoObj);
+		
+		if( $url ){
+			return '/' . $url;
+		}				
+        return Url::to(['site/buisness', 'company_id' => (string)$this->id, "city_id" => (string)$this->city_id, "region_id" => (string)$this->state_id]);
     }
 
     /**
